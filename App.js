@@ -35,7 +35,7 @@ export default function App() {
           
           
           <Stack.Screen 
-          name='Login'
+          name='login'
           component={Login}/>
 
 
