@@ -14,6 +14,7 @@ const Stack = createNativeStackNavigator();
 export default function App() {
 	const [fontsLoaded] = useFonts({
 		Cintra: require('./assets/fonts/CintraRegular.ttf'),
+		LatoBold: require('./assets/fonts/Lato-Bold.ttf'),
 	});
 
 	return (
