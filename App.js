@@ -1,12 +1,13 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
-import {  Button, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
 import { useFonts } from 'expo-font';
 import Main from './src/pages/main/main';
 import Home from './src/pages/home/home';
 import Login from './src/pages/login/login';
+import FirstPage from './src/pages/firstPage/firstPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,28 +20,32 @@ export default function App() {
 
 
   return (
-      <NavigationContainer>
-        <Stack.Navigator 
-        initialRouteName='Main'
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName='FirstPage'
         screenOptions={{
-          headerShown:false
+          headerShown: false
         }}>
-          <Stack.Screen 
+        <Stack.Screen
           name='Main'
-          component={Main}/>
-          
-          <Stack.Screen 
+          component={Main} />
+
+        <Stack.Screen
           name='Home'
-          component={Home}/>
-          
-          
-          <Stack.Screen 
+          component={Home} />
+
+
+        <Stack.Screen
           name='login'
-          component={Login}/>
+          component={Login} />
 
 
+        <Stack.Screen
+          name='FirstPage'
+          component={FirstPage} />
 
-        </Stack.Navigator>
-      </NavigationContainer>
+
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
