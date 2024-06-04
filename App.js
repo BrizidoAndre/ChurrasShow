@@ -4,8 +4,10 @@ import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
 import { useFonts } from 'expo-font';
+
+import Main from './src/pages/main/main';
+import Home from './src/pages/home/home';
 import Login from './src/pages/login/login';
-import Input from './src/components/input/input';
 
 const Stack = createNativeStackNavigator();
 
@@ -32,11 +34,19 @@ export default function App() {
 	);
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-});
+return (
+	<NavigationContainer>
+		<Stack.Navigator
+			initialRouteName="Main"
+			screenOptions={{
+				headerShown: false,
+			}}
+		>
+			<Stack.Screen name="Main" component={Main} />
+
+			<Stack.Screen name="Home" component={Home} />
+
+			<Stack.Screen name="login" component={Login} />
+		</Stack.Navigator>
+	</NavigationContainer>
+);

@@ -1,5 +1,4 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { HomeApp } from '../../App';
 import Home from '../home/home';
 import Login from '../login/login';
 import { ContentIcon } from './style';
