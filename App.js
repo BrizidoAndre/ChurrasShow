@@ -6,6 +6,8 @@ import {  Button, StyleSheet, Text, View } from 'react-native';
 import { useFonts } from 'expo-font';
 import Login from './src/pages/login/login';
 import Home from './src/pages/home/home';
+import { ButtonLogin } from './src/components/button/style';
+
 
 export function HomeApp({navigation}){
   return(

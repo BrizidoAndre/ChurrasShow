@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const botaoLogin = styled.TouchableOpacity`
+export const ButtonLogin = styled.TouchableOpacity`
     width: 90%;
     height:44px;
 
