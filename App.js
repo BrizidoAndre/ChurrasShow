@@ -7,20 +7,6 @@ import { useFonts } from 'expo-font';
 import Login from './src/pages/login/login';
 import Input from './src/components/input/input';
 
-export function HomeApp({ navigation }) {
-	return (
-		<View style={styles.container}>
-			<Text style={{ fontFamily: 'Cintra' }}>ChurrasShow</Text>
-			<Button
-				title="Clique para ir para login"
-				onPress={() => navigation.navigate('Login')}
-			/>
-			{/* <Input label="Teste" /> */}
-			<StatusBar style="auto" />
-		</View>
-	);
-}
-
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -30,30 +16,21 @@ export default function App() {
 
 	return (
 		<NavigationContainer>
-		  <Stack.Navigator 
-		  initialRouteName='HomeApp'
-		  screenOptions={{
-			headerShown:false
-		  }}>
-			<Stack.Screen 
-			name='Main'
-			component={Main}/>
-			
-			<Stack.Screen 
-			name='Home'
-			component={Home}/>
-			
-			
-			<Stack.Screen 
-			name='login'
-			component={Login}/>
-  
-  
-  
-		  </Stack.Navigator>
+			<Stack.Navigator
+				initialRouteName="HomeApp"
+				screenOptions={{
+					headerShown: false,
+				}}
+			>
+				<Stack.Screen name="Main" component={Main} />
+
+				<Stack.Screen name="Home" component={Home} />
+
+				<Stack.Screen name="login" component={Login} />
+			</Stack.Navigator>
 		</NavigationContainer>
 	);
-  }
+}
 
 const styles = StyleSheet.create({
 	container: {
