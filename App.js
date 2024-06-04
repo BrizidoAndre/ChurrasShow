@@ -4,7 +4,8 @@ import { StatusBar } from 'expo-status-bar';
 import {  Button, StyleSheet, Text, View } from 'react-native';
 
 import { useFonts } from 'expo-font';
-import Login from './pages/login/login';
+import Login from './src/pages/login/login';
+import Home from './src/pages/home/home';
 
 export function HomeApp({navigation}){
   return(
@@ -39,7 +40,7 @@ export default function App() {
           component={HomeApp}/>
           
           <Stack.Screen 
-          name='Login'
+          name='login'
           component={Login}/>
 
 
