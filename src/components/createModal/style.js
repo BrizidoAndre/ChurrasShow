@@ -14,6 +14,14 @@ export const ContentCreateModal = styled.View`
 	align-items: center;
 `;
 
+export const ContainerPackageButton = styled.View`
+	width: 100%;
+	height: auto;
+	display: flex;
+	flex-direction: row;
+	gap: 24px;
+`;
+
 export const TitleModal = styled.Text`
 	font-size: 20px;
 	font-family: 'Lato_700Bold';

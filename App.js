@@ -8,17 +8,18 @@ import Main from './src/pages/main/main';
 import Home from './src/pages/home/home';
 import Login from './src/pages/login/login';
 
-import { useFonts, Lato_400Regular, Lato_700Bold } from '@expo-google-fonts/lato';
+import {
+	useFonts,
+	Lato_400Regular,
+	Lato_700Bold,
+} from '@expo-google-fonts/lato';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-
-  const [fontsLoaded] = useFonts({
-    "Cintra": require("./assets/fonts/CintraRegular.ttf")
-  });
-
-
+	const [fontsLoaded] = useFonts({
+		Cintra: require('./assets/fonts/CintraRegular.ttf'),
+	});
 
 	return (
 		<NavigationContainer>
