@@ -19,7 +19,7 @@ export default function App() {
 	return (
 		<NavigationContainer>
 			<Stack.Navigator
-				initialRouteName="HomeApp"
+				initialRouteName="Main"
 				screenOptions={{
 					headerShown: false,
 				}}
@@ -33,20 +33,3 @@ export default function App() {
 		</NavigationContainer>
 	);
 }
-
-return (
-	<NavigationContainer>
-		<Stack.Navigator
-			initialRouteName="Main"
-			screenOptions={{
-				headerShown: false,
-			}}
-		>
-			<Stack.Screen name="Main" component={Main} />
-
-			<Stack.Screen name="Home" component={Home} />
-
-			<Stack.Screen name="login" component={Login} />
-		</Stack.Navigator>
-	</NavigationContainer>
-);
