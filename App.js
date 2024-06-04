@@ -4,9 +4,9 @@ import { StatusBar } from 'expo-status-bar';
 import {  Button, StyleSheet, Text, View } from 'react-native';
 
 import { useFonts } from 'expo-font';
-import Login from './pages/login/login';
-import Home from './pages/home/home';
-import Main from './pages/main/main';
+import Main from './src/pages/main/main';
+import Home from './src/pages/home/home';
+import Login from './src/pages/login/login';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,7 +21,7 @@ export default function App() {
   return (
       <NavigationContainer>
         <Stack.Navigator 
-        initialRouteName='HomeApp'
+        initialRouteName='Main'
         screenOptions={{
           headerShown:false
         }}>
