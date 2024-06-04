@@ -8,8 +8,9 @@ const Home = ({navigation}) => {
         <View style={{margin:150}}>
 
             <Button title="ir para a navegação" onPress={()=>{navigation.navigate('Main')}}/>
-           
-            <TextButton>Orçamento</TextButton>
+
+            <Button title="ir para a login" onPress={()=>{navigation.navigate('login')}}/>
+                      
           
         </View>
     )
