@@ -30,19 +30,30 @@ export default function App() {
 
 	return (
 		<NavigationContainer>
-			<Stack.Navigator
-				initialRouteName="Home"
-				screenOptions={{
-					headerShown: false,
-				}}
-			>
-				<Stack.Screen name="Home" component={HomeApp} />
-
-				<Stack.Screen name="Login" component={Login} />
-			</Stack.Navigator>
+		  <Stack.Navigator 
+		  initialRouteName='HomeApp'
+		  screenOptions={{
+			headerShown:false
+		  }}>
+			<Stack.Screen 
+			name='Main'
+			component={Main}/>
+			
+			<Stack.Screen 
+			name='Home'
+			component={Home}/>
+			
+			
+			<Stack.Screen 
+			name='login'
+			component={Login}/>
+  
+  
+  
+		  </Stack.Navigator>
 		</NavigationContainer>
 	);
-}
+  }
 
 const styles = StyleSheet.create({
 	container: {
