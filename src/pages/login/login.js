@@ -5,7 +5,6 @@ import Titles from '../../components/title/title';
 const Login = () => {
 	return (
 		<>
-			<Titles title={'LOGIN'} />
 			<Input label="Alo prefeito" />
 		</>
 	);

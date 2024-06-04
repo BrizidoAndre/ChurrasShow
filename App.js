@@ -15,7 +15,7 @@ export function HomeApp({ navigation }) {
 				title="Clique para ir para login"
 				onPress={() => navigation.navigate('Login')}
 			/>
-			<Input label="Teste" />
+			{/* <Input label="Teste" /> */}
 			<StatusBar style="auto" />
 		</View>
 	);
