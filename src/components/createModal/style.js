@@ -16,5 +16,5 @@ export const ContentCreateModal = styled.View`
 
 export const TitleModal = styled.Text`
 	font-size: 20px;
-	font-family: 'LatoBold';
+	font-family: 'Lato_700Bold';
 `;
