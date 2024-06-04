@@ -1,13 +1,14 @@
 import { Text } from "react-native"
+import ContainerLogo from "../../components/container/container"
 
 
 
 const Login = () => {
 
-    return(
-        <>
-        <Text>Dor de cabeça</Text>
-        </>
+    return (
+        <ContainerLogo>
+
+        </ContainerLogo>
     )
 }
 

@@ -25,7 +25,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName='FirstPage'
+        initialRouteName='Login'
         screenOptions={{
           headerShown: false
         }}>
@@ -39,7 +39,7 @@ export default function App() {
 
 
         <Stack.Screen
-          name='login'
+          name='Login'
           component={Login} />
 
 

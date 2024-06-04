@@ -5,13 +5,13 @@ import imgLogo from '../../assets/logo.png'
 
 
 
-const ContainerLogo = ({children}) => {
+const ContainerLogo = ({ children }) => {
 
 
     return (
         <ContainerBackground>
-            <LogoBlur  source={imgLogo} resizeMode={'cover'} blurRadius={6}/>
-        {children}
+            <LogoBlur source={imgLogo}  blurRadius={6} />
+            {children}
         </ContainerBackground>
     )
 }
