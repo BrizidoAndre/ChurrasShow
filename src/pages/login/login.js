@@ -1,14 +1,12 @@
-import { Text } from "react-native"
-
-
+import { Text } from 'react-native';
+import Input from '../../components/input/input';
 
 const Login = () => {
+	return (
+		<>
+			<Input label="Alo prefeito" />
+		</>
+	);
+};
 
-    return(
-        <>
-        <Text>Dor de cabeça</Text>
-        </>
-    )
-}
-
-export default Login
+export default Login;
