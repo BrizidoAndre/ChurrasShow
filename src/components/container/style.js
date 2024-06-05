@@ -21,3 +21,22 @@ export const ContainerBackground = styled.ImageBackground`
 
     align-items: center;
 `
+
+
+export const ContainerRow = styled.View`
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 20px;
+`
+
+export const ContainerRowStar = styled.View`
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 20px;
+
+    position:absolute;
+    bottom: 20px;
+    left: 16%;
+`
