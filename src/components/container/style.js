@@ -40,3 +40,8 @@ export const ContainerRowStar = styled.View`
     bottom: 20px;
     left: 16%;
 `
+
+
+export const ContainerForm = styled.View`
+    gap: 20px;
+`

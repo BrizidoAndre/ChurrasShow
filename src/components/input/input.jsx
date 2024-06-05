@@ -12,10 +12,8 @@ const Input = ({ label }) => {
 				onBlur={() => setIsFocused(value !== '')}
 				onChangeText={(text) => setValue(text)}
 				value={value}
+				placeholder='teste'
 			/>
-			<StyledLabel isFocused={isFocused || value !== ''}>
-				{label}
-			</StyledLabel>
 		</InputGroup>
 	);
 };

@@ -11,7 +11,7 @@ import { CommentFlatlist } from "../../components/commentFlatlist/styles"
 
 
 
-const FirstPage = () => {
+const FirstPage = ({navigation}) => {
 
     let DATA = [
         {
@@ -44,7 +44,7 @@ const FirstPage = () => {
 
             <Logotipo source={img} />
 
-            <ButtonLogin>
+            <ButtonLogin onPress={()=>{ navigation.navigate('Login')}}>
                 <TextButton>Orçamento</TextButton>
             </ButtonLogin>
 
