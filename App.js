@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
-import { useFonts } from 'expo-font';
+
 import Main from './src/pages/main/main';
 import Home from './src/pages/home/home';
 import Login from './src/pages/login/login';
@@ -19,8 +19,8 @@ const Stack = createNativeStackNavigator();
 export default function App() {
 	const [fontsLoaded] = useFonts({
 		Cintra: require('./assets/fonts/CintraRegular.ttf'),
-		Lato_Regular:Lato_400Regular,
-		Lato_Bold: Lato_700Bold,
+		lato_regular:Lato_400Regular,
+		lato_bold: Lato_700Bold,
 
 	});
 
