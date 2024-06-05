@@ -5,7 +5,6 @@ import { ButtonLogin, TextButton } from "../../components/button/style"
 
 const Login = () => {
 	
-
     return(
         <>
         <Text>Dor de cabeça</Text>
@@ -18,3 +17,4 @@ const Login = () => {
 }
 
 export default Login
+
