@@ -13,12 +13,16 @@ export const ButtonLogin = styled.TouchableOpacity`
     
 `
 export const TextButton = styled.Text`
-    font-family:'lato_regular';
+    font-family:'lato_bold';
 
     font-size:24px;
+<<<<<<< HEAD
     color: #CAA858;
 
     align-items: center;
     justify-content: center;
 
+=======
+    color:  #CAA858
+>>>>>>> develop
 `

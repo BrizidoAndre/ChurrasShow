@@ -1,9 +1,14 @@
 import { Text } from "react-native"
+<<<<<<< HEAD
+=======
+import ContainerLogo from "../../components/container/container"
+>>>>>>> develop
 import { ButtonLogin, TextButton } from "../../components/button/style"
 
 
 
 const Login = () => {
+<<<<<<< HEAD
 	
     return(
         <>
@@ -18,3 +23,21 @@ const Login = () => {
 
 export default Login
 
+=======
+    
+
+    return (
+        <ContainerLogo>
+
+            <ButtonLogin>
+                <TextButton>
+                    Nada
+                </TextButton>
+            </ButtonLogin>
+
+        </ContainerLogo>
+    )
+}
+
+export default Login
+>>>>>>> develop
