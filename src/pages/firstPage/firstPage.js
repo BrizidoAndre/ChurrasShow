@@ -10,15 +10,22 @@ import CommentCard from '../../components/commentCard/commentCard';
 import { CommentFlatlist } from '../../components/commentFlatlist/styles';
 import CreateModal from '../../components/createModal/createModal';
 import { useNavigation } from '@react-navigation/native'; // Importação do useNavigation
-import { CheckEmail } from '../checkEmail/checkEmail';
 
 const FirstPage = () => {
-	let DATA = [
+	const [isModalVisible, setModalVisible] = useState(false);
+
+	const navigation = useNavigation(); // Obter o objeto de navegação
+
+	const toggleModalVisibility = () => {
+		setModalVisible(!isModalVisible);
+	};
+
+	const DATA = [
 		{
 			id: 1,
 			name: 'ALgustos terceiros',
 			comment:
-				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam....',
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam....',
 			image: img,
 			stars: 4,
 		},
@@ -39,11 +46,14 @@ const FirstPage = () => {
 		},
 	];
 
+	const handleNavigate = () => {
+		navigation.navigate('CheckEmail'); // Navegar para a tela 'CheckEmail'
+	};
+
 	return (
 		<Container>
 			<Logotipo source={img} />
-
-			<ButtonLogin>
+			<ButtonLogin onPress={handleNavigate}>
 				<TextButton>Orçamento</TextButton>
 			</ButtonLogin>
 
