@@ -13,6 +13,7 @@ import {
 	Lato_400Regular,
 	Lato_700Bold,
 } from '@expo-google-fonts/lato';
+
 import { useCallback } from 'react';
 
 const Stack = createNativeStackNavigator();
@@ -20,50 +21,37 @@ const Stack = createNativeStackNavigator();
 export default function App() {
 	const [fontsLoaded, fontError] = useFonts({
 		Cintra: require('./assets/fonts/CintraRegular.ttf'),
-		lato_regular:Lato_400Regular,
+		lato_regular: Lato_400Regular,
 		lato_bold: Lato_700Bold,
-  });
+	});
 
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded || fontError) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded, fontError]);
+	const onLayoutRootView = useCallback(async () => {
+		if (fontsLoaded || fontError) {
+			await SplashScreen.hideAsync();
+		}
+	}, [fontsLoaded, fontError]);
 
-  if (!fontsLoaded && !fontError) {
-    return null;
-  }
+	if (!fontsLoaded && !fontError) {
+		return null;
+	}
+	<Stack.Screen name="Home" component={Home} />;
 
+	return (
+		<NavigationContainer>
+			<Stack.Navigator
+				initialRouteName="FirstPage"
+				screenOptions={{
+					headerShown: false,
+				}}
+			>
+				<Stack.Screen name="Main" component={Main} />
 
 				<Stack.Screen name="Home" component={Home} />
 
-  return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName='FirstPage'
-        screenOptions={{
-          headerShown: false
-        }}>
-        <Stack.Screen
-          name='Main'
-          component={Main} />
+				<Stack.Screen name="Login" component={Login} />
 
-        <Stack.Screen
-          name='Home'
-          component={Home} />
-
-
-        <Stack.Screen
-          name='Login'
-          component={Login} />
-
-
-        <Stack.Screen
-          name='FirstPage'
-          component={FirstPage} />
-
-
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+				<Stack.Screen name="FirstPage" component={FirstPage} />
+			</Stack.Navigator>
+		</NavigationContainer>
+	);
 }
