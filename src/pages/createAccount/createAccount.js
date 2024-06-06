@@ -4,7 +4,12 @@ import { ButtonLogin, TextButton } from "../../components/button/style"
 import { LatoBoldItalic15, Title } from "../../components/texts/style"
 import Input from "../../components/input/input"
 
-
+console.log(ContainerLogo);
+console.log(ButtonLogin);
+console.log(TextButton);
+console.log(LatoBoldItalic15);
+console.log(Title);
+console.log(Input);
 
 const CreateAccount = () => {
     

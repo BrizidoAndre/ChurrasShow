@@ -15,7 +15,7 @@ export const StyledInput = styled.TextInput`
 	font-size: 16px;
 	//font-family: ;
 	color: #f5f5f5;
-	font-family: 'Lato_400Regular';
+	font-family: 'lato_regular';
 
 	transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
@@ -35,5 +35,5 @@ export const StyledLabel = styled.Text`
 		isFocused ? 'transparent' : 'transparent'};
 	padding: ${({ isFocused }) => (isFocused ? '0 4px' : '0')};
 	color: ${({ isFocused }) => (isFocused ? '#f2e6d0' : '#f2e6d0')};
-	font-family: 'Lato_400Regular';
+	font-family: 'lato_regular';
 `;
