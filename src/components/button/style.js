@@ -12,6 +12,10 @@ export const ButtonLogin = styled.TouchableOpacity`
     justify-content: center;
     
 `
+export const ButtonCadastrar = styled(ButtonLogin)`
+    margin-top: 66px;
+    margin-bottom:86px;
+`
 export const TextButton = styled.Text`
     font-family:'lato_bold';
 
