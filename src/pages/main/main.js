@@ -4,6 +4,7 @@ import Login from '../login/login';
 import { ContentIcon } from './style';
 
 import {FontAwesome, Entypo} from '@expo/vector-icons' 
+import CreateAccount from '../createAccount/createAccount';
 
 const Tab = createBottomTabNavigator();
 
@@ -44,6 +45,8 @@ const Main = () => {
       <Tab.Screen name="Home" component={Home} />
 
       <Tab.Screen name="Login" component={Login} />
+
+      <Tab.Screen name="CreateAccount" component={CreateAccount} />
 
     </Tab.Navigator>
   );
