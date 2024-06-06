@@ -1,10 +1,12 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../home/home';
 import Login from '../login/login';
+import CreateAccount from '../createAccount/createAccount';
+
 import { ContentIcon } from './style';
 
 import {FontAwesome, Entypo} from '@expo/vector-icons' 
-import CreateAccount from '../createAccount/createAccount';
+
 
 const Tab = createBottomTabNavigator();
 

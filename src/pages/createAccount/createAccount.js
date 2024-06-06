@@ -1,12 +1,12 @@
-import { Text } from "react-native"
+
 import ContainerLogo from "../../components/container/container"
 import { ButtonLogin, TextButton } from "../../components/button/style"
-import { Title } from "../../components/texts/style"
+import { LatoBoldItalic15, Title } from "../../components/texts/style"
 import Input from "../../components/input/input"
 
 
 
-const CreateAccount = ({navigation}) => {
+const CreateAccount = () => {
     
 
     return (
@@ -24,6 +24,8 @@ const CreateAccount = ({navigation}) => {
                     Cadastrar
                 </TextButton>
             </ButtonLogin>
+
+            <LatoBoldItalic15>Made by Gamel Tec</LatoBoldItalic15>
             
 
         </ContainerLogo>

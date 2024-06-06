@@ -7,6 +7,7 @@ import Main from './src/pages/main/main';
 import Home from './src/pages/home/home';
 import Login from './src/pages/login/login';
 import FirstPage from './src/pages/firstPage/firstPage';
+import CreateAccount from './src/pages/createAccount/createAccount';
 
 import {
 	useFonts,
@@ -14,7 +15,7 @@ import {
 	Lato_700Bold,
 } from '@expo-google-fonts/lato';
 import { useCallback } from 'react';
-import CreateAccount from './src/pages/createAccount/createAccount';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -41,7 +42,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName='CreateAcount'
+        initialRouteName='Home'
         screenOptions={{
           headerShown: false
         }}>
