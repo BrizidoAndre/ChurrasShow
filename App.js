@@ -40,7 +40,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName='RedefinePassword'
+        initialRouteName='Login'
         screenOptions={{
           headerShown: false
         }}>

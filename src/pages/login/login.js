@@ -7,12 +7,15 @@ import { ContainerForm } from "../../components/container/style"
 import Spacing from "../../components/spacing/spacing"
 
 import { useWindowDimensions } from "react-native"
+import { useState } from "react"
 
 
 
 const Login = ({navigation}) => {
 
     const {width, height} = useWindowDimensions();
+
+    const [visible, setVisible] = useState()
 
 
     return (
@@ -29,7 +32,7 @@ const Login = ({navigation}) => {
 
             <Spacing  marginTop={'20'} />
 
-            <ButtonLogin>
+            <ButtonLogin onPress={() => setVisible(!visible)}>
                 <TextButton>
                     Login
                 </TextButton>

@@ -1,12 +1,12 @@
 import ContainerLogo from "../../components/container/container"
-import { MadeBy, Title } from "../../components/texts/style"
+import { LatoRegular25, MadeBy, Title } from "../../components/texts/style"
 import Input from "../../components/input/input"
 import { ButtonLogin, TextButton } from "../../components/button/style"
 import { useWindowDimensions } from "react-native"
 import { ContainerForm } from "../../components/container/style"
 import Spacing from "../../components/spacing/spacing"
 
-const RedefinePassword = ({navigation}) => {
+const RedefinePassword = ({ navigation }) => {
 
     const { width, height } = useWindowDimensions()
 
@@ -15,13 +15,15 @@ const RedefinePassword = ({navigation}) => {
             <Title>Redefinir Senha</Title>
 
             <ContainerForm>
+                <LatoRegular25>Digite sua nova senha</LatoRegular25>
+
                 <Input placeholder={'Senha....'} />
                 <Input placeholder={'Confirmar Senha....'} />
             </ContainerForm>
 
             <Spacing marginTop={'20'} />
 
-            <ButtonLogin onPress={()=>navigation.navigate('Login')}>
+            <ButtonLogin onPress={() => navigation.navigate('Login')}>
                 <TextButton>Continuar</TextButton>
             </ButtonLogin>
 

@@ -46,7 +46,7 @@ export const LatoItalic14 = styled(LatoRegular18)`
 export const LatoBoldUnderline = styled.Text`
     color: #F2E6D0;
     font-family: 'lato_bold';
-    font-size:14;
+    font-size:14px;
     font-style: italic;
     font-weight: 900;
     text-decoration:underline;
