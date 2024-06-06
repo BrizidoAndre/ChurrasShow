@@ -1,5 +1,5 @@
 import React from 'react';
-import { PackageButtonX } from './style';
+import { ButtonContainer, ButtonText, PackageButtonX } from './style';
 
 export const PackageButton = ({ textButton }) => {
 	return (
