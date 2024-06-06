@@ -32,6 +32,6 @@ export const Title = styled.Text`
 	color: #caa858;
 	font-size: 48px;
 	font-family: 'Cintra';
-
+	text-align: center;
 	margin: 70px 0 120px 0;
 `;

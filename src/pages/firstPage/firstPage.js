@@ -53,7 +53,8 @@ const FirstPage = () => {
 	return (
 		<Container>
 			<Logotipo source={img} />
-			<ButtonLogin onPress={handleNavigate}>
+			{/* //! onPress={toggleModalVisibility} */}
+			<ButtonLogin onPress={toggleModalVisibility}>
 				<TextButton>Orçamento</TextButton>
 			</ButtonLogin>
 
@@ -70,8 +71,6 @@ const FirstPage = () => {
 				keyExtractor={(item) => item.id.toString()} // keyExtractor espera uma string
 				horizontal={true}
 			/>
-
-			<MadeBy>Made by Gamel Tec</MadeBy>
 
 			<CreateModal visible={isModalVisible} />
 		</Container>

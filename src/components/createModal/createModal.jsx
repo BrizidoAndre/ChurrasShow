@@ -32,24 +32,31 @@ export const CreateModal = ({ visible }) => {
 					<ContentComponentsX>
 						<SubTitle text={'DATA DO EVENTO:'} />
 					</ContentComponentsX>
+					{/*  */}
 					<ContentComponentsX>
 						<SubTitle text={'HORARIO DE INICIO:'} />
 					</ContentComponentsX>
+					{/*  */}
 					<ContentComponentsX>
 						<SubTitle text={'DURACAO:'} />
 					</ContentComponentsX>
+					{/*  */}
 					<ContentComponentsX>
 						<SubTitle text={'N° DE CONVIDADOS:'} />
 					</ContentComponentsX>
+					{/*  */}
 					<ContentComponentsX>
 						<SubTitle text={'GARÇONTES:'} />
 					</ContentComponentsX>
+					{/*  */}
 					<ContentComponentsX>
 						<SubTitle text={'DESCARTAVEIS:'} />
 					</ContentComponentsX>
+					{/*  */}
 					<ContentComponentsX>
 						<SubTitle text={'ACONPAHAMENTOS:'} />
 					</ContentComponentsX>
+					{/*  */}
 				</ContentCreateModal>
 			</CreateModalX>
 		</Modal>
