@@ -13,7 +13,7 @@ export const StyledInput = styled.TextInput`
 	background-color: #3a3a3a;
 	padding: 10px;
 	font-size: 16px;
-	//font-family: ;
+	/* font-family: ; */
 	color: #f5f5f5;
 	font-family: 'Lato_400Regular';
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { InputGroup, StyledInput, StyledLabel } from './style';
 
-const Input = ({ label }) => {
+const Input = ({ label, editable }) => {
 	const [isFocused, setIsFocused] = useState(false);
 	const [value, setValue] = useState('');
 
@@ -12,6 +12,7 @@ const Input = ({ label }) => {
 				onBlur={() => setIsFocused(value !== '')}
 				onChangeText={(text) => setValue(text)}
 				value={value}
+				editable={editable}
 			/>
 			<StyledLabel isFocused={isFocused || value !== ''}>
 				{label}
