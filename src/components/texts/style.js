@@ -21,3 +21,12 @@ export const LatoRegular18 = styled.Text`
     font-size:18px;
     font-family:'lato_regular';
 `
+
+
+export const Title = styled.Text`
+    color: #CAA858;
+    font-size: 48px;
+    font-family: 'Cintra';
+
+    margin: 70px 0 120px 0;
+`
