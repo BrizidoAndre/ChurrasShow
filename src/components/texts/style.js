@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 
-export const LatoBoldItalic15 = styled.Text`
+export const MadeBy = styled.Text`
 	color: #caa858;
 	font-size: 15px;
 	font-family: 'lato_bold';
 	font-weight: 800;
 	font-style: italic;
+
+	position: absolute;
+	top: ${(props) => props.height - 50}px;
 `;
 export const LatoRegular15 = styled.Text`
 	color: #caa858;
@@ -29,6 +32,6 @@ export const Title = styled.Text`
 	color: #caa858;
 	font-size: 48px;
 	font-family: 'Cintra';
-	text-align: center;
+
 	margin: 70px 0 120px 0;
 `;

@@ -14,5 +14,5 @@ export const StyledInput = styled.TextInput.attrs({
 	width:90%;
 
 	border-bottom-color:#A39B8B;
-	border-bottom-width:1px;
+	border-bottom-width:${props => props.$hasBorder || 1}px;
 `;
