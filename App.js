@@ -15,6 +15,7 @@ import {
 	Lato_700Bold,
 } from '@expo-google-fonts/lato';
 import { useCallback } from 'react';
+import RecoverPassword from './src/pages/recoverPassword/recoverPassword';
 
 
 const Stack = createNativeStackNavigator();
@@ -67,6 +68,10 @@ export default function App() {
         <Stack.Screen
           name='CreateAccount'
           component={CreateAccount} />
+
+        <Stack.Screen
+          name='RecoverPassword'
+          component={RecoverPassword} />
 
 
       </Stack.Navigator>
