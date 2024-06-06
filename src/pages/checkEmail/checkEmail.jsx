@@ -5,6 +5,7 @@ import ContainerLogo from '../../components/container/container';
 import {
 	LatoBoldItalic15,
 	LatoRegular25,
+	MadeBy,
 	Title,
 } from '../../components/texts/style';
 import { ButtonLogin, TextButton } from '../../components/button/style';
@@ -25,6 +26,7 @@ export const CheckEmail = () => {
 			<ButtonLogin>
 				<TextButton>Continuar</TextButton>
 			</ButtonLogin>
+			<MadeBy>Made by Gamel Tec</MadeBy>
 		</ContainerLogo>
 	);
 };

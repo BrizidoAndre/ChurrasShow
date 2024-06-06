@@ -71,7 +71,7 @@ const FirstPage = () => {
 				horizontal={true}
 			/>
 
-			<LatoBoldItalic15>Made by Gamel Tec</LatoBoldItalic15>
+			<MadeBy>Made by Gamel Tec</MadeBy>
 
 			<CreateModal visible={isModalVisible} />
 		</Container>
