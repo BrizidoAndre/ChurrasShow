@@ -44,4 +44,6 @@ export const ContainerRowStar = styled.View`
 
 export const ContainerForm = styled.View`
     gap: 20px;
+    width: 100%;
+    align-items:center;
 `
