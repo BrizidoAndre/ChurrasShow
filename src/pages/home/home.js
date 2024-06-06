@@ -9,7 +9,9 @@ const Home = ({navigation}) => {
 
             <Button title="ir para a navegação" onPress={()=>{navigation.navigate('Main')}}/>
 
-            <Button title="ir para a login" onPress={()=>{navigation.navigate('login')}}/>
+            <Button title="ir para a login" onPress={()=>{navigation.navigate('Login')}}/>
+
+            <Button title="ir para a Cadastrar conta" onPress={()=>{navigation.navigate('CreateAccount')}}/>
                       
           
         </View>
