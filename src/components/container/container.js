@@ -13,7 +13,7 @@ const ContainerLogo = ({ children }) => {
 
     return (
         <ContainerBackground>
-            <LogoBlur source={imgLogo}  blurRadius={6} height={height}/>
+            <LogoBlur source={imgLogo}  blurRadius={6} />
             {children}
         </ContainerBackground>
     )

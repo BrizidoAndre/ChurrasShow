@@ -14,6 +14,7 @@ import {
 	Lato_700Bold,
 } from '@expo-google-fonts/lato';
 import { useCallback } from 'react';
+import RedefinePassword from './src/pages/redefinePassword/redefinePassword';
 
 const Stack = createNativeStackNavigator();
 
@@ -40,7 +41,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName='FirstPage'
+        initialRouteName='RedefinePassword'
         screenOptions={{
           headerShown: false
         }}>
@@ -61,6 +62,10 @@ export default function App() {
         <Stack.Screen
           name='FirstPage'
           component={FirstPage} />
+
+        <Stack.Screen
+          name='RedefinePassword'
+          component={RedefinePassword} />
 
 
       </Stack.Navigator>

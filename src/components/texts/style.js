@@ -33,7 +33,7 @@ export const Title = styled.Text`
 
     text-align: center;
 
-    margin: 70px 0 120px 0;
+    margin: 70px 20px 120px 20px;
 `
 export const LatoItalic14 = styled(LatoRegular18)`
     font-size: 14px;

@@ -10,7 +10,7 @@ import { useWindowDimensions } from "react-native"
 
 
 
-const Login = () => {
+const Login = ({navigation}) => {
 
     const {width, height} = useWindowDimensions();
 
@@ -24,7 +24,7 @@ const Login = () => {
                 <Input placeholder={"Email ou Username..."}  />
                 <Input placeholder={"Senha"} />
 
-                <LatoBoldUnderline>Esqueceu a senha?</LatoBoldUnderline>
+                <LatoBoldUnderline onPress={()=>navigation.navigate('RedefinePassword')}>Esqueceu a senha?</LatoBoldUnderline>
             </ContainerForm>
 
             <Spacing  marginTop={'20'} />

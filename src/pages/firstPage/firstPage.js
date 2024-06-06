@@ -8,7 +8,7 @@ import { ButtonLogin, TextButton } from "../../components/button/style"
 import { LatoBoldItalic15, MadeBy } from "../../components/texts/style"
 import CommentCard from "../../components/commentCard/commentCard"
 import { CommentFlatlist } from "../../components/commentFlatlist/styles"
-
+import { useWindowDimensions } from "react-native"
 
 
 const FirstPage = ({navigation}) => {
@@ -38,7 +38,7 @@ const FirstPage = ({navigation}) => {
         }
     ]
 
-
+    const {height, widht} = useWindowDimensions();
     return (
         <Container>
 
@@ -56,7 +56,7 @@ const FirstPage = ({navigation}) => {
                 horizontal={true}
             />
 
-            <MadeBy>Made by Gamel Tec</MadeBy>
+            <MadeBy height={height}>Made by Gamel Tec</MadeBy>
 
         </Container>
     )
