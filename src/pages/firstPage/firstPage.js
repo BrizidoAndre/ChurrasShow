@@ -5,7 +5,7 @@ import Logo from "../../components/logo/logo"
 import img from '../../assets/logo.png'
 import { Logotipo } from "../../components/logo/style"
 import { ButtonLogin, TextButton } from "../../components/button/style"
-import { LatoBoldItalic15 } from "../../components/texts/style"
+import { LatoBoldItalic15, MadeBy } from "../../components/texts/style"
 import CommentCard from "../../components/commentCard/commentCard"
 import { CommentFlatlist } from "../../components/commentFlatlist/styles"
 
@@ -56,7 +56,7 @@ const FirstPage = ({navigation}) => {
                 horizontal={true}
             />
 
-            <LatoBoldItalic15>Made by Gamel Tec</LatoBoldItalic15>
+            <MadeBy>Made by Gamel Tec</MadeBy>
 
         </Container>
     )
