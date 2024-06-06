@@ -15,6 +15,7 @@ import {
 } from '@expo-google-fonts/lato';
 
 import { useCallback } from 'react';
+import { CheckEmail } from './src/pages/checkEmail/checkEmail';
 
 const Stack = createNativeStackNavigator();
 
@@ -51,6 +52,7 @@ export default function App() {
 				<Stack.Screen name="Login" component={Login} />
 
 				<Stack.Screen name="FirstPage" component={FirstPage} />
+				<Stack.Screen name="CheckEmail" component={CheckEmail} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	);

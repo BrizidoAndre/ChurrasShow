@@ -9,9 +9,13 @@ import { LatoBoldItalic15 } from '../../components/texts/style';
 import CommentCard from '../../components/commentCard/commentCard';
 import { CommentFlatlist } from '../../components/commentFlatlist/styles';
 import CreateModal from '../../components/createModal/createModal';
+import { useNavigation } from '@react-navigation/native'; // Importação do useNavigation
+import { CheckEmail } from '../checkEmail/checkEmail';
 
 const FirstPage = () => {
 	const [isModalVisible, setModalVisible] = useState(false);
+
+	const navigation = useNavigation(); // Obter o objeto de navegação
 
 	const toggleModalVisibility = () => {
 		setModalVisible(!isModalVisible);
@@ -43,11 +47,14 @@ const FirstPage = () => {
 		},
 	];
 
+	const handleNavigate = () => {
+		navigation.navigate(CheckEmail); // Navegar para a tela 'checkEmail'
+	};
+
 	return (
 		<Container>
 			<Logotipo source={img} />
-
-			<ButtonLogin onPress={toggleModalVisibility}>
+			<ButtonLogin onPress={handleNavigate}>
 				<TextButton>Orçamento</TextButton>
 			</ButtonLogin>
 
