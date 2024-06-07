@@ -1,15 +1,9 @@
 import React, { useState } from 'react';
 import { ButtonContainer, ButtonText } from './style';
 
-export const PackageButton = ({ textButton }) => {
-	const [isPressed, setIsPressed] = useState(false);
-
+export const PackageButton = ({ textButton, isSelected, onPress }) => {
 	return (
-		<ButtonContainer
-			onPressIn={() => setIsPressed(true)}
-			onPressOut={() => setIsPressed(false)}
-			isPressed={isPressed}
-		>
+		<ButtonContainer onPress={onPress} isSelected={isSelected}>
 			<ButtonText>{textButton}</ButtonText>
 		</ButtonContainer>
 	);

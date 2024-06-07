@@ -23,8 +23,10 @@ export const ContainerPackageButton = styled.View`
 	display: flex;
 	flex-direction: row;
 	align-content: center;
+	align-self: center;
 	gap: 24px;
 	margin-bottom: 26px;
+	overflow: hidden;
 `;
 
 export const TitleModal = styled.Text`
