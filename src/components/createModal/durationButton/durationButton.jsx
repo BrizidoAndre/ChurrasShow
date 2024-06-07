@@ -12,12 +12,14 @@ export const DurationButton = () => {
 	return (
 		<ContentDurationButton>
 			<SubtractButton>
-				{/* <AntDesign name="minus" size={14} color="black" /> */}
+				<AntDesign name="minus" size={20} color="black" />
 			</SubtractButton>
 			<VisualizeDurationButton>
 				<TextDuration>0h</TextDuration>
 			</VisualizeDurationButton>
-			<AddButton></AddButton>
+			<AddButton>
+				<AntDesign name="plus" size={20} color="black" />
+			</AddButton>
 		</ContentDurationButton>
 	);
 };

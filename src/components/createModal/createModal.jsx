@@ -65,7 +65,7 @@ export const CreateModal = ({ visible }) => {
 					<ContentComponentsX>
 						<SubTitle text={'DURACAO:'} />
 						{/* // ? importacao do componente de adicionar a duracao do evento */}
-						{/* <DurationButton /> */}
+						<DurationButton />
 					</ContentComponentsX>
 					{/*  */}
 					<ContentComponentsX>

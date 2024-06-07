@@ -9,12 +9,13 @@ export const ContentDurationButton = styled.View`
 	align-items: center;
 `;
 
-export const SubtractButton = styled.TouchblaOpacity`
+export const SubtractButton = styled.TouchableOpacity`
 	width: 30px;
 	height: 25px;
 	background-color: #f2e6d0;
 	border-radius: 8px;
 	align-items: center;
+	justify-content: center;
 `;
 
 export const VisualizeDurationButton = styled.View`
@@ -23,11 +24,12 @@ export const VisualizeDurationButton = styled.View`
 	background-color: #f2e6d0;
 	border-radius: 8px;
 	align-items: center;
+	justify-content: center;
 `;
 
 export const TextDuration = styled.Text`
 	color: #000000;
-	font-size: 15px;
+	font-size: 20px;
 	font-family: 'lato_regular';
 `;
 
