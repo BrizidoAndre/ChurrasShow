@@ -7,12 +7,6 @@ import { ContainerForm } from "../../components/container/style";
 import Spacing from "../../components/spacing/spacing";
 import { useWindowDimensions } from "react-native";
 
-console.log(ContainerForm);
-console.log(Title);
-console.log(Input);
-console.log(TextButton);
-console.log(LatoRegular15);
-
 const RecoverPassword = () => {
   const{width, height} = useWindowDimensions()
   return (
