@@ -1,4 +1,4 @@
-import { Text } from "react-native"
+import { Alert, Text } from "react-native"
 import ContainerLogo from "../../components/container/container"
 import { ButtonLogin, TextButton } from "../../components/button/style"
 import { LatoBoldUnderline, LatoItalic14, MadeBy, Title } from "../../components/texts/style"
@@ -8,14 +8,46 @@ import Spacing from "../../components/spacing/spacing"
 
 import { useWindowDimensions } from "react-native"
 import { useState } from "react"
+import api from "../../service/service"
+import AsyncStorage from "@react-native-async-storage/async-storage"
+import { userDecodeToken } from "../../utils/auth"
 
 
 
-const Login = ({navigation}) => {
+const Login = ({ navigation }) => {
 
-    const {width, height} = useWindowDimensions();
+    const { width, height } = useWindowDimensions();
 
-    const [visible, setVisible] = useState()
+    const [userLogin, setUserLogin] = useState({
+        email: 'lucas.gon.oliv@gmail.com',
+        senha: '123456'
+    })
+
+
+    async function signIn() {
+        try {
+            const res = await api.post('/Login', userLogin)
+            const data = await res.data;
+
+            console.log(res)
+
+            if (res.status === 200) {
+                AsyncStorage.setItem('token', data.token)
+                navigation.navigate('Main')
+                return;
+            }
+
+        } catch (error) {
+            Alert.alert('Informações inválidas', 'Verifique o email e a senha digitadas')
+            setUserLogin({
+                ...userLogin,
+                senha: '',
+            })
+            
+        }
+
+
+    }
 
 
     return (
@@ -24,22 +56,35 @@ const Login = ({navigation}) => {
             <Title>Login</Title>
 
             <ContainerForm>
-                <Input placeholder={"Email ou Username..."}  />
-                <Input placeholder={"Senha"} />
+                <Input
+                    placeholder={"Email ou Username..."}
+                    setValue={(txt) => setUserLogin({
+                        ...userLogin,
+                        email: txt
+                    })}
+                    value={userLogin.email} />
+                <Input
+                    placeholder={"Senha"}
+                    setValue={(txt) => setUserLogin({
+                        ...userLogin,
+                        senha: txt
+                    })}
+                    value={userLogin.senha}
+                    secure={true} />
 
-                <LatoBoldUnderline onPress={()=>navigation.navigate('RedefinePassword')}>Esqueceu a senha?</LatoBoldUnderline>
+                <LatoBoldUnderline onPress={() => navigation.navigate('RedefinePassword')}>Esqueceu a senha?</LatoBoldUnderline>
             </ContainerForm>
 
-            <Spacing  marginTop={'20'} />
+            <Spacing marginTop={'20'} />
 
-            <ButtonLogin onPress={() => setVisible(!visible)}>
+            <ButtonLogin onPress={() => signIn()}>
                 <TextButton>
                     Login
                 </TextButton>
             </ButtonLogin>
 
-            <Spacing marginTop={20}/>
-            <LatoItalic14>Não possui conta? <LatoBoldUnderline>Crie Uma agora</LatoBoldUnderline></LatoItalic14>
+            <Spacing marginTop={20} />
+            <LatoItalic14>Não possui conta? <LatoBoldUnderline onPress={() => navigation.navigate('CreateAccount')}>Crie Uma agora</LatoBoldUnderline></LatoItalic14>
 
             <MadeBy height={height}>Made by Gamel Tec</MadeBy>
 

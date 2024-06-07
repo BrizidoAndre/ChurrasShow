@@ -10,6 +10,7 @@ import CommentCard from '../../components/commentCard/commentCard';
 import { CommentFlatlist } from '../../components/commentFlatlist/styles';
 import CreateModal from '../../components/createModal/createModal';
 import { useNavigation } from '@react-navigation/native'; // Importação do useNavigation
+import { useWindowDimensions } from 'react-native';
 
 const FirstPage = () => {
 	const [isModalVisible, setModalVisible] = useState(false);
@@ -47,10 +48,10 @@ const FirstPage = () => {
 	];
 
 	const handleNavigate = () => {
-		navigation.navigate('CheckEmail'); // Navegar para a tela 'CheckEmail'
+		navigation.navigate('Login'); // Navegar para a tela 'CheckEmail'
 	};
 
-const {height, widht} = useWindowDimensions();
+	const { height, widht } = useWindowDimensions();
 
 	return (
 		<Container>
