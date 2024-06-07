@@ -7,37 +7,71 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 import Main from './src/pages/main/main';
 import Home from './src/pages/home/home';
 import Login from './src/pages/login/login';
+import FirstPage from './src/pages/firstPage/firstPage';
 
 import {
-	useFonts,
-	Lato_400Regular,
-	Lato_700Bold,
+  useFonts,
+  Lato_400Regular,
+  Lato_700Bold,
+  Lato_300Light
 } from '@expo-google-fonts/lato';
 import Profile from './src/pages/profile/profile';
+import { useCallback } from 'react';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-	const [fontsLoaded] = useFonts({
-		Cintra: require('./assets/fonts/CintraRegular.ttf'),
-	});
+  const [fontsLoaded, fontError] = useFonts({
+    Cintra: require('./assets/fonts/CintraRegular.ttf'),
+    lato_regular: Lato_400Regular,
+    lato_bold: Lato_700Bold,
+    lato_light: Lato_300Light,
+  });
 
-	return (
-		<NavigationContainer>
-			<Stack.Navigator
-				initialRouteName="Main"
-				screenOptions={{
-					headerShown: false,
-				}}
-			>
-				<Stack.Screen name="Main" component={Main} />
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded || fontError) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded, fontError]);
 
-				<Stack.Screen name="Home" component={Home} />
+  if (!fontsLoaded && !fontError) {
+    return null;
+  }
 
-				<Stack.Screen name="login" component={Login} />
 
-				<Stack.Screen name="Profile" component={Profile} />
-			</Stack.Navigator>
-		</NavigationContainer>
-	);
+  <Stack.Screen name="Home" component={Home} />
+
+  return (
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName='Home'
+        screenOptions={{
+          headerShown: false
+        }}>
+        <Stack.Screen
+          name='Main'
+          component={Main} />
+
+        <Stack.Screen
+          name='Home'
+          component={Home} />
+
+
+        <Stack.Screen
+          name='Login'
+          component={Login} />
+
+
+        <Stack.Screen
+          name='FirstPage'
+          component={FirstPage} />
+
+        <Stack.Screen 
+          name="Profile" 
+          component={Profile} />
+
+
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }

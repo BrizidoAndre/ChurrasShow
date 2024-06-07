@@ -1,14 +1,14 @@
 
 import Input from '../../components/input/input';
-import { ContainerPerfil, ContainerPerfilScroll, Header, ImageProfile, Body, Footer, ImageBox } from './Style';
-import { Title } from '../../components/Title/Style';
+import { ContainerPerfil, ContainerPerfilScroll, Header, ImageProfile, Body, Footer, ImageButton } from './Style';
 import { ButtonEditar } from '../../components/packageButton/packageButton';
 import { Link } from '../../components/Link/Link';
 import { useState } from 'react';
+import { LatoRegular14Creme, LatoRegular20Creme } from '../../components/texts/style';
 
 
 
-const Profile = () => {
+const Profile = ({ navigation }) => {
     const [isEditing, useIsEditing] = useState(true)
 
     return (
@@ -16,9 +16,29 @@ const Profile = () => {
             <ContainerPerfilScroll>
                 <ContainerPerfil>
                     <Header>
-                        <Title>SEU PERFIL</Title>
+                        <LatoRegular20Creme>SEU PERFIL</LatoRegular20Creme>
 
-                        <ImageProfile source={require('../../assets/ProfilePicture01.png')} />
+
+                        {
+                            isEditing ? (
+
+                                <>
+                                    <ImageProfile source={require('../../assets/ProfilePicture01.png')} />
+                                </>
+
+                            ) : (
+                                <>
+                                    <ImageButton>
+                                        <ImageProfile source={require('../../assets/ProfilePicture01.png')} />
+                                    </ImageButton>
+
+                                    <LatoRegular14Creme>Clique na imagem para editar a foto</LatoRegular14Creme>
+
+                                </>
+
+                            )
+                        }
+
 
 
                     </Header>
@@ -57,7 +77,7 @@ const Profile = () => {
                                     textLink={'Sair da Conta'}
                                     fontSize={14}
                                     color={'F2E6D0'}
-                                    onPress={() => { console.log("Precionado") }}
+                                    onPress={() => { navigation.navigate('FirstPage') }}
                                 />
                             </>
 

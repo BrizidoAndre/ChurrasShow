@@ -24,6 +24,7 @@ export const TitleList = styled.Text`
 export const BoxImage = styled.View`
    border-radius: 10px;
     width: auto;
+    /* border: 1px solid red; */
 `
 
 export const FoodImage = styled.Image`
@@ -33,6 +34,7 @@ export const FoodImage = styled.Image`
 
 export const BoxText = styled.View`
     width: auto;
+    border: 1px solid red;
 `
 
 export const PriceText = styled.Text`
@@ -44,4 +46,5 @@ export const BoxTextPrice = styled.View`
     flex-direction: row;
     justify-content: space-evenly;
     gap: 30px;
+    border: 1px solid red;
 `

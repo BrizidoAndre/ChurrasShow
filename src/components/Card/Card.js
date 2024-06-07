@@ -1,5 +1,5 @@
 import { Image, SectionList, Text, View } from "react-native"
-import { CardContainer, BoxImage, BoxText, TitleList, BoxCard, PriceText, BoxTextPrice,FoodImage } from "./Style"
+import { CardContainer, BoxImage, BoxText, TitleList, BoxCard, PriceText, BoxTextPrice, FoodImage } from "./Style"
 
 export const CardPacoteBasico = () => {
     const PacoteBasico = [
@@ -128,7 +128,7 @@ export const CardPacotePremiumPendente = () => {
     const PacotePremium = [
         {
             title: 'PACOTE PREMIUM',
-            data: ['150 convidados', 'Duração: 6h']
+            data: ['150 convidados', 'Duração: 6h'],
         }
     ]
 
@@ -156,7 +156,11 @@ export const CardPacotePremiumPendente = () => {
                     />
 
                     <BoxTextPrice>
-                        <PriceText>R$0000,00</PriceText>
+
+                        <PriceText>
+                            R$0000,00
+                        </PriceText>
+
 
                         <Image source={require('../../assets/PerfilCard.png')} />
 
