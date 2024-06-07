@@ -16,7 +16,9 @@ import {
   Lato_300Light
 } from '@expo-google-fonts/lato';
 import Profile from './src/pages/profile/profile';
+
 import { useCallback } from 'react';
+import { CheckEmail } from './src/pages/checkEmail/checkEmail';
 
 const Stack = createNativeStackNavigator();
 
@@ -37,9 +39,8 @@ export default function App() {
   if (!fontsLoaded && !fontError) {
     return null;
   }
+  <Stack.Screen name="Home" component={Home} />;
 
-
-  <Stack.Screen name="Home" component={Home} />
 
   return (
     <NavigationContainer>
@@ -66,8 +67,8 @@ export default function App() {
           name='FirstPage'
           component={FirstPage} />
 
-        <Stack.Screen 
-          name="Profile" 
+        <Stack.Screen
+          name="Profile"
           component={Profile} />
 
 

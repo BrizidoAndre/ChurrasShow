@@ -1,23 +1,15 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components/native';
 
 export const ButtonContainer = styled.TouchableOpacity.attrs({
 	activeOpacity: 1,
 })`
 	background: #c1a25a;
-	padding: 12px 26px;
-	/* //border: 3px solid ; */
+	padding: 12px 20px;
 	border-radius: 20px;
-	/* // Sombra no Android */
-	elevation: 3; 
-	box-shadow: 1px 1px 2px rgb(60, 46, 30);
-	shadow-color: #000;
-	/* //shadow-offset: { width: 1px, height: 1px }; */
-	shadow-opacity: 0.8;
-	shadow-radius: 1px;
+	elevation: 3; /* Sombra no Android */
 
 	&:active {
 		transform: translate(1px, 1px);
-		box-shadow: 0.5px 0.5px 1px rgb(60, 46, 30);
 	}
 `;
 
@@ -28,11 +20,40 @@ export const ButtonProfile = styled(ButtonContainer)`
 	align-items: center;
 `;
 
+export const TinyButton = styled.TouchableOpacity.attrs({
+	underlayColor: '#607EC5'
+})`
+	width: 150px;
+	height:32px ;
+	justify-content: center;
+	align-items: center;
+	${props => props.clickButton ? css`
+        border: 1px solid #A39B8B;
+    ` : css`
+		border: 1px solid #F2E6D0;
+    `}
+	border-radius: 20px;
+	${props => props.clickButton ? css`
+        background-color: #A39B8B;
+    ` : css`
+    	
+    `}
+`
+
+export const TinyButtonText = styled.Text`
+    font-size: 14px;
+    font-family: 'Lato_400Regular';
+
+    ${props => props.clickButton ? css`
+        color: #3C2E1E;
+    ` : css`
+    color: #F2E6D0;
+    `}
+`
+
 // Estilização do Texto do Botão
 export const ButtonText = styled.Text`
-	/* // Ajuste conforme a fonte que está usando */
-	font-family: 'Lato_400Regular'; 
-	/* //font-weight: 900; */
+	font-family: 'Lato_400Regular';
 	font-size: 15px;
 	color: #3c2e1e;
 `;

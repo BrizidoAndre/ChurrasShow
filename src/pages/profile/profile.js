@@ -46,19 +46,19 @@ const Profile = ({ navigation }) => {
                     {
                         isEditing ? (
                             <Body>
-                                <Input editable={false} label={"Gamel"} />
-                                <Input editable={false} label={"teste@gmail.com"} />
-                                <Input editable={false} label={"09090909090"} />
-                                <Input editable={false} label={"Rua Fernando Bollini, 09"} />
-                                <Input editable={false} label={"São Paulo"} />
+                                <Input editable={false} value={"Gamel"} />
+                                <Input editable={false} value={"teste@gmail.com"} />
+                                <Input editable={false} value={"09090909090"} />
+                                <Input editable={false} value={"Rua Fernando Bollini, 09"} />
+                                <Input editable={false} value={"São Paulo"} />
                             </Body>
                         ) : (
                             <Body>
-                                <Input editable={true} label={"Username..."} />
-                                <Input editable={true} label={"Email..."} />
-                                <Input editable={true} label={"CPF..."} />
-                                <Input editable={true} label={"Endereço..."} />
-                                <Input editable={true} label={"Cidade..."} />
+                                <Input editable={true} value={"Username..."} />
+                                <Input editable={true} value={"Email..."} />
+                                <Input editable={true} value={"CPF..."} />
+                                <Input editable={true} value={"Endereço..."} />
+                                <Input editable={true} value={"Cidade..."} />
                             </Body>
 
                         )

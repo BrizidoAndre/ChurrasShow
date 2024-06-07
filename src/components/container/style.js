@@ -45,3 +45,16 @@ export const ContainerRowStar = styled.View`
     bottom: 20px;
     left: 16%;
 `
+
+
+export const ContainerForm = styled.View`
+    gap: 20px;
+    width: 100%;
+    align-items:center;
+`
+
+export const StatusButtonContainer = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+`

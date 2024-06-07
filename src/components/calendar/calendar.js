@@ -46,12 +46,17 @@ const styleCalendar = StyleSheet.create({
         display: 'none'
     },
     calendarHeaderStyle: {
-        fontSize: 22,
+        fontSize: 20,
         textAlign: "center",
         alignSelf: 'flex-start',
-        color: '#4E4B59',
-        fontFamily: "MontserratAlternates_600SemiBold",
-        paddingHorizontal: 16
+        color: '#C1A25A',
+        fontFamily: "lato_regular",
+        paddingHorizontal: 16,
+        width: '100%',
+        textTransform: 'capitalize',
+        borderColor: "#C1A25A",
+        borderBottomWidth: 1,
+
     },
     nameDateStyle: {
         color: "#F2E6D0",
@@ -61,7 +66,8 @@ const styleCalendar = StyleSheet.create({
     },
     numberDateStyle: {
         color: "#F2E6D0",
-        fontSize: 12
+        fontSize: 12,
+        fontFamily: "lato_regular",
     },
     selectedDateNameStyle: {
         color: "white",
@@ -74,12 +80,12 @@ const styleCalendar = StyleSheet.create({
         fontSize: 14
     },
     selectedContainerStyle: {
-        backgroundColor: `#60BFC5`
+        backgroundColor: `#C1A25A`
     },
     selectedAnimationStyle: {
         type: "border",
         duration: 200,
         borderWidth: 2,
-        borderHighlightColor: "#49B3BA"
+        borderHighlightColor: "#C1A25A"
     }
 })

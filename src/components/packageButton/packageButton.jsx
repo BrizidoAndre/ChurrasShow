@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonProfile, PackageButtonX, ButtonText} from './style';
+import { ButtonContainer, ButtonProfile, PackageButtonX, ButtonText, TinyButton, TinyButtonText } from './style';
 
 export const PackageButton = ({ textButton }) => {
 	return (
@@ -9,13 +9,24 @@ export const PackageButton = ({ textButton }) => {
 	);
 };
 
-export const ButtonEditar = ({textButton, onPress}) =>{
-	return(
-		<ButtonProfile 
+export const ButtonEditar = ({ textButton, onPress }) => {
+	return (
+		<ButtonProfile
 			activeOpacity={0.8}
-			onPress={onPress}	
-			>
+			onPress={onPress}
+		>
 			<ButtonText>{textButton}</ButtonText>
 		</ButtonProfile>
 	);
+}
+
+export const ButtonStatus = ({ textButton, onPress, clickButton = false }) => {
+	return (
+		<TinyButton
+			onPress={onPress}
+			clickButton={clickButton}
+		>
+			<TinyButtonText clickButton ={clickButton}>{textButton}</TinyButtonText>
+		</TinyButton>
+	)
 }

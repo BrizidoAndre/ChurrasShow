@@ -1,23 +1,15 @@
 import React, { useState } from 'react';
-import { InputGroup, StyledInput, StyledLabel } from './style';
+import {StyledInput } from './style';
 
-const Input = ({ label, editable }) => {
-	const [isFocused, setIsFocused] = useState(false);
-	const [value, setValue] = useState('');
+const Input = ({setValue, value, placeholder, editable }) => {
 
 	return (
-		<InputGroup>
 			<StyledInput
-				onFocus={() => setIsFocused(true)}
-				onBlur={() => setIsFocused(value !== '')}
 				onChangeText={(text) => setValue(text)}
 				value={value}
+				placeholder={placeholder}
 				editable={editable}
 			/>
-			<StyledLabel isFocused={isFocused || value !== ''}>
-				{label}
-			</StyledLabel>
-		</InputGroup>
 	);
 };
 

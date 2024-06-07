@@ -2,12 +2,6 @@ import { Image, SectionList, Text, View } from "react-native"
 import { CardContainer, BoxImage, BoxText, TitleList, BoxCard, PriceText, BoxTextPrice, FoodImage } from "./Style"
 
 export const CardPacoteBasico = () => {
-    const PacoteBasico = [
-        {
-            title: 'PACOTE BÁSICO',
-            data: ['100 convidados', 'Duração: 4h']
-        }
-    ]
 
     return (
         <CardContainer>
@@ -125,12 +119,7 @@ export const CardPacoteBasicoPendente = () => {
 
 export const CardPacotePremiumPendente = () => {
 
-    const PacotePremium = [
-        {
-            title: 'PACOTE PREMIUM',
-            data: ['150 convidados', 'Duração: 6h'],
-        }
-    ]
+ 
 
     return (
         <CardContainer>
