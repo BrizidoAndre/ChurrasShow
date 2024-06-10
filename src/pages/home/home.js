@@ -1,10 +1,9 @@
 import { Button, View } from "react-native"
 import { ButtonLogin, TextButton } from "../../components/button/style"
 import { CardPacotePremiumPendente } from "../../components/Card/Card"
-import { Container, HomeContainer, StatusButtonContainer } from "../../components/container/style"
-import { LatoLight16Creme, LatoRegular14Creme, LatoRegular15, LatoRegular20Creme } from "../../components/texts/style"
-import { Header, BoxHeader, ImageButton, ImageProfile } from "./Style"
-import { Body } from "../profile/Style"
+import { Container, ContainerFlatList, HomeContainer, StatusButtonContainer } from "../../components/container/style"
+import { LatoBold20Dourado, LatoLight16Creme, LatoRegular14Creme, LatoRegular15, LatoRegular20Creme, LatoRegular20Dourado } from "../../components/texts/style"
+import { Header, BoxHeader, ImageButton, ImageProfile, BodyHome } from "./Style"
 import { Calendar } from "../../components/calendar/calendar"
 import { useEffect, useState } from "react"
 import moment from "moment"
@@ -14,7 +13,7 @@ import { CardList, CardListPendente } from "../../components/cardList/cardList"
 
 const Home = ({ navigation }) => {
 
-    const [statusLista, setStatusLista] = useState('agendado')
+    const [statusLista, setStatusLista] = useState('pendente')
     const [budgetAccept, setBudgetAccept] = useState(false)
     const [calendarDate, setCalendarDate] = useState('')
     const [cardsDataList, setCardsDataList] = useState([])
@@ -23,26 +22,34 @@ const Home = ({ navigation }) => {
         {
             id: 1,
             title: 'PACOTE BÁSICO',
-            data: ['100 convidados', 'Duração: 4h'],
-            Situacao: 'agendado'
+            convidados: '100 CONVIDADOS',
+            duracao: 'DURAÇÃO: 4h',
+            Situacao: 'agendado',
+            image: 'image 1.png'
         },
         {
             id: 2,
             title: 'PACOTE PREMIUM',
-            data: ['150 convidados', 'Duração: 6h'],
-            Situacao: 'cancelado'
+            convidados: '150 CONVIDADOS',
+            duracao: 'DURAÇÃO: 6h',
+            Situacao: 'cancelado',
+            image: 'image 2.png'
         },
         {
             id: 3,
-            title: 'PACOTE PREMIUM',
-            data: ['150 convidados', 'Duração: 6h'],
-            Situacao: 'pendente'
+            title: 'PACOTE BÁSICO',
+            convidados: '100 CONVIDADOS',
+            duracao: 'DURAÇÃO: 4h',
+            Situacao: 'pendente',
+            image: 'image 1.png'
         },
         {
             id: 4,
             title: 'PACOTE PREMIUM',
-            data: ['150 convidados', 'Duração: 6h'],
-            Situacao: 'pendente'
+            convidados: '150 CONVIDADOS',
+            duracao: 'DURAÇÃO: 6h',
+            Situacao: 'pendente',
+            image: 'image 2.png'
         }
 
     ]
@@ -75,82 +82,99 @@ const Home = ({ navigation }) => {
 
     return (
         <HomeContainer>
-            <Header>
-                <BoxHeader>
-                    <LatoLight16Creme>Bem vindo!</LatoLight16Creme>
-                    <LatoRegular20Creme>Nome da Pessoa</LatoRegular20Creme>
-                </BoxHeader>
+            <Container>
+                <Header>
+                    <BoxHeader>
+                        <LatoLight16Creme>Bem vindo!</LatoLight16Creme>
+                        <LatoRegular20Creme>Nome da Pessoa</LatoRegular20Creme>
+                    </BoxHeader>
 
-                <ImageButton onPress={() => { navigation.navigate('Profile') }}>
-                    <ImageProfile source={require('../../assets/ProfilePicture01.png')} />
-                </ImageButton>
-            </Header>
+                    <ImageButton onPress={() => { navigation.navigate('Profile') }}>
+                        <ImageProfile source={require('../../assets/ProfilePicture01.png')} />
+                    </ImageButton>
+                </Header>
 
-            <Calendar
-                setCalendarDate={setCalendarDate}
-            />
+                <Calendar
+                    setCalendarDate={setCalendarDate}
+                />
 
 
-            <Button title="ir para a navegação" onPress={() => { navigation.navigate('Main') }} />
-            <Body>
 
-                {
-                    statusLista == 'pendente' ? (
-                        <>
-                            <LatoRegular14Creme>Pendententes</LatoRegular14Creme>
-                            <CardListPendente
-                                statusLista={statusLista}
-                                cardsData={cardsDataList}
-                            />
+                <BodyHome>
 
-                            <ButtonEditar
-                                textButton={'Orçamento'}
-                                onPress={() => setBudgetAccept(true)}
-                            />
-                        </>
-                    ) : (
+                    {
+                        statusLista == 'pendente' ? (
+                            <>
+                                <LatoBold20Dourado>Pendentes</LatoBold20Dourado>
 
-                        <>
-                            <LatoRegular14Creme>Ageddo e Cancelado</LatoRegular14Creme>
 
-                            <StatusButtonContainer>
-                                <ButtonStatus
+                                <CardList
+                                    statusLista={statusLista}
+                                    cardsData={ListBudgets}
+
+                                />
+
+
+                                <ButtonEditar
+                                    textButton={'Agendado'}
                                     onPress={() => setStatusLista('agendado')}
-                                    clickButton={statusLista === 'agendado'}
-                                    textButton={"Agendado"}
                                 />
-                                <ButtonStatus
-                                    onPress={() => setStatusLista('cancelado')}
-                                    clickButton={statusLista === 'cancelado'}
-                                    textButton={"Cancelado"}
+                            </>
+                        ) : (
+
+                            <>
+
+                                <StatusButtonContainer>
+                                    <ButtonStatus
+                                        onPress={() => setStatusLista('agendado')}
+                                        clickButton={statusLista === 'agendado'}
+                                        textButton={"Agendado"}
+                                    />
+                                    <ButtonStatus
+                                        onPress={() => setStatusLista('cancelado')}
+                                        clickButton={statusLista === 'cancelado'}
+                                        textButton={"Cancelado"}
+                                    />
+                                </StatusButtonContainer>
+
+                                <CardList
+                                    statusLista={statusLista}
+                                    cardsData={ListBudgets}
+
                                 />
-                            </StatusButtonContainer>
-
-                            <CardList
-                                statusLista={statusLista}
-                                cardsData={cardsDataList}
-
-                            />
 
 
 
-                            <ButtonEditar
-                                textButton={'Orçamento'}
-                                onPress={() => setBudgetAccept(false)}
-                            />
-                        </>
-                    )
-                }
+                                <ButtonEditar
+                                     textButton={'Pendente'}
+                                     onPress={() => setStatusLista('pendente')}
+                                />
+                            </>
+                        )
+                    }
+
+                </BodyHome>
+
+
+                <Button title="ir para a navegação" onPress={() => { navigation.navigate('Main') }} />
+
+
+            </Container>
 
 
 
 
 
 
-            </Body>
 
 
         </HomeContainer>
+
+
+
+
+
+
     )
 }
 

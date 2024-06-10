@@ -23,3 +23,11 @@ export const ImageProfile = styled.Image`
     height: 68px;
     width: 68px;
 `
+
+export const BodyHome = styled.View`
+    align-items: center;
+    /* border: 1px solid red; */
+    gap: 15px;
+    width: 100%;
+    height: 400px;
+`

@@ -33,6 +33,7 @@ export const Title = styled.Text`
 	color: #caa858;
 	font-size: 48px;
 	font-family: 'Cintra';
+	text-align: center;
 
 	margin: 70px 0 120px 0;
 `;
@@ -52,4 +53,11 @@ export const LatoLight16Creme = styled.Text`
     color: #F2E6D0;
     font-size:16px;
     font-family:'lato_light';
+`
+
+export const LatoBold20Dourado = styled.Text`
+    color: #C1A25A;
+    font-size:20px;
+    font-family:'lato_bold';
+	text-transform: capitalize;
 `

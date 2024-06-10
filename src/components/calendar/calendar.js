@@ -12,32 +12,56 @@ const startingDate = new Date(currentDate.getFullYear(), currentDate.getMonth(),
 //define a data final como sendo o último dia do mês
 const endingDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
 
-export const Calendar = ({setCalendarDate}) => {
+const markedDatesArray = [
+    {
+        date: ('', currentDate),
+        lines: [
+            {
+                color: '#F2E6D0'
+            }
+        ]
+    }
+]
+
+export const Calendar = ({ setCalendarDate }) => {
+
+    markedDatesFunc = date => {
+        // Line
+        if (date.isoWeekday() === 6) { // Saturdays
+            return {
+                lines: [{
+                color: '#F2E6D0'
+            }]
+            };
+        }
+        return {};
+    }
+
     return (
-            <CalendarStyle
-                scrollable
-                onDateSelected={date => setCalendarDate(moment(date).format('YYYY-MM-DD'))}
+        <CalendarStyle
+            scrollable
+            onDateSelected={date => setCalendarDate(moment(date).format('YYYY-MM-DD'))}
 
-                calendarAnimation={{ type: "sequence", duration: 30 }}
-                daySelectionAnimation={styleCalendar.selectedAnimationStyle}
-                iconLeftStyle={styleCalendar.iconsStyle}
-                iconRightStyle={styleCalendar.iconsStyle}
+            calendarAnimation={{ type: "sequence", duration: 30 }}
+            daySelectionAnimation={styleCalendar.selectedAnimationStyle}
+            iconLeftStyle={styleCalendar.iconsStyle}
+            iconRightStyle={styleCalendar.iconsStyle}
 
-                selectedDate={currentDate}
-                startingDate={moment()}
-                minDate={moment()}
-                maxDate={endingDate}
+            selectedDate={currentDate}
+            startingDate={moment()}
+            minDate={moment()}
+            maxDate={endingDate}
 
-                calendarHeaderStyle={styleCalendar.calendarHeaderStyle}
-                dateNumberStyle={styleCalendar.numberDateStyle}
-                dateNameStyle={styleCalendar.nameDateStyle}
+            calendarHeaderStyle={styleCalendar.calendarHeaderStyle}
+            dateNumberStyle={styleCalendar.numberDateStyle}
+            dateNameStyle={styleCalendar.nameDateStyle}
 
-                // estilização do item que está selecionado - efeito do item marcado
-                highlightDateNameStyle={styleCalendar.selectedDateNameStyle}
-                highlightDateNumberStyle={styleCalendar.selectedDateNumberStyle}
-                highlightDateContainerStyle={styleCalendar.selectedContainerStyle}
-                IconContainer={{ flex: 0.1 }}
-            />
+            // estilização do item que está selecionado - efeito do item marcado
+            highlightDateNameStyle={styleCalendar.selectedDateNameStyle}
+            highlightDateNumberStyle={styleCalendar.selectedDateNumberStyle}
+            highlightDateContainerStyle={styleCalendar.selectedContainerStyle}
+            IconContainer={{ flex: 0.1 }}
+        />
     )
 }
 
@@ -61,7 +85,7 @@ const styleCalendar = StyleSheet.create({
     nameDateStyle: {
         color: "#F2E6D0",
         fontSize: 14,
-        fontFamily:"lato_light",
+        fontFamily: "lato_light",
         textTransform: "capitalize"
     },
     numberDateStyle: {

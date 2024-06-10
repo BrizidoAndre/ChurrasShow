@@ -11,8 +11,6 @@ export const Container = styled.View`
 `
 export const HomeContainer = styled(Container)`
     gap: 20px;
-    justify-content: center;
-    
 `
 
 
