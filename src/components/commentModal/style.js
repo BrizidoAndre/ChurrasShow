@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import * as Font from 'expo-font';
+import { LatoRegular15 } from '../texts/style';
 
 export const CreateModalX = styled.View`
 	flex: 1;
@@ -34,3 +35,19 @@ export const TitleModal = styled.Text`
 	margin-top: 15px;
 	margin-bottom: 18px;
 `;
+
+export const ContainerComment = styled.TextInput.attrs({
+	multiline: true,
+	textAlignVertical: 'top'
+  })`
+	width: 90%;
+	height: 283px;
+	background-color: #F2E6D0;
+	border-radius: 20px;
+	padding: 15px;
+  `;
+export const LatoComment = styled(LatoRegular15)`
+	color: #000000;
+	
+`
+
