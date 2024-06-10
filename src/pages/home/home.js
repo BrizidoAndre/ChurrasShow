@@ -9,7 +9,7 @@ import { Calendar } from "../../components/calendar/calendar"
 import { useEffect, useState } from "react"
 import moment from "moment"
 import { ButtonEditar, ButtonStatus } from "../../components/packageButton/packageButton"
-import { CardList } from "../../components/cardList/cardList"
+import { CardList, CardListPendente } from "../../components/cardList/cardList"
 
 
 const Home = ({ navigation }) => {
@@ -98,7 +98,10 @@ const Home = ({ navigation }) => {
                     statusLista == 'pendente' ? (
                         <>
                             <LatoRegular14Creme>Pendententes</LatoRegular14Creme>
-                            {/* <CardList/> */}
+                            <CardListPendente
+                                statusLista={statusLista}
+                                cardsData={cardsDataList}
+                            />
 
                             <ButtonEditar
                                 textButton={'Orçamento'}
