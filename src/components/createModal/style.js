@@ -23,8 +23,10 @@ export const ContainerPackageButton = styled.View`
 	display: flex;
 	flex-direction: row;
 	align-content: center;
+	align-self: center;
 	gap: 24px;
 	margin-bottom: 26px;
+	overflow: hidden;
 `;
 
 export const TitleModal = styled.Text`
@@ -33,4 +35,13 @@ export const TitleModal = styled.Text`
 	color: #caa858;
 	margin-top: 15px;
 	margin-bottom: 18px;
+`;
+
+export const NumberOfGuests = styled.TextInput`
+	width: 125px;
+	height: 25px;
+	background-color: #f2e6d0;
+	border-radius: 20px;
+	color: #000;
+	text-align: center;
 `;

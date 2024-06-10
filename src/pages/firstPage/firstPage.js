@@ -23,7 +23,7 @@ const FirstPage = () => {
 	const DATA = [
 		{
 			id: 1,
-			name: 'ALgustos terceiros',
+			name: 'Augusto Terceiros',
 			comment:
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam....',
 			image: img,
@@ -31,7 +31,7 @@ const FirstPage = () => {
 		},
 		{
 			id: 2,
-			name: 'nome2',
+			name: 'Nome2',
 			comment:
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam....',
 			image: img,
@@ -53,7 +53,8 @@ const FirstPage = () => {
 	return (
 		<Container>
 			<Logotipo source={img} />
-			<ButtonLogin onPress={handleNavigate}>
+			{/* //! onPress={toggleModalVisibility} */}
+			<ButtonLogin onPress={toggleModalVisibility}>
 				<TextButton>Orçamento</TextButton>
 			</ButtonLogin>
 
@@ -71,9 +72,10 @@ const FirstPage = () => {
 				horizontal={true}
 			/>
 
-			<MadeBy>Made by Gamel Tec</MadeBy>
-
-			<CreateModal visible={isModalVisible} />
+			<CreateModal
+				visible={isModalVisible}
+				onClose={toggleModalVisibility}
+			/>
 		</Container>
 	);
 };

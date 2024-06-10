@@ -3,14 +3,9 @@ import styled from 'styled-components/native';
 export const ButtonContainer = styled.TouchableOpacity.attrs({
 	activeOpacity: 1,
 })`
-	background: #c1a25a;
-	padding: 12px 20px;
+	background: ${({ isSelected }) => (isSelected ? '#F2E6D0' : '#C1A25A')};
+	padding: 12px 17px;
 	border-radius: 20px;
-	elevation: 3; /* Sombra no Android */
-
-	&:active {
-		transform: translate(1px, 1px);
-	}
 `;
 
 // Estilização do Texto do Botão
