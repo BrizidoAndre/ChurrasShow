@@ -1,15 +1,26 @@
 import React, { useState } from 'react';
-import {StyledInput } from './style';
+import { StyledInput } from './style';
+import { Text } from 'react-native';
+import { LatoMedium14Red } from '../texts/style';
 
-const Input = ({setValue, value, placeholder, secure=false }) => {
+const Input = ({ 
+	setValue,
+	 value,
+	 placeholder,
+	 secure = false,
+	 hasError= false,
+	 messageError=`${placeholder} não foi digitado corretamente` }) => {
 
 	return (
+		<>
 			<StyledInput
 				onChangeText={setValue}
 				value={value}
 				placeholder={placeholder}
 				secureTextEntry={secure}
 			/>
+			{!hasError || <LatoMedium14Red>{placeholder} não foi digitado corretamente</LatoMedium14Red>}
+		</>
 	);
 };
 

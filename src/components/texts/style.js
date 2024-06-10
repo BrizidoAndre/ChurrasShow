@@ -28,6 +28,13 @@ export const LatoRegular25 = styled.Text`
 	text-align: center;
 `;
 
+export const LatoMedium14Red = styled.Text`
+	font-size: 14px;
+	font-family:'lato_bold';
+	font-weight: 900;
+	color: #e40a0a;
+`
+
 export const Title = styled.Text`
 	color: #caa858;
 	font-size: 48px;

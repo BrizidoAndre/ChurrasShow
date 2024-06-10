@@ -1,4 +1,4 @@
-import { Alert, Text } from "react-native"
+import { ActivityIndicator, Alert, Text } from "react-native"
 import ContainerLogo from "../../components/container/container"
 import { ButtonLogin, TextButton } from "../../components/button/style"
 import { LatoBoldUnderline, LatoItalic14, MadeBy, Title } from "../../components/texts/style"
@@ -18,18 +18,21 @@ const Login = ({ navigation }) => {
 
     const { width, height } = useWindowDimensions();
 
+    const [loading, setLoading] = useState(false)
+
     const [userLogin, setUserLogin] = useState({
-        email: 'lucas.gon.oliv@gmail.com',
-        senha: '123456'
+        email: 'merdas@email.com',
+        senha: 'senhas'
     })
 
 
     async function signIn() {
         try {
+            setLoading(true)
+            
             const res = await api.post('/Login', userLogin)
             const data = await res.data;
 
-            console.log(res)
 
             if (res.status === 200) {
                 AsyncStorage.setItem('token', data.token)
@@ -37,6 +40,7 @@ const Login = ({ navigation }) => {
                 return;
             }
 
+            setLoading(false)
         } catch (error) {
             Alert.alert('Informações inválidas', 'Verifique o email e a senha digitadas')
             setUserLogin({
@@ -62,7 +66,8 @@ const Login = ({ navigation }) => {
                         ...userLogin,
                         email: txt
                     })}
-                    value={userLogin.email} />
+                    value={userLogin.email} 
+                    />
                 <Input
                     placeholder={"Senha"}
                     setValue={(txt) => setUserLogin({
@@ -70,17 +75,22 @@ const Login = ({ navigation }) => {
                         senha: txt
                     })}
                     value={userLogin.senha}
-                    secure={true} />
+                    secure={true}/>
 
-                <LatoBoldUnderline onPress={() => navigation.navigate('RedefinePassword')}>Esqueceu a senha?</LatoBoldUnderline>
+                <LatoBoldUnderline onPress={() => navigation.navigate('RecoverPassword')}>Esqueceu a senha?</LatoBoldUnderline>
             </ContainerForm>
 
             <Spacing marginTop={'20'} />
 
-            <ButtonLogin onPress={() => signIn()}>
+            <ButtonLogin onPress={() => signIn()} disabled={loading}>
+                { loading ?
+                <ActivityIndicator color={'#CAA858'}  /> 
+                :
                 <TextButton>
                     Login
                 </TextButton>
+                }
+                
             </ButtonLogin>
 
             <Spacing marginTop={20} />

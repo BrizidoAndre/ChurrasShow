@@ -18,6 +18,7 @@ import {
 import { useCallback } from 'react';
 import RedefinePassword from './src/pages/redefinePassword/redefinePassword';
 import { CheckEmail } from './src/pages/checkEmail/checkEmail';
+import RecoverPassword from "./src/pages/recoverPassword/recoverPassword";
 
 const Stack = createNativeStackNavigator();
 
@@ -67,10 +68,18 @@ export default function App() {
           name='RedefinePassword'
           component={RedefinePassword} />
 
+        <Stack.Screen
+          name='RecoverPassword'
+          component={RecoverPassword} />
+
 
         <Stack.Screen
           name="CheckEmail"
           component={CheckEmail} />
+
+        <Stack.Screen
+          name="CreateAccount"
+          component={CreateAccount} />
 
 
       </Stack.Navigator>
