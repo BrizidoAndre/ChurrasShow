@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
 	AddButton,
 	ContentDurationButton,
@@ -8,16 +8,31 @@ import {
 } from './style';
 import AntDesign from '@expo/vector-icons/AntDesign';
 
-export const DurationButton = () => {
+export const DurationButton = ({ hours }) => {
+	const [durationTime, setDurationTime] = useState(0);
+
+	function handleAdd() {
+		setDurationTime(durationTime + 1);
+	}
+
+	const handleSubtract = () => {
+		if (durationTime > 0) {
+			setDurationTime(durationTime - 1);
+		}
+	};
+
 	return (
 		<ContentDurationButton>
-			<SubtractButton>
+			<SubtractButton onPress={() => handleSubtract()}>
 				<AntDesign name="minus" size={20} color="black" />
 			</SubtractButton>
 			<VisualizeDurationButton>
-				<TextDuration>0h</TextDuration>
+				<TextDuration>
+					{durationTime}
+					{hours}
+				</TextDuration>
 			</VisualizeDurationButton>
-			<AddButton>
+			<AddButton onPress={() => handleAdd()}>
 				<AntDesign name="plus" size={20} color="black" />
 			</AddButton>
 		</ContentDurationButton>

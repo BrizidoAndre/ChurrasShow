@@ -36,3 +36,12 @@ export const TitleModal = styled.Text`
 	margin-top: 15px;
 	margin-bottom: 18px;
 `;
+
+export const NumberOfGuests = styled.TextInput`
+	width: 125px;
+	height: 25px;
+	background-color: #f2e6d0;
+	border-radius: 20px;
+	color: #000;
+	text-align: center;
+`;
