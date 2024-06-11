@@ -24,9 +24,29 @@ import { ButtonText } from '../packageButton/style';
 
 const CreateModal = ({ visible, onClose, navigation }) => {
 	const [selectedButton, setSelectedButton] = useState(null);
+	const [descriptionText, setDescriptionText] = useState();
 
 	const handlePress = (buttonId) => {
 		setSelectedButton(buttonId);
+	};
+
+	const handlePressText = (buttonId) => {
+		setSelectedButton(buttonId);
+		let description = '';
+		switch (buttonId) {
+			case 1:
+				description = 'Descrição do Pacote Básico';
+				break;
+			case 2:
+				description = 'Descrição do Pacote Premium';
+				break;
+			case 3:
+				description = 'Descrição do Pacote Custom';
+				break;
+			default:
+				description = '';
+		}
+		setDescriptionText(description);
 	};
 
 	return (
@@ -42,17 +62,17 @@ const CreateModal = ({ visible, onClose, navigation }) => {
 						<PackageButton
 							textButton="Basico"
 							isSelected={selectedButton === 1}
-							onPress={() => handlePress(1)}
+							onPress={() => handlePressText(1)}
 						/>
 						<PackageButton
 							textButton="Premium"
 							isSelected={selectedButton === 2}
-							onPress={() => handlePress(2)}
+							onPress={() => handlePressText(2)}
 						/>
 						<PackageButton
 							textButton="Custom"
 							isSelected={selectedButton === 3}
-							onPress={() => handlePress(3)}
+							onPress={() => handlePressText(3)}
 						/>
 					</ContainerPackageButton>
 
@@ -79,7 +99,10 @@ const CreateModal = ({ visible, onClose, navigation }) => {
 					<ContentComponentsX>
 						<SubTitle text={'N° DE CONVIDADOS:'} />
 						{/* //?Importacao do componente de input de convidados */}
-						<NumberOfGuests placeholder={'0'} />
+						<NumberOfGuests
+							placeholder={'0'}
+							keyboardType="numeric"
+						/>
 					</ContentComponentsX>
 
 					<ContentComponentsX>
@@ -100,7 +123,7 @@ const CreateModal = ({ visible, onClose, navigation }) => {
 					{/* Renderização condicional da descrição */}
 					{selectedButton !== null && (
 						<ContentComponentsX>
-							<ViewDescription />
+							<ViewDescription text={descriptionText} />
 						</ContentComponentsX>
 					)}
 					<ButtonModal>
@@ -114,94 +137,3 @@ const CreateModal = ({ visible, onClose, navigation }) => {
 };
 
 export default CreateModal;
-
-// const CreateModal = ({ visible, onClose }) => {
-// 	const [selectedButton, setSelectedButton] = useState(null);
-
-// 	const handlePress = (buttonId) => {
-// 		setSelectedButton(buttonId);
-// 	};
-
-// 	return (
-// 		<Modal visible={visible} transparent={true} animationType="fade">
-// 			<CreateModalX>
-// 				<ContentCreateModal>
-// 					{/* Importação do TitleModal */}
-// 					<TitleModal>SELEÇÃO DE PACOTE</TitleModal>
-
-// 					{/* Importação do contêiner do botão */}
-// 					<ContainerPackageButton>
-// 						{/* Importação do componente do PackageButton */}
-// 						<PackageButton
-// 							textButton="Básico"
-// 							isSelected={selectedButton === 1}
-// 							onPress={() => handlePress(1)}
-// 						/>
-// 						<PackageButton
-// 							textButton="Premium"
-// 							isSelected={selectedButton === 2}
-// 							onPress={() => handlePress(2)}
-// 						/>
-// 						<PackageButton
-// 							textButton="Custom"
-// 							isSelected={selectedButton === 3}
-// 							onPress={() => handlePress(3)}
-// 						/>
-// 					</ContainerPackageButton>
-
-// 					{/* Importação do componente que vai segurar os subtitles e os inputs normais e selects */}
-// 					<ContentComponentsX>
-// 						{/* Importação dos subtitles e textos */}
-// 						<SubTitle text={'DATA DO EVENTO:'} />
-// 						{/* Importação do botão de selecionar data */}
-// 						<ButtonDate />
-// 					</ContentComponentsX>
-
-// 					<ContentComponentsX>
-// 						<SubTitle text={'HORÁRIO DE INÍCIO:'} />
-// 						{/* Importação do componente de selecionar o horário */}
-// 						<ButtonTime />
-// 					</ContentComponentsX>
-
-// 					<ContentComponentsX>
-// 						<SubTitle text={'DURAÇÃO:'} />
-// 						{/* Importação do componente de adicionar a duração do evento */}
-// 						<DurationButton />
-// 					</ContentComponentsX>
-
-// 					<ContentComponentsX>
-// 						<SubTitle text={'N° DE CONVIDADOS:'} />
-// 						{/* Importação do componente de input de convidados */}
-// 						<NumberOfGuests placeholder={'0'} />
-// 					</ContentComponentsX>
-
-// 					<ContentComponentsX>
-// 						<SubTitle text={'GARÇONTES:'} />
-// 						<DurationButton />
-// 					</ContentComponentsX>
-
-// 					<ContentComponentsX>
-// 						<SubTitle text={'DESCARTÁVEIS:'} />
-// 						<ToggleSwitch />
-// 					</ContentComponentsX>
-
-// 					<ContentComponentsX>
-// 						<SubTitle text={'ACOMPANHAMENTOS:'} />
-// 					</ContentComponentsX>
-
-// 					{/* Renderização condicional da descrição */}
-// 					{selectedButton !== null && (
-// 						<ContentComponentsX>
-// 							<ViewDescription />
-// 						</ContentComponentsX>
-// 					)}
-
-// 					{/* Botão de Voltar */}
-// 					<Back onPress={onClose} />
-// 				</ContentCreateModal>
-// 			</CreateModalX>
-// 		</Modal>
-// 	);
-// };
-
-// export default CreateModal;

@@ -39,8 +39,8 @@ const styles = StyleSheet.create({
 		backgroundColor: '#C1A25A',
 	},
 	circle: {
-		width: 24,
-		height: 24,
+		width: 22,
+		height: 22,
 		borderRadius: 12,
 		backgroundColor: '#3C2E1E',
 	},

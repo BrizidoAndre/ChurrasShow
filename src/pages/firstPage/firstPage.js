@@ -10,6 +10,7 @@ import CommentCard from '../../components/commentCard/commentCard';
 import { CommentFlatlist } from '../../components/commentFlatlist/styles';
 import CreateModal from '../../components/createModal/createModal';
 import { useNavigation } from '@react-navigation/native'; // Importação do useNavigation
+import { BudgetSummary } from '../../components/budgetSummary/budgetSummary';
 
 const FirstPage = () => {
 	const [isModalVisible, setModalVisible] = useState(false);
@@ -53,7 +54,7 @@ const FirstPage = () => {
 	return (
 		<Container>
 			<Logotipo source={img} />
-			{/* //! onPress={toggleModalVisibility} */}
+
 			<ButtonLogin onPress={toggleModalVisibility}>
 				<TextButton>Orçamento</TextButton>
 			</ButtonLogin>
@@ -76,6 +77,10 @@ const FirstPage = () => {
 				visible={isModalVisible}
 				onClose={toggleModalVisibility}
 			/>
+			{/* <BudgetSummary
+				visible={isModalVisible}
+				onClose={toggleModalVisibility}
+			/> */}
 		</Container>
 	);
 };

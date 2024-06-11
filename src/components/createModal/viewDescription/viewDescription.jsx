@@ -1,14 +1,10 @@
 import React from 'react';
 import { Description, ViewDescriptionX } from './style';
 
-export const ViewDescription = () => {
+export const ViewDescription = ({ text }) => {
 	return (
 		<ViewDescriptionX>
-			<Description>
-				* Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-				Quibusdam velit, impedit ab optio obcaecati beatae quae
-				temporibus suscipit libero reiciendis.
-			</Description>
+			<Description>{text}</Description>
 		</ViewDescriptionX>
 	);
 };
