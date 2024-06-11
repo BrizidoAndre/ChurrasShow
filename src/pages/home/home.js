@@ -77,6 +77,7 @@ const Home = ({ navigation }) => {
         budgetLockDay
         budgetAccepted()
         setCalendarDate((moment().format('YYYY-MM-DD')))
+        navigation.navigate('Main')
     }, [])
 
 
@@ -154,9 +155,6 @@ const Home = ({ navigation }) => {
                     }
 
                 </BodyHome>
-
-
-                <Button title="ir para a navegação" onPress={() => { navigation.navigate('Main') }} />
 
 
             </Container>
