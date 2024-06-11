@@ -8,8 +8,15 @@ const Home = ({navigation}) => {
         <View style={{margin:150}}>
 
             <Button title="ir para a navegação" onPress={()=>{navigation.navigate('Main')}}/>
-           
-            <TextButton>Orçamento</TextButton>
+
+            <Button title="ir para a login" onPress={()=>{navigation.navigate('Login')}}/>
+
+            <Button title="ir para a Cadastrar conta" onPress={()=>{navigation.navigate('CreateAccount')}}/>
+            
+            <Button title="ir para a Recuperar senha" onPress={()=>{navigation.navigate('RecoverPassword')}}/>
+
+
+                      
           
         </View>
     )

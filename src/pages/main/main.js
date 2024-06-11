@@ -1,9 +1,12 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../home/home';
 import Login from '../login/login';
+import CreateAccount from '../createAccount/createAccount';
+
 import { ContentIcon } from './style';
 
 import {FontAwesome, Entypo} from '@expo/vector-icons' 
+
 
 const Tab = createBottomTabNavigator();
 
@@ -44,6 +47,8 @@ const Main = () => {
       <Tab.Screen name="Home" component={Home} />
 
       <Tab.Screen name="Login" component={Login} />
+
+      <Tab.Screen name="CreateAccount" component={CreateAccount} />
 
     </Tab.Navigator>
   );
