@@ -11,7 +11,7 @@ import {
 import { ButtonLogin, TextButton } from '../../components/button/style';
 import { CodeInput } from '../../components/codeInput/codeInput';
 
-export const CheckEmail = () => {
+export const CheckEmail = ({ navigation }) => {
 	const [code, setCode] = useState('');
 	return (
 		<ContainerLogo>
@@ -23,7 +23,9 @@ export const CheckEmail = () => {
 
 			<CodeInput code={code} setCode={setCode} />
 
-			<ButtonLogin>
+			<ButtonLogin
+				onPress={() => { navigation.navigate('') }}
+			>
 				<TextButton>Continuar</TextButton>
 			</ButtonLogin>
 			<MadeBy>Made by Gamel Tec</MadeBy>

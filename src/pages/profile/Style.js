@@ -32,7 +32,6 @@ export const ImageProfile = styled.Image`
 
 export const Body = styled.View`
     align-items: center;
-    border: 1px solid red;
     gap: 15px;
     width: 100%;
     height: 400px;

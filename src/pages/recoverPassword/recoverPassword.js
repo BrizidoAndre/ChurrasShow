@@ -7,7 +7,7 @@ import { ContainerForm } from "../../components/container/style";
 import Spacing from "../../components/spacing/spacing";
 import { useWindowDimensions } from "react-native";
 
-const RecoverPassword = () => {
+const RecoverPassword = ({navigation}) => {
   const{width, height} = useWindowDimensions()
   return (
     <ContainerLogo>
@@ -19,7 +19,7 @@ const RecoverPassword = () => {
         <Input placeholder={"Email..."} />       
       </ContainerForm>
 
-      <ButtonCadastrar>
+      <ButtonCadastrar onPress={() => {navigation.navigate('CheckEmail')}}>
         <TextButton>Continuar</TextButton>
       </ButtonCadastrar>
 
