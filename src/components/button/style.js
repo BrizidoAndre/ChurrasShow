@@ -6,16 +6,19 @@ export const ButtonLogin = styled.TouchableOpacity`
     height:44px;
     border: #CAA858;
     border-radius: 20px;
-    background-color: #000000;
+    background-color: transparent;
     
     align-items: center;
     justify-content: center;
     
 `
+export const ButtonCadastrar = styled(ButtonLogin)`
+    margin-top: 66px;
+    margin-bottom:86px;
+`
 export const TextButton = styled.Text`
-    font-family:'lato_regular';
+    font-family:'lato_bold';
 
     font-size:24px;
-    color: black
-
+    color:  #CAA858
 `
