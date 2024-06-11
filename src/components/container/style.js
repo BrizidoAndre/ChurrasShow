@@ -5,9 +5,12 @@ import img from '../../assets/logo.png'
 export const Container = styled.View`
     height: 100%;
     width: 100%;
-    background: #000000;
+    background: #1D1D1D;
 
     align-items: center;
+`
+export const HomeContainer = styled(Container)`
+    gap: 20px;
 `
 
 
@@ -46,4 +49,10 @@ export const ContainerForm = styled.View`
     gap: 20px;
     width: 100%;
     align-items:center;
+`
+
+export const StatusButtonContainer = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
 `

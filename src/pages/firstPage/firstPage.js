@@ -47,7 +47,7 @@ const FirstPage = () => {
 	];
 
 	const handleNavigate = () => {
-		navigation.navigate('CheckEmail'); // Navegar para a tela 'CheckEmail'
+		navigation.navigate('Login'); // Navegar para a tela 'Login'
 	};
 
 	return (
