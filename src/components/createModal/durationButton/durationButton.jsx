@@ -26,7 +26,7 @@ export const DurationButton = ({ hours }) => {
 	return (
 		<ContentDurationButton>
 			<SubtractButton onPress={() => handleSubtract()}>
-				<AntDesign name="stepbackward" size={24} color="black" />
+				<AntDesign name="minus" size={24} color="black" />
 			</SubtractButton>
 			<VisualizeDurationButton>
 				<TextDuration>
@@ -35,7 +35,7 @@ export const DurationButton = ({ hours }) => {
 				</TextDuration>
 			</VisualizeDurationButton>
 			<AddButton onPress={() => handleAdd()}>
-				<AntDesign name="pluscircle" size={20} color="#000000" />
+				<AntDesign name="plus" size={24} color="black" />
 			</AddButton>
 		</ContentDurationButton>
 	);
