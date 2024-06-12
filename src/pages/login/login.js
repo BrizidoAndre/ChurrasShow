@@ -7,12 +7,15 @@ import { ContainerForm } from "../../components/container/style"
 import Spacing from "../../components/spacing/spacing"
 
 import { useWindowDimensions } from "react-native"
+import { Link } from "../../components/Link/Link"
+import { RowBox } from "./style"
 
 
 
-const Login = () => {
 
-    const {width, height} = useWindowDimensions();
+const Login = ({ navigation }) => {
+
+    const { width, height } = useWindowDimensions();
 
 
     return (
@@ -21,22 +24,40 @@ const Login = () => {
             <Title>Login</Title>
 
             <ContainerForm>
-                <Input placeholder={"Email ou Username..."}  />
+                <Input placeholder={"Email ou Username..."} />
                 <Input placeholder={"Senha"} />
 
-                <LatoBoldUnderline>Esqueceu a senha?</LatoBoldUnderline>
+                <Link
+                    onPress={() => { navigation.navigate('RecoverPassword') }}
+                    fontSize={14}
+                    color={'F2E6D0'}
+                    fontFamily={'lato_bold_italic'}
+                    textLink={'Esqueceu a senha?'}
+
+                />
+
             </ContainerForm>
 
-            <Spacing  marginTop={'20'} />
+            <Spacing marginTop={'20'} />
 
-            <ButtonLogin>
+            <ButtonLogin onPress={() => { navigation.navigate('Home') }}>
                 <TextButton>
                     Login
                 </TextButton>
             </ButtonLogin>
 
-            <Spacing marginTop={20}/>
-            <LatoItalic14>Não possui conta? <LatoBoldUnderline>Crie Uma agora</LatoBoldUnderline></LatoItalic14>
+            <Spacing marginTop={20} />
+            <RowBox>
+                <LatoItalic14>Não possui conta? </LatoItalic14>
+                <Link
+                    onPress={() => { navigation.navigate('CreateAccount') }}
+                    fontSize={14}
+                    color={'F2E6D0'}
+                    fontFamily={'lato_bold_italic'}
+                    textLink={'Criar uma agora!'}
+                />
+            </RowBox>
+
 
             <MadeBy height={height}>Made by Gamel Tec</MadeBy>
 

@@ -14,12 +14,7 @@ import Spacing from '../../components/spacing/spacing';
 import { useWindowDimensions } from 'react-native';
 import { LogBox } from 'react-native';
 
-// useEffect(() => {
-// 	LogBox.ignoreAllLogs(); // Para ignorar todos os avisos
-// });
-// * craicao da tela
-export const CheckEmail = () => {
-	// * constantes usadas na tela
+export const CheckEmail = ({ navigation }) => {
 	const [code, setCode] = useState('');
 	const { width, height } = useWindowDimensions();
 	return (
@@ -35,8 +30,7 @@ export const CheckEmail = () => {
 			<Spacing marginBottom={90} />
 			{/* // * importacao do code input */}
 			<CodeInput code={code} setCode={setCode} />
-			<Spacing marginBottom={111} />
-			{/* //* importacao do botao */}
+
 			<ButtonLogin>
 				<TextButton>Continuar</TextButton>
 			</ButtonLogin>
