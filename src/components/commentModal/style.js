@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import * as Font from 'expo-font';
 import { LatoRegular15 } from '../texts/style';
+import { ContainerRowStar } from '../container/style';
 
 export const CreateModalX = styled.View`
 	flex: 1;
@@ -45,9 +45,18 @@ export const ContainerComment = styled.TextInput.attrs({
 	background-color: #F2E6D0;
 	border-radius: 20px;
 	padding: 15px;
+	margin-top: 15px;
   `;
 export const LatoComment = styled(LatoRegular15)`
 	color: #000000;
 	
+`;
+
+export const ContainerRowStarModal = styled(ContainerRowStar)`
+
+  margin-bottom: 150px;
+  margin-left:20px;
+  align-items: center;
+
 `
 
