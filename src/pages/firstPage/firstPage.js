@@ -46,27 +46,9 @@ const FirstPage = ({navigation}) => {
 		},
 	];
 
-<<<<<<< HEAD
-
-	const { height, widht } = useWindowDimensions();
-
-
-
-	async function loadComments(){
-		const res = await api.get('/Comentario/ListarComentariosValidos')
-
-		console.log(res.data)
-	}
-
-
-	useEffect(()=>{
-		loadComments()
-	},[])
-=======
 	const handleNavigate = () => {
 		navigation.navigate('Login'); // Navegar para a tela 'Login'
 	};
->>>>>>> develop
 
 	return (
 		<Container>
