@@ -19,7 +19,8 @@ export const ContainerBackground = styled.ImageBackground`
     width: 100%;
     background-color: #000000;
 
-    position: relative;
+    
+
     
 
     align-items: center;

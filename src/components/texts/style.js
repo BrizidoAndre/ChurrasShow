@@ -32,22 +32,35 @@ export const LatoRegular25 = styled.Text`
 	text-align: center;
 `;
 
+export const LatoMedium14Red = styled.Text`
+	font-size: 14px;
+	font-family:'lato_bold';
+	font-weight: 900;
+	color: #e40a0a;
+`
+
 export const Title = styled.Text`
 	color: #caa858;
 	font-size: 48px;
 	font-family: 'Cintra';
 	text-align: center;
 
-	margin: 70px 0 120px 0;
-`;
-
-
+    margin: 70px 20px 120px 20px;
+`
 export const LatoItalic14 = styled(LatoRegular18)`
     font-size: 14px;
     font-style:italic;
     color: #F2E6D0;
 `
 
+export const LatoBoldUnderline = styled.Text`
+    color: #F2E6D0;
+    font-family: 'lato_bold';
+    font-size:14px;
+    font-style: italic;
+    font-weight: 900;
+    text-decoration:underline;
+	`
 export const LatoRegular14Creme = styled.Text`
     color: #F2E6D0;
     font-size:14px;
