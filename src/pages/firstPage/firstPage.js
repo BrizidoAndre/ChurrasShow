@@ -15,6 +15,7 @@ import api from '../../service/service';
 
 const FirstPage = ({navigation}) => {
 	const [isModalVisible, setModalVisible] = useState(false);
+	const [comments, setComments] = useState([])
 
 	const {width, height} = useWindowDimensions()
 
@@ -22,35 +23,16 @@ const FirstPage = ({navigation}) => {
 		setModalVisible(!isModalVisible);
 	};
 
-	const DATA = [
-		{
-			id: 1,
-			name: 'ALgustos terceiros',
-			comment:
-				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam....',
-			image: img,
-			stars: 4,
-		},
-		{
-			id: 2,
-			name: 'nome2',
-			comment:
-				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam....',
-			image: img,
-			stars: 3,
-		},
-		{
-			id: 3,
-			name: 'André',
-			comment: 'Muito bom o serviço',
-			image: img,
-			stars: 5,
-		},
-	];
+	async function loadComments(){
+		const res = await api.get('/Comentario/ListarComentariosValidos')
+		const data = await res.data;
+		
+		setComments(data)
+	} 
 
-	const handleNavigate = () => {
-		navigation.navigate('Login'); // Navegar para a tela 'Login'
-	};
+	useEffect(()=>{
+		loadComments()
+	},[])
 
 	return (
 		<Container>
@@ -60,16 +42,16 @@ const FirstPage = ({navigation}) => {
 			</ButtonLogin>
 
 			<CommentFlatlist
-				data={DATA}
+				data={comments}
 				renderItem={({ item }) => (
 					<CommentCard
-						img={item.image}
-						name={item.name}
-						comment={item.comment}
-						stars={item.stars}
+						img={item.usuario.foto }
+						name={item.usuario.nome}
+						comment={item.descricaoComentario}
+						stars={item.pontuacao}
 					/>
 				)}
-				keyExtractor={(item) => item.id.toString()} // keyExtractor espera uma string
+				keyExtractor={(item) => item.idComentario.toString()} // keyExtractor espera uma string
 				horizontal={true}
 			/>
 

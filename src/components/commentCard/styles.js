@@ -3,9 +3,11 @@ import styled from "styled-components"
 
 
 export const CommentImage = styled.Image`
-    width: 40px;
-    height:40px;
-    border-radius: 10px;
+    width: 60px;
+    height:60px;
+    border-radius: 50px;
+
+    object-position: center;
 
     position: absolute;
     left:10px;
