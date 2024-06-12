@@ -9,6 +9,7 @@ const Input = ({
 	 placeholder,
 	 secure = false,
 	 hasError= false,
+	 editable = false,
 	 messageError=`${placeholder} não foi digitado corretamente` }) => {
 
 	return (
@@ -18,6 +19,7 @@ const Input = ({
 				value={value}
 				placeholder={placeholder}
 				secureTextEntry={secure}
+				editable={editable}
 			/>
 			{!hasError || <LatoMedium14Red>{placeholder} não foi digitado corretamente</LatoMedium14Red>}
 		</>

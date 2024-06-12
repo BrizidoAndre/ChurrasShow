@@ -46,6 +46,7 @@ const FirstPage = ({navigation}) => {
 		},
 	];
 
+<<<<<<< HEAD
 
 	const { height, widht } = useWindowDimensions();
 
@@ -61,6 +62,11 @@ const FirstPage = ({navigation}) => {
 	useEffect(()=>{
 		loadComments()
 	},[])
+=======
+	const handleNavigate = () => {
+		navigation.navigate('Login'); // Navegar para a tela 'Login'
+	};
+>>>>>>> develop
 
 	return (
 		<Container>
