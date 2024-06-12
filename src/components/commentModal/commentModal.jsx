@@ -14,6 +14,9 @@ import { ImageStar } from '../commentCard/styles';
 
 import { LatoRegular15 } from '../texts/style';
 import { ContainerRowStar } from '../container/style';
+import { ButtonModal } from '../button/style';
+import { ButtonText } from '../packageButton/style';
+import { Back } from '../back/back';
 
 const CommentStars = ({ star }) => {
 
@@ -65,7 +68,10 @@ export const CommentModal = ({ visible,stars }) => {
 
 					<CommentStars star={stars}/>
 
-					
+					{/* <ButtonModal>
+						<ButtonText>Confirmar</ButtonText>
+					</ButtonModal>
+					<Back onPress={onClose} />	 */}				
 					
 				</ContentCreateModal>
 			</CreateModalX>
