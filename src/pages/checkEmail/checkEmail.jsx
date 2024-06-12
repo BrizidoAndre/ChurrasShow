@@ -23,6 +23,8 @@ export const CheckEmail = () => {
 
 			<CodeInput code={code} setCode={setCode} />
 
+			
+
 			<ButtonLogin>
 				<TextButton>Continuar</TextButton>
 			</ButtonLogin>

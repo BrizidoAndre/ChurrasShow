@@ -37,10 +37,8 @@ const Login = ({ navigation }) => {
             if (res.status === 200) {
                 AsyncStorage.setItem('token', data.token)
                 navigation.navigate('Main')
-                return;
             }
 
-            setLoading(false)
         } catch (error) {
             Alert.alert('Informações inválidas', 'Verifique o email e a senha digitadas')
             setUserLogin({
@@ -49,8 +47,7 @@ const Login = ({ navigation }) => {
             })
             
         }
-
-
+        setLoading(false)
     }
 
 
