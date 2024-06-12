@@ -33,7 +33,7 @@ export const CardList = ({ statusLista, cardsData, onPress }) => {
 			keyExtractor={(item) => item.id}
 			renderItem={({ item }) =>
 				statusLista == item.Situacao && (
-					<TouchableOpacity onPress={onPress}>
+					<TouchableOpacity onPress={() => onPress(item)}>
 						<CardPacoteBasico
 							id={item.id}
 							situacao={item.Situacao}

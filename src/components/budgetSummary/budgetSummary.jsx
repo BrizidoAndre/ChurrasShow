@@ -21,7 +21,11 @@ import { ButtonModal, TextButton } from '../button/style';
 import { ButtonText } from '../packageButton/style';
 import { Back } from '../back/back';
 
-export const BudgetSummary = ({ visible, onClose, navigation }) => {
+export const BudgetSummary = ({ visible, onClose, cardData }) => {
+	////
+	// * se o card nao existe ele retorna null
+	if (!cardData) return null;
+
 	return (
 		<Modal visible={visible} transparent={true} animationType="fade">
 			{/* //? importacao dos contents do modal */}
@@ -35,17 +39,23 @@ export const BudgetSummary = ({ visible, onClose, navigation }) => {
 					{/* //? importacao dos conteudos do orcamento */}
 					<ContentSummary>
 						{/* //? importacao do title do resumo */}
-						<TitleSummary>Pacote Premium</TitleSummary>
+						<TitleSummary>{cardData.title}</TitleSummary>
 
 						{/* importacao do componente de conteudo dos dados do evento */}
 						<ContentSummaryData>
 							{/* // ? importacao dos dados */}
 							<SubDescriptionData>30/12/2024</SubDescriptionData>
+
 							<SubDescriptionData>19:00h</SubDescriptionData>
-							<SubDescriptionData>4h</SubDescriptionData>
+
 							<SubDescriptionData>
-								100 Convidados
+								{cardData.duracao}
 							</SubDescriptionData>
+
+							<SubDescriptionData>
+								{cardData.convidados}
+							</SubDescriptionData>
+
 							<SubDescriptionData>
 								1 Garçonetes
 							</SubDescriptionData>

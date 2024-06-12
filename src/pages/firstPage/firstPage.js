@@ -10,6 +10,7 @@ import CommentCard from '../../components/commentCard/commentCard';
 import { CommentFlatlist } from '../../components/commentFlatlist/styles';
 import CreateModal from '../../components/createModal/createModal';
 import { useNavigation } from '@react-navigation/native'; // Importação do useNavigation
+import { useWindowDimensions } from 'react-native';
 
 const FirstPage = ({ navigation }) => {
 	const [isModalVisible, setModalVisible] = useState(false);
@@ -47,7 +48,7 @@ const FirstPage = ({ navigation }) => {
 	];
 
 	const handleNavigate = () => {
-		navigation.navigate('Main'); // Navegar para a tela 'Login'
+		navigation.navigate('Login'); // Navegar para a tela 'Login'
 	};
 
 	return (
@@ -71,7 +72,7 @@ const FirstPage = ({ navigation }) => {
 				horizontal={true}
 			/>
 
-			<MadeBy>Made by Gamel Tec</MadeBy>
+			<MadeBy height={height}>Made by Gamel Tec</MadeBy>
 
 			<CreateModal visible={isModalVisible} />
 		</Container>

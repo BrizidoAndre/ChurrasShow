@@ -41,9 +41,24 @@ const Home = ({ navigation }) => {
 	// * Criando o state para ver se o modal esta visivel ou nao
 	const [isModalVisible, setModalVisible] = useState(false);
 
+	// * Criando um state para verificar qual card foi selecionado para transpor ao modal
+	const [selectedCard, setSelectedCard] = useState();
+
 	// * Criacao dos toggle visible para chamar os modais quando clicar nos cards
 	const summaryModalVisibility = () => {
 		setModalVisible(!isModalVisible);
+	};
+
+	// * Criacao da funcao de pressionar o card e levar dados ao modal
+
+	const handleCardPress = (card) => {
+		setSelectedCard(card);
+		setModalVisible(true);
+	};
+
+	const closeModal = () => {
+		setModalVisible(false);
+		setSelectedCard(null);
 	};
 
 	const ListBudgets = [
@@ -67,7 +82,7 @@ const Home = ({ navigation }) => {
 			id: 3,
 			title: 'PACOTE BÁSICO',
 			convidados: '100 CONVIDADOS',
-			duracao: 'DURAÇÃO: 4h',
+			duracao: 'DURAÇÃO: 2h',
 			Situacao: 'pendente',
 			image: 'image 1.png',
 		},
@@ -137,9 +152,16 @@ const Home = ({ navigation }) => {
 							<CardList
 								statusLista={statusLista}
 								cardsData={ListBudgets}
-								onPress={() => summaryModalVisibility()}
+								onPress={handleCardPress}
 							/>
-
+							{/* // * Se o card for selecionado ele vai levar os dados */}
+							{selectedCard && (
+								<BudgetSummary
+									visible={isModalVisible}
+									onClose={closeModal}
+									cardData={selectedCard}
+								/>
+							)}
 							<ButtonEditar
 								textButton={'Agendado'}
 								onPress={() => setStatusLista('agendado')}
@@ -174,10 +196,6 @@ const Home = ({ navigation }) => {
 				</BodyHome>
 				{/* <Button title="ir para a navegação" onPress={() => { navigation.navigate('Main') }} /> */}
 			</Container>
-			<BudgetSummary
-				visible={isModalVisible}
-				onClose={summaryModalVisibility}
-			/>
 		</HomeContainer>
 	);
 };
