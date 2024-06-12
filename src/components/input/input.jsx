@@ -9,7 +9,7 @@ const Input = ({
 	 placeholder,
 	 secure = false,
 	 hasError= false,
-	 editable = false,
+	 editable = true,
 	 messageError=`${placeholder} não foi digitado corretamente` }) => {
 
 	return (

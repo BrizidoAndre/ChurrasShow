@@ -58,98 +58,92 @@ const CreateAccount = ({ navigation }) => {
       console.log(e)
     }
 
-
-
   }
 
+  return (
+    <ContainerLogo>
+      <Title>Criar Conta</Title>
 
-  const CreateAccount = ({ navigation }) => {
-    const { width, height } = useWindowDimensions()
-    return (
-      <ContainerLogo>
-        <Title>Criar Conta</Title>
+      <ContainerForm>
+        <Input
+          placeholder={"Nome..."}
+          value={newAccount.name}
+          setValue={(txt) => {
+            setNewAccont({
+              ...newAccount,
+              name: txt
+            })
+          }}
+        />
+        <Input
+          placeholder={"Email..."}
+          value={newAccount.email}
+          setValue={(txt) => {
+            setNewAccont({
+              ...newAccount,
+              email: txt
+            })
+          }}
+        />
+        <Input
+          placeholder={"Rg..."}
+          value={newAccount.rg}
+          setValue={(txt) => {
+            setNewAccont({
+              ...newAccount,
+              rg: txt
+            })
+          }}
+        />
+        <Input
+          placeholder={"CPF..."}
+          value={newAccount.cpf}
+          setValue={(txt) => {
+            setNewAccont({
+              ...newAccount,
+              cpf: txt
+            })
+          }}
+        />
+        <Input
+          placeholder={"Senha..."}
+          value={newAccount.password}
+          setValue={(txt) => {
+            setNewAccont({
+              ...newAccount,
+              password: txt
+            })
+          }}
+          secure={true}
+        />
+        <Input
+          placeholder={"Confirmar Senha..."}
+          value={newAccount.confirmPassword}
+          setValue={(txt) => {
+            setNewAccont({
+              ...newAccount,
+              confirmPassword: txt
+            })
+          }}
+          secure={true}
+        />
+      </ContainerForm>
 
-        <ContainerForm>
-          <Input
-            placeholder={"Nome..."}
-            value={newAccount.name}
-            setValue={(txt) => {
-              setNewAccont({
-                ...newAccount,
-                name: txt
-              })
-            }}
-          />
-          <Input
-            placeholder={"Email..."}
-            value={newAccount.email}
-            setValue={(txt) => {
-              setNewAccont({
-                ...newAccount,
-                email: txt
-              })
-            }}
-          />
-          <Input
-            placeholder={"Rg..."}
-            value={newAccount.rg}
-            setValue={(txt) => {
-              setNewAccont({
-                ...newAccount,
-                rg: txt
-              })
-            }}
-          />
-          <Input
-            placeholder={"CPF..."}
-            value={newAccount.cpf}
-            setValue={(txt) => {
-              setNewAccont({
-                ...newAccount,
-                cpf: txt
-              })
-            }}
-          />
-          <Input
-            placeholder={"Senha..."}
-            value={newAccount.password}
-            setValue={(txt) => {
-              setNewAccont({
-                ...newAccount,
-                password: txt
-              })
-            }}
-            secure={true}
-          />
-          <Input
-            placeholder={"Confirmar Senha..."}
-            value={newAccount.confirmPassword}
-            setValue={(txt) => {
-              setNewAccont({
-                ...newAccount,
-                confirmPassword: txt
-              })
-            }}
-            secure={true}
-          />
-        </ContainerForm>
+      <Spacing marginBottom={'-10'} />
 
-        <Spacing marginBottom={'-10'} />
+      <ButtonCadastrar onPress={() => createAccount()} disabled={loading} >
+        {loading ?
+          <ActivityIndicator color={'#CAA858'} />
+          :
+          <TextButton>Cadastrar</TextButton>
+        }
+      </ButtonCadastrar>
 
-        <ButtonCadastrar onPress={() => createAccount()} disabled={loading} >
-          {loading ?
-            <ActivityIndicator color={'#CAA858'} />
-            :
-            <TextButton>Cadastrar</TextButton>
-          }
-        </ButtonCadastrar>
-
-        <MadeBy height={height}>Made by Gamel Tec</MadeBy>
-      </ContainerLogo>
+      <MadeBy height={height}>Made by Gamel Tec</MadeBy>
+    </ContainerLogo>
 
 
-    );
-  };
+  );
 };
 
 export default CreateAccount;
