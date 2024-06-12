@@ -16,6 +16,8 @@ import api from '../../service/service';
 const FirstPage = ({navigation}) => {
 	const [isModalVisible, setModalVisible] = useState(false);
 
+	const {width, height} = useWindowDimensions()
+
 	const toggleModalVisibility = () => {
 		setModalVisible(!isModalVisible);
 	};
