@@ -1,7 +1,7 @@
-
-import { CardPacoteBasico, CardPacoteBasicoPendente } from "../Card/Card"
-import { ContainerFlatList, ContainerFlatListScroll } from "../container/style"
-import { ListCard } from "./style"
+import { TouchableOpacity } from 'react-native';
+import { CardPacoteBasico, CardPacoteBasicoPendente } from '../Card/Card';
+import { ContainerFlatList, ContainerFlatListScroll } from '../container/style';
+import { ListCard } from './style';
 
 // export const CardListPendente = ({ statusLista, cardsData }) => {
 
@@ -10,7 +10,6 @@ import { ListCard } from "./style"
 //             data={cardsData}
 //             keyExtractor={(item) => item.id}
 //             renderItem={({ item }) => statusLista == item.Situacao && (
-
 
 //                 <CardPacoteBasicoPendente
 //                     id={item.id}
@@ -23,30 +22,29 @@ import { ListCard } from "./style"
 
 //         />
 
-
 //     )
 
 // }
 
-export const CardList = ({ statusLista, cardsData }) => {
-    return (
-        <ListCard
-            data={cardsData}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => statusLista == item.Situacao && (
-
-
-                <CardPacoteBasico
-                    id={item.id}
-                    situacao={item.Situacao}
-                    guests={item.convidados}
-                    duration={item.duracao}
-                    packageName={item.title}
-                    img={item.image}
-
-                />
-            )}
-
-        />
-    )
-}
+export const CardList = ({ statusLista, cardsData, onPress }) => {
+	return (
+		<ListCard
+			data={cardsData}
+			keyExtractor={(item) => item.id}
+			renderItem={({ item }) =>
+				statusLista == item.Situacao && (
+					<TouchableOpacity onPress={onPress}>
+						<CardPacoteBasico
+							id={item.id}
+							situacao={item.Situacao}
+							guests={item.convidados}
+							duration={item.duracao}
+							packageName={item.title}
+							img={item.image}
+						/>
+					</TouchableOpacity>
+				)
+			}
+		/>
+	);
+};

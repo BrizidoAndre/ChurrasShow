@@ -48,14 +48,14 @@ const FirstPage = () => {
 	];
 
 	const handleNavigate = () => {
-		navigation.navigate('Login'); // Navegar para a tela 'Login'
+		navigation.navigate('Main'); // Navegar para a tela 'Login'
 	};
 
 	return (
 		<Container>
 			<Logotipo source={img} />
 
-			<ButtonLogin onPress={toggleModalVisibility}>
+			<ButtonLogin onPress={handleNavigate}>
 				<TextButton>Orçamento</TextButton>
 			</ButtonLogin>
 
@@ -73,14 +73,14 @@ const FirstPage = () => {
 				horizontal={true}
 			/>
 
-			<CreateModal
-				visible={isModalVisible}
-				onClose={toggleModalVisibility}
-			/>
-			{/* <BudgetSummary
+			{/* <CreateModal
 				visible={isModalVisible}
 				onClose={toggleModalVisibility}
 			/> */}
+			<BudgetSummary
+				visible={isModalVisible}
+				onClose={toggleModalVisibility}
+			/>
 		</Container>
 	);
 };
