@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native"
 
 
 
-const Spacing = ({marginTop, marginBottom, margin=null}) => {
+export const Spacing = ({marginTop, marginBottom, margin=null}) => {
 
 
   if(margin){

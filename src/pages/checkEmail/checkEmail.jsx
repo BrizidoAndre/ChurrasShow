@@ -28,6 +28,8 @@ export const CheckEmail = ({ navigation }) => {
 			>
 				<TextButton>Continuar</TextButton>
 			</ButtonLogin>
+
+			
 			<MadeBy>Made by Gamel Tec</MadeBy>
 		</ContainerLogo>
 	);

@@ -156,6 +156,7 @@ const Home = ({ navigation }) => {
 
                 </BodyHome>
                 {/* <Button title="ir para a navegação" onPress={() => { navigation.navigate('Main') }} /> */}
+
             </Container>
 
 

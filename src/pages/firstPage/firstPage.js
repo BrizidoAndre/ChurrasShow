@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container } from '../../components/container/style';
 import ContainerLogo from '../../components/container/container';
 import Logo from '../../components/logo/logo';
@@ -10,11 +10,11 @@ import CommentCard from '../../components/commentCard/commentCard';
 import { CommentFlatlist } from '../../components/commentFlatlist/styles';
 import CreateModal from '../../components/createModal/createModal';
 import { useNavigation } from '@react-navigation/native'; // Importação do useNavigation
+import { useWindowDimensions } from 'react-native';
+import api from '../../service/service';
 
-const FirstPage = () => {
+const FirstPage = ({navigation}) => {
 	const [isModalVisible, setModalVisible] = useState(false);
-
-	const navigation = useNavigation(); // Obter o objeto de navegação
 
 	const toggleModalVisibility = () => {
 		setModalVisible(!isModalVisible);
@@ -53,7 +53,7 @@ const FirstPage = () => {
 	return (
 		<Container>
 			<Logotipo source={img} />
-			<ButtonLogin onPress={handleNavigate}>
+			<ButtonLogin onPress={()=> navigation.navigate('Login')}>
 				<TextButton>Orçamento</TextButton>
 			</ButtonLogin>
 
@@ -71,7 +71,7 @@ const FirstPage = () => {
 				horizontal={true}
 			/>
 
-			<MadeBy height={800}>Made by Gamel Tec</MadeBy>
+			<MadeBy height={height}>Made by Gamel Tec</MadeBy>
 
 			<CreateModal visible={isModalVisible} />
 		</Container>
