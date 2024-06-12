@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import * as Font from 'expo-font';
+import { LatoRegular15 } from '../texts/style';
+import { ContainerRowStar } from '../container/style';
 
 export const CreateModalX = styled.View`
 	flex: 1;
@@ -23,10 +24,8 @@ export const ContainerPackageButton = styled.View`
 	display: flex;
 	flex-direction: row;
 	align-content: center;
-	align-self: center;
 	gap: 24px;
 	margin-bottom: 26px;
-	overflow: hidden;
 `;
 
 export const TitleModal = styled.Text`
@@ -37,11 +36,27 @@ export const TitleModal = styled.Text`
 	margin-bottom: 18px;
 `;
 
-export const NumberOfGuests = styled.TextInput`
-	width: 125px;
-	height: 25px;
-	background-color: #f2e6d0;
+export const ContainerComment = styled.TextInput.attrs({
+	multiline: true,
+	textAlignVertical: 'top'
+  })`
+	width: 90%;
+	height: 283px;
+	background-color: #F2E6D0;
 	border-radius: 20px;
-	color: #000;
-	text-align: center;
+	padding: 15px;
+	margin-top: 15px;
+  `;
+export const LatoComment = styled(LatoRegular15)`
+	color: #000000;
+	
 `;
+
+export const ContainerRowStarModal = styled(ContainerRowStar)`
+
+  margin-bottom: 150px;
+  margin-left:20px;
+  align-items: center;
+
+`
+

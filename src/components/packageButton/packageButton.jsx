@@ -1,9 +1,9 @@
-import React from 'react';
-import { ButtonContainer, ButtonProfile, PackageButtonX, ButtonText, TinyButton, TinyButtonText } from './style';
+import React, { useState } from 'react';
+import { ButtonContainer, ButtonText } from './style';
 
-export const PackageButton = ({ textButton }) => {
+export const PackageButton = ({ textButton, isSelected, onPress }) => {
 	return (
-		<ButtonContainer activeOpacity={0.8}>
+		<ButtonContainer onPress={onPress} isSelected={isSelected}>
 			<ButtonText>{textButton}</ButtonText>
 		</ButtonContainer>
 	);

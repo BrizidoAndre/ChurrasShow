@@ -37,7 +37,7 @@ const FirstPage = ({navigation}) => {
 	return (
 		<Container>
 			<Logotipo source={img} />
-			<ButtonLogin onPress={()=> navigation.navigate('Login')}>
+			<ButtonLogin onPress={handleNavigate}>
 				<TextButton>Orçamento</TextButton>
 			</ButtonLogin>
 
@@ -55,7 +55,7 @@ const FirstPage = ({navigation}) => {
 				horizontal={true}
 			/>
 
-			<MadeBy height={height}>Made by Gamel Tec</MadeBy>
+			<MadeBy>Made by Gamel Tec</MadeBy>
 
 			<CreateModal visible={isModalVisible} />
 		</Container>
