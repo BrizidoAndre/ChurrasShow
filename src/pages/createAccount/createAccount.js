@@ -6,7 +6,7 @@ import { ContainerForm } from "../../components/container/style";
 import { useWindowDimensions } from "react-native";
 
 
-const CreateAccount = () => {
+const CreateAccount = ({navigation}) => {
   const{width, height} = useWindowDimensions()
   return (
     <ContainerLogo>
@@ -22,7 +22,7 @@ const CreateAccount = () => {
         <Input placeholder={"Confirmar Senha..."} />
       </ContainerForm>
 
-      <ButtonCadastrar>
+      <ButtonCadastrar onPress={() => {navigation.navigate('Login')}}>
         <TextButton>Cadastrar</TextButton>
       </ButtonCadastrar>
 
