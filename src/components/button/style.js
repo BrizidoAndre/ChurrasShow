@@ -7,7 +7,6 @@ export const ButtonLogin = styled.TouchableOpacity`
 	border: #caa858;
 	border-radius: 20px;
 	background-color: #000000;
-=========
     width: 90%;
     height:44px;
     border: #CAA858;
@@ -22,13 +21,11 @@ export const ButtonCadastrar = styled(ButtonLogin)`
     margin-top: 66px;
     margin-bottom:86px;
 `
-export const TextButton = styled.Text`
+/* export const TextButton = styled.Text`
     font-family:'lato_bold';
->>>>>>>>> Temporary merge branch 2
-
 	align-items: center;
 	justify-content: center;
-`;
+`; */
 export const TextButton = styled.Text`
 	font-family: 'lato_bold';
 
