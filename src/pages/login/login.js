@@ -35,8 +35,8 @@ const Login = ({ navigation }) => {
 
 
             if (res.status === 200) {
-                AsyncStorage.setItem('token', data.token)
-                navigation.navigate('Main')
+                await AsyncStorage.setItem('token', JSON.stringify(data.token))
+                navigation.replace('Main')
             }
 
         } catch (error) {
