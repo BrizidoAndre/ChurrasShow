@@ -12,7 +12,7 @@ import api from "../../service/service";
 const RecoverPassword = ({ navigation }) => {
   const { width, height } = useWindowDimensions()
 
-  const [email, setEmail] = useState()
+  const [email, setEmail] = useState('abrizidobasilio@gmail.com')
   const [error, setError] = useState()
 
   const [loading, setLoading] = useState(false)
@@ -24,7 +24,9 @@ const RecoverPassword = ({ navigation }) => {
       const res = await api.post('/RecuperarSenha?email=' + encodeURIComponent(email))
 
 
-      navigation.navigate('CheckEmail')
+      navigation.navigate('CheckEmail', {
+        email: email
+      })
 
       setLoading(false)
     } catch (error) {

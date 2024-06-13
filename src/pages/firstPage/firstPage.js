@@ -1,56 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from '../../components/container/style';
-import ContainerLogo from '../../components/container/container';
-import Logo from '../../components/logo/logo';
 import img from '../../assets/logo.png';
 import { Logotipo } from '../../components/logo/style';
 import { ButtonLogin, TextButton } from '../../components/button/style';
-import { LatoBoldItalic15, MadeBy } from '../../components/texts/style';
 import CommentCard from '../../components/commentCard/commentCard';
 import { CommentFlatlist } from '../../components/commentFlatlist/styles';
 import CreateModal from '../../components/createModal/createModal';
-import { useNavigation } from '@react-navigation/native'; // Importação do useNavigation
 import { useWindowDimensions } from 'react-native';
 import api from '../../service/service';
+import { MadeBy } from '../../components/texts/style';
 
-const FirstPage = ({navigation}) => {
+const FirstPage = ({ navigation }) => {
 	const [isModalVisible, setModalVisible] = useState(false);
+	const [comments, setComments] = useState([])
 
-	const {width, height} = useWindowDimensions()
+	const { width, height } = useWindowDimensions();
 
-	const toggleModalVisibility = () => {
-		setModalVisible(!isModalVisible);
-	};
 
-	const DATA = [
-		{
-			id: 1,
-			name: 'ALgustos terceiros',
-			comment:
-				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam....',
-			image: img,
-			stars: 4,
-		},
-		{
-			id: 2,
-			name: 'nome2',
-			comment:
-				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam....',
-			image: img,
-			stars: 3,
-		},
-		{
-			id: 3,
-			name: 'André',
-			comment: 'Muito bom o serviço',
-			image: img,
-			stars: 5,
-		},
-	];
+	async function loadComments(){
 
-	const handleNavigate = () => {
-		navigation.navigate('Login'); // Navegar para a tela 'Login'
-	};
+		const res = await api.get('/Comentario/ListarComentariosValidos')
+		const data = await res.data;
+
+		console.log(data)
+		
+		setComments(data)
+	} 
+
+	useEffect(()=>{
+		loadComments()
+	},[])
 
 	return (
 		<Container>
@@ -60,16 +39,16 @@ const FirstPage = ({navigation}) => {
 			</ButtonLogin>
 
 			<CommentFlatlist
-				data={DATA}
+				data={comments}
 				renderItem={({ item }) => (
 					<CommentCard
-						img={item.image}
-						name={item.name}
-						comment={item.comment}
-						stars={item.stars}
+						img={item.usuario.foto }
+						name={item.usuario.nome}
+						comment={item.descricaoComentario}
+						stars={item.pontuacao}
 					/>
 				)}
-				keyExtractor={(item) => item.id.toString()} // keyExtractor espera uma string
+				keyExtractor={(item) => item.idComentario.toString()} // keyExtractor espera uma string
 				horizontal={true}
 			/>
 

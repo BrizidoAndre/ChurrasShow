@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { useFonts, Lato_400Regular } from '@expo-google-fonts/lato';
 
 export const ButtonLogin = styled.TouchableOpacity`
@@ -19,6 +19,21 @@ export const ButtonCadastrar = styled(ButtonLogin)`
 export const TextButton = styled.Text`
     font-family:'lato_bold';
 
-    font-size:24px;
-    color:  #CAA858
-`
+	align-items: center;
+	justify-content: center;
+
+	font-size: 24px;
+	color: #caa858;
+`;
+
+export const ButtonModal = styled.TouchableOpacity`
+	width: 155px;
+	height: 25px;
+	border: 1px solid #3c2e1e;
+	border-radius: 20px;
+	background-color: #f2e6d0;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	top: 87%;
+`;

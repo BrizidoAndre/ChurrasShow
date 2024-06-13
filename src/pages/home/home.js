@@ -1,180 +1,206 @@
-import { Button, View } from "react-native"
-import { ButtonLogin, TextButton } from "../../components/button/style"
-import { CardPacotePremiumPendente } from "../../components/Card/Card"
-import { Container, ContainerFlatList, HomeContainer, StatusButtonContainer } from "../../components/container/style"
-import { LatoBold20Dourado, LatoLight16Creme, LatoRegular14Creme, LatoRegular15, LatoRegular20Creme, LatoRegular20Dourado } from "../../components/texts/style"
-import { Header, BoxHeader, ImageButton, ImageProfile, BodyHome } from "./Style"
-import { Calendar } from "../../components/calendar/calendar"
-import { useEffect, useState } from "react"
-import moment from "moment"
-import { ButtonEditar, ButtonStatus } from "../../components/packageButton/packageButton"
-import { CardList, CardListPendente } from "../../components/cardList/cardList"
 
+import {
+	Container,
+	HomeContainer,
+	StatusButtonContainer,
+} from '../../components/container/style';
+import {
+	LatoBold20Dourado,
+	LatoLight16Creme,
+	LatoRegular20Creme,
+} from '../../components/texts/style';
+import {
+	Header,
+	BoxHeader,
+	ImageButton,
+	ImageProfile,
+	BodyHome,
+} from './Style';
+import { Calendar } from '../../components/calendar/calendar';
+import { useEffect, useState } from 'react';
+import moment from 'moment';
+import {
+	ButtonEditar,
+	ButtonStatus,
+} from '../../components/packageButton/packageButton';
+import { CardList, CardListPendente } from '../../components/cardList/cardList';
+import { BudgetSummary } from '../../components/budgetSummary/budgetSummary';
+import api from '../../service/service';
 
 const Home = ({ navigation }) => {
+	const [statusLista, setStatusLista] = useState('pendente');
+	const [budgetAccept, setBudgetAccept] = useState(false);
+	const [calendarDate, setCalendarDate] = useState('');
+	const [cardsDataList, setCardsDataList] = useState([]);
 
-    const [statusLista, setStatusLista] = useState('pendente')
-    const [budgetAccept, setBudgetAccept] = useState(false)
-    const [calendarDate, setCalendarDate] = useState('')
-    const [cardsDataList, setCardsDataList] = useState([])
+	// * Criando o state para ver se o modal esta visivel ou nao
+	const [isModalVisible, setModalVisible] = useState(false);
 
-    const ListBudgets = [
-        {
-            id: 1,
-            title: 'PACOTE BÁSICO',
-            convidados: '100 CONVIDADOS',
-            duracao: 'DURAÇÃO: 4h',
-            Situacao: 'agendado',
-            image: 'image 1.png'
-        },
-        {
-            id: 2,
-            title: 'PACOTE PREMIUM',
-            convidados: '150 CONVIDADOS',
-            duracao: 'DURAÇÃO: 6h',
-            Situacao: 'cancelado',
-            image: 'image 2.png'
-        },
-        {
-            id: 3,
-            title: 'PACOTE BÁSICO',
-            convidados: '100 CONVIDADOS',
-            duracao: 'DURAÇÃO: 4h',
-            Situacao: 'pendente',
-            image: 'image 1.png'
-        },
-        {
-            id: 4,
-            title: 'PACOTE PREMIUM',
-            convidados: '150 CONVIDADOS',
-            duracao: 'DURAÇÃO: 6h',
-            Situacao: 'pendente',
-            image: 'image 2.png'
-        }
+	// * Criando um state para verificar qual card foi selecionado para transpor ao modal
+	const [selectedCard, setSelectedCard] = useState();
 
-    ]
+	// * Criacao da funcao de pressionar o card e levar dados ao modal
 
-    async function budgetLockDay() {
-        if (statusLista != 'pendente') {
-            calendarDate == statusLista
-        }
-    }
+	const handleCardPress = (card) => {
+		if (card.Situacao !== 'cancelado') {
+			setSelectedCard(card);
+			setModalVisible(true);
+		}
+	};
 
-    async function budgetAccepted() {
-        if (budgetAccept == true) {
-            setStatusLista('agendado')
-        }
-    }
+	const closeModal = () => {
+		setModalVisible(false);
+		setSelectedCard(null);
+	};
 
-    useEffect(() => {
-        if (calendarDate !== '') {
-            console.log(calendarDate)
-            console.log(statusLista)
-        }
-    }, [calendarDate])
+	const ListBudgets = [
+		{
+			id: 1,
+			title: 'PACOTE BÁSICO',
+			convidados: '100 CONVIDADOS',
+			duracao: 'DURAÇÃO: 4h',
+			Situacao: 'agendado',
+			image: 'image 1.png',
+		},
+		{
+			id: 2,
+			title: 'PACOTE PREMIUM',
+			convidados: '150 CONVIDADOS',
+			duracao: 'DURAÇÃO: 6h',
+			Situacao: 'cancelado',
+			image: 'image 2.png',
+		},
+		{
+			id: 3,
+			title: 'PACOTE BÁSICO',
+			convidados: '100 CONVIDADOS',
+			duracao: 'DURAÇÃO: 2h',
+			Situacao: 'pendente',
+			image: 'image 1.png',
+		},
+		{
+			id: 4,
+			title: 'PACOTE PREMIUM',
+			convidados: '150 CONVIDADOS',
+			duracao: 'DURAÇÃO: 6h',
+			Situacao: 'pendente',
+			image: 'image 2.png',
+		},
+	];
 
-    useEffect(() => {
-        budgetLockDay
-        budgetAccepted()
-        setCalendarDate((moment().format('YYYY-MM-DD')))
-        navigation.navigate('Main')
-    }, [])
+	async function budgetLockDay() {
+		if (statusLista != 'pendente') {
+			calendarDate == statusLista;
+		}
+	}
 
+	async function budgetAccepted() {
+		if (budgetAccept == true) {
+			setStatusLista('agendado');
+		}
+	}
 
-    return (
-        <HomeContainer>
-            <Container>
-                <Header>
-                    <BoxHeader>
-                        <LatoLight16Creme>Bem vindo!</LatoLight16Creme>
-                        <LatoRegular20Creme>Nome da Pessoa</LatoRegular20Creme>
-                    </BoxHeader>
+	async function loadEvents(){
+		const res = await api.get('/Evento/BuscarPorData?data=22%2F10%2F2024');
 
-                    <ImageButton onPress={() => { navigation.navigate('Profile') }}>
-                        <ImageProfile source={require('../../assets/ProfilePicture01.png')} />
-                    </ImageButton>
-                </Header>
+		const data = await res.data;
 
-                <Calendar
-                    setCalendarDate={setCalendarDate}
-                />
+		console.log(data)
+	}
 
+	useEffect(() => {
+		budgetLockDay;
+		budgetAccepted();
+		setCalendarDate(moment().format('YYYY-MM-DD'));
+		navigation.navigate('Main');
 
+		loadEvents()
+	}, []);
 
-                <BodyHome>
+	return (
+		<HomeContainer>
+			<Container>
+				<Header>
+					<BoxHeader>
+						<LatoLight16Creme>Bem vindo!</LatoLight16Creme>
+						<LatoRegular20Creme>Nome da Pessoa</LatoRegular20Creme>
+					</BoxHeader>
 
-                    {
-                        statusLista == 'pendente' ? (
-                            <>
-                                <LatoBold20Dourado>Pendentes</LatoBold20Dourado>
+					<ImageButton
+						onPress={() => {
+							navigation.navigate('Profile');
+						}}
+					>
+						<ImageProfile
+							source={require('../../assets/ProfilePicture01.png')}
+						/>
+					</ImageButton>
+				</Header>
 
+				<Calendar setCalendarDate={setCalendarDate} />
 
-                                <CardList
-                                    statusLista={statusLista}
-                                    cardsData={ListBudgets}
+				<BodyHome>
+					{statusLista == 'pendente' ? (
+						<>
+							<LatoBold20Dourado>Pendentes</LatoBold20Dourado>
 
-                                />
+							<CardList
+								statusLista={statusLista}
+								cardsData={ListBudgets}
+								onPress={handleCardPress}
+							/>
+							{/* // * Se o card for selecionado ele vai levar os dados */}
+							{selectedCard && (
+								<BudgetSummary
+									visible={isModalVisible}
+									onClose={closeModal}
+									cardData={selectedCard}
+									statusLista={statusLista}
+								/>
+							)}
+							<ButtonEditar
+								textButton={'Agendado'}
+								onPress={() => setStatusLista('agendado')}
+							/>
+						</>
+					) : (
+						<>
+							<StatusButtonContainer>
+								<ButtonStatus
+									onPress={() => setStatusLista('agendado')}
+									clickButton={statusLista === 'agendado'}
+									textButton={'Agendado'}
+								/>
+								<ButtonStatus
+									onPress={() => setStatusLista('cancelado')}
+									clickButton={statusLista === 'cancelado'}
+									textButton={'Cancelado'}
+								/>
+							</StatusButtonContainer>
+							<CardList
+								statusLista={statusLista}
+								cardsData={ListBudgets}
+								onPress={handleCardPress}
+							/>
+							{selectedCard && (
+								<BudgetSummary
+									visible={isModalVisible}
+									onClose={closeModal}
+									cardData={selectedCard}
+									statusLista={statusLista}
+								/>
+							)}
+							<ButtonEditar
+								textButton={'Pendente'}
+								onPress={() => setStatusLista('pendente')}
+							/>
+						</>
+					)}
+				</BodyHome>
+				{/* <Button title="ir para a navegação" onPress={() => { navigation.navigate('Main') }} /> */}
+			</Container>
+		</HomeContainer>
+	);
+};
 
-
-                                <ButtonEditar
-                                    textButton={'Agendado'}
-                                    onPress={() => setStatusLista('agendado')}
-                                />
-                            </>
-                        ) : (
-
-                            <>
-
-                                <StatusButtonContainer>
-                                    <ButtonStatus
-                                        onPress={() => setStatusLista('agendado')}
-                                        clickButton={statusLista === 'agendado'}
-                                        textButton={"Agendado"}
-                                    />
-                                    <ButtonStatus
-                                        onPress={() => setStatusLista('cancelado')}
-                                        clickButton={statusLista === 'cancelado'}
-                                        textButton={"Cancelado"}
-                                    />
-                                </StatusButtonContainer>
-
-                                <CardList
-                                    statusLista={statusLista}
-                                    cardsData={ListBudgets}
-
-                                />
-
-
-
-                                <ButtonEditar
-                                     textButton={'Pendente'}
-                                     onPress={() => setStatusLista('pendente')}
-                                />
-                            </>
-                        )
-                    }
-
-                </BodyHome>
-                {/* <Button title="ir para a navegação" onPress={() => { navigation.navigate('Main') }} /> */}
-
-            </Container>
-
-
-
-
-
-
-
-
-        </HomeContainer>
-
-
-
-
-
-
-    )
-}
-
-export default Home
-
+export default Home;
