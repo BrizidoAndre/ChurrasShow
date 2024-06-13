@@ -26,7 +26,6 @@ export const CheckEmail = ({ navigation, route }) => {
 	async function checkCode() {
 		try {
 			const res = await api.post(`/RecuperarSenha/ValidarCodigoRecuperacaoSenha?email=${encodeURIComponent(email)}&codigo=${code}`)
-
 			
 			navigation.navigate('RedefinePassword',{
 				email:email
