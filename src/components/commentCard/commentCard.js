@@ -27,9 +27,8 @@ const CommentStars = ({ star }) => {
     const [score, setScore] = useState([])
 
     
-    function reloadStar(){
+    function reloadStar(points){
         let arrayStar = []
-        let points = star;
         for (let index = 0; index < 5; index++) {
             if(points > 0){
                 arrayStar.push(<ImageStar source={starFull} />)
@@ -44,7 +43,7 @@ const CommentStars = ({ star }) => {
     }
 
     useEffect(()=>{
-        setScore(reloadStar())
+        setScore(reloadStar(star))
     },[])
 
     return (
@@ -61,7 +60,7 @@ const CommentCard = ({ name, img, comment, stars }) => {
     return (
         <ContainerComment>
             <ContainerRow>
-                <CommentImage source={img} />
+                <CommentImage source={{uri: img}} />
                 <CommentName>{name}</CommentName>
             </ContainerRow>
             <CommentText>{comment}</CommentText>

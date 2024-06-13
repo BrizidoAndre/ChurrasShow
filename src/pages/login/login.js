@@ -22,10 +22,11 @@ const Login = ({ navigation }) => {
 
 	const [loading, setLoading] = useState(false);
 
-	const [userLogin, setUserLogin] = useState({
-		email: 'abrizidobasilio@gmail.com',
-		senha: 'Banana',
-	});
+    const [userLogin, setUserLogin] = useState({
+        email: 'abrizidobasilio@gmail.com',
+        senha: 'Banana'
+    })
+
 
 	async function signIn() {
 		try {

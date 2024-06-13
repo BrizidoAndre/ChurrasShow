@@ -1,12 +1,5 @@
-import React from 'react';
-import {
-	ButtonContainer,
-	ButtonProfile,
-	PackageButtonX,
-	ButtonText,
-	TinyButton,
-	TinyButtonText,
-} from './style';
+import React, { useState } from 'react';
+import { ButtonContainer, ButtonProfile, ButtonText, TinyButton, TinyButtonText } from './style';
 
 export const PackageButton = ({ textButton, isSelected, onPress }) => {
 	return (

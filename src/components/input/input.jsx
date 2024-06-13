@@ -5,13 +5,13 @@ import { LatoMedium14Red } from '../texts/style';
 
 const Input = ({
 	setValue,
-	value,
-	placeholder,
-	secure = false,
-	hasError = false,
-	editable = true,
-	messageError = `${placeholder} não foi digitado corretamente`,
-}) => {
+	 value,
+	 placeholder,
+	 secure = false,
+	 hasError= false,
+	 editable = true,
+	 messageError=`${placeholder} não foi digitado corretamente` }) => {
+
 	return (
 		<>
 			<StyledInput
