@@ -37,7 +37,7 @@ const FirstPage = ({navigation}) => {
 	return (
 		<Container>
 			<Logotipo source={img} />
-			<ButtonLogin onPress={handleNavigate}>
+			<ButtonLogin onPress={()=> navigation.navigate('Login')}>
 				<TextButton>Orçamento</TextButton>
 			</ButtonLogin>
 
