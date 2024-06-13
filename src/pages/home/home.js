@@ -52,8 +52,10 @@ const Home = ({ navigation }) => {
 	// * Criacao da funcao de pressionar o card e levar dados ao modal
 
 	const handleCardPress = (card) => {
-		setSelectedCard(card);
-		setModalVisible(true);
+		if (card.Situacao !== 'cancelado') {
+			setSelectedCard(card);
+			setModalVisible(true);
+		}
 	};
 
 	const closeModal = () => {
@@ -160,6 +162,7 @@ const Home = ({ navigation }) => {
 									visible={isModalVisible}
 									onClose={closeModal}
 									cardData={selectedCard}
+									statusLista={statusLista}
 								/>
 							)}
 							<ButtonEditar
@@ -181,12 +184,19 @@ const Home = ({ navigation }) => {
 									textButton={'Cancelado'}
 								/>
 							</StatusButtonContainer>
-
 							<CardList
 								statusLista={statusLista}
 								cardsData={ListBudgets}
+								onPress={handleCardPress}
 							/>
-
+							{selectedCard && (
+								<BudgetSummary
+									visible={isModalVisible}
+									onClose={closeModal}
+									cardData={selectedCard}
+									statusLista={statusLista}
+								/>
+							)}
 							<ButtonEditar
 								textButton={'Pendente'}
 								onPress={() => setStatusLista('pendente')}

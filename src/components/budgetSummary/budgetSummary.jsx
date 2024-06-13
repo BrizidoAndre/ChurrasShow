@@ -21,7 +21,7 @@ import { ButtonModal, TextButton } from '../button/style';
 import { ButtonText } from '../packageButton/style';
 import { Back } from '../back/back';
 
-export const BudgetSummary = ({ visible, onClose, cardData }) => {
+export const BudgetSummary = ({ visible, onClose, cardData, statusLista }) => {
 	////
 	// * se o card nao existe ele retorna null
 	if (!cardData) return null;
@@ -89,7 +89,11 @@ export const BudgetSummary = ({ visible, onClose, cardData }) => {
 						{/* //? importacao do botao */}
 						<ButtonBudgetModal>
 							{/* //? importacao do texto do botao */}
-							<TextButtonModal>Confirmar</TextButtonModal>
+							{statusLista === 'pendente' ? (
+								<TextButtonModal>Aprovar</TextButtonModal>
+							) : (
+								<TextButtonModal>Comentar</TextButtonModal>
+							)}
 						</ButtonBudgetModal>
 						{/*  */}
 						<ButtonBudgetModal>
