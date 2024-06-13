@@ -11,13 +11,12 @@ import { CommentFlatlist } from '../../components/commentFlatlist/styles';
 import CreateModal from '../../components/createModal/createModal';
 import { useNavigation } from '@react-navigation/native'; // Importação do useNavigation
 import { useWindowDimensions } from 'react-native';
-import api from '../../service/service';
 
-const FirstPage = ({navigation}) => {
+const FirstPage = ({ navigation }) => {
 	const [isModalVisible, setModalVisible] = useState(false);
 	const [comments, setComments] = useState([])
 
-	const {width, height} = useWindowDimensions()
+	const { width, height } = useWindowDimensions();
 
 	const toggleModalVisibility = () => {
 		setModalVisible(!isModalVisible);

@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import React, { useEffect, useState } from 'react';
-
 import { ContainerBackground } from '../../components/container/style';
 import ContainerLogo from '../../components/container/container';
 import {
