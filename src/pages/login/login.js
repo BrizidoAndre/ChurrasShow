@@ -22,7 +22,7 @@ const Login = ({ navigation }) => {
 
     const [userLogin, setUserLogin] = useState({
         email: 'abrizidobasilio@gmail.com',
-        senha: 'Banana'
+        senha: 'Kiwi'
     })
 
 
