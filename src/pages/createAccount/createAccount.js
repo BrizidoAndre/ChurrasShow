@@ -75,7 +75,7 @@ const CreateAccount = ({ navigation }) => {
 			behavior={Platform.OS === 'android && ios' ? 'padding' : 'height'}
 			style={{ flex: 1 }}
 		>
-			<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+			<View contentContainerStyle={{ flexGrow: 1 }}>
 				<ContainerLogo>
 					<Title>Criar Conta</Title>
 
@@ -159,7 +159,7 @@ const CreateAccount = ({ navigation }) => {
 
 					<MadeBy height={height}>Made by Gamel Tec</MadeBy>
 				</ContainerLogo>
-			</ScrollView>
+			</View>
 		</KeyboardAvoidingView>
 	);
 };
