@@ -1,19 +1,13 @@
-import { Button, View } from 'react-native';
-import { ButtonLogin, TextButton } from '../../components/button/style';
-import { CardPacotePremiumPendente } from '../../components/Card/Card';
+
 import {
 	Container,
-	ContainerFlatList,
 	HomeContainer,
 	StatusButtonContainer,
 } from '../../components/container/style';
 import {
 	LatoBold20Dourado,
 	LatoLight16Creme,
-	LatoRegular14Creme,
-	LatoRegular15,
 	LatoRegular20Creme,
-	LatoRegular20Dourado,
 } from '../../components/texts/style';
 import {
 	Header,
@@ -31,6 +25,7 @@ import {
 } from '../../components/packageButton/packageButton';
 import { CardList, CardListPendente } from '../../components/cardList/cardList';
 import { BudgetSummary } from '../../components/budgetSummary/budgetSummary';
+import api from '../../service/service';
 
 const Home = ({ navigation }) => {
 	const [statusLista, setStatusLista] = useState('pendente');
@@ -43,11 +38,6 @@ const Home = ({ navigation }) => {
 
 	// * Criando um state para verificar qual card foi selecionado para transpor ao modal
 	const [selectedCard, setSelectedCard] = useState();
-
-	// * Criacao dos toggle visible para chamar os modais quando clicar nos cards
-	const summaryModalVisibility = () => {
-		setModalVisible(!isModalVisible);
-	};
 
 	// * Criacao da funcao de pressionar o card e levar dados ao modal
 
@@ -110,18 +100,21 @@ const Home = ({ navigation }) => {
 		}
 	}
 
-	useEffect(() => {
-		if (calendarDate !== '') {
-			console.log(calendarDate);
-			console.log(statusLista);
-		}
-	}, [calendarDate]);
+	async function loadEvents(){
+		const res = await api.get('/Evento/BuscarPorData?data=22%2F10%2F2024');
+
+		const data = await res.data;
+
+		console.log(data)
+	}
 
 	useEffect(() => {
 		budgetLockDay;
 		budgetAccepted();
 		setCalendarDate(moment().format('YYYY-MM-DD'));
 		navigation.navigate('Main');
+
+		loadEvents()
 	}, []);
 
 	return (
