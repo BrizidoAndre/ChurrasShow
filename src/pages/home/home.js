@@ -27,9 +27,10 @@ import { CardList, CardListPendente } from '../../components/cardList/cardList';
 import { BudgetSummary } from '../../components/budgetSummary/budgetSummary';
 import api from '../../service/service';
 import { userDecodeToken } from '../../utils/auth';
+import CreateModal from '../../components/createModal/createModal';
 
 const Home = ({ navigation }) => {
-	const [statusLista, setStatusLista] = useState('pendente');
+	const [statusLista, setStatusLista] = useState('Pendente');
 	const [calendarDate, setCalendarDate] = useState('');
 
 	// * Criando o state para ver se o modal esta visivel ou nao
@@ -50,6 +51,33 @@ const Home = ({ navigation }) => {
 		role: ''
 	})
 
+	const [eventos, setEventos] = useState({
+		_id: "4d671553-649c-448d-a7a4-bed23412101d",
+		nomeCliente: "André",
+		dataHoraEvento: "2024-10-22T13:00:00",
+		quantidadePessoasEvento: 5,
+		duracaoEvento: 5,
+		descartaveis: true,
+		acompanhamentos: true,
+		garconete: 1,
+		confirmado: true,
+		idPacote: "67104252-0e65-4c1e-95f7-337febd2f631",
+		nomePacote: "Pacote Premium",
+		descricaoPacote: "Experiencie o auge do sabor com o nosso Pacote Churrasco Premium. Este pacote exclusivo inclui uma seleção de carnes nobres como ancho, costela premium e cordeiro, todas preparadas e servidas por um churrasqueiro profissional. Acompanhamentos gourmet como salada de rúcula com parmesão, pães artesanais e molhos especiais complementam a refeição. Perfeito para ocasiões especiais que pedem um toque de sofisticação.",
+		valorPorPessoa: 100,
+		idEndereco: "b393d1cd-7098-46de-84de-6a4b44c18818",
+		logradouro: "Rua Shiguera Ishii",
+		cidade: "Santa América",
+		uf: "SP",
+		cep: 16455970,
+		numero: 726,
+		bairro: "Santa América",
+		complemento: null,
+		dataDeCriacao: "2024-06-12T08:10:08.777",
+		statusEvento: "Aprovado",
+		valorTotal: 725
+	})
+
 	// * Criacao da funcao de pressionar o card e levar dados ao modal
 
 	const handleCardPress = (card) => {
@@ -64,57 +92,21 @@ const Home = ({ navigation }) => {
 		setSelectedCard(null);
 	};
 
-	const ListBudgets = [
-		{
-			id: 1,
-			title: 'PACOTE BÁSICO',
-			convidados: '100 CONVIDADOS',
-			duracao: 'DURAÇÃO: 4h',
-			Situacao: 'agendado',
-			image: 'image 1.png',
-		},
-		{
-			id: 2,
-			title: 'PACOTE PREMIUM',
-			convidados: '150 CONVIDADOS',
-			duracao: 'DURAÇÃO: 6h',
-			Situacao: 'cancelado',
-			image: 'image 2.png',
-		},
-		{
-			id: 3,
-			title: 'PACOTE BÁSICO',
-			convidados: '100 CONVIDADOS',
-			duracao: 'DURAÇÃO: 2h',
-			Situacao: 'pendente',
-			image: 'image 1.png',
-		},
-		{
-			id: 4,
-			title: 'PACOTE PREMIUM',
-			convidados: '150 CONVIDADOS',
-			duracao: 'DURAÇÃO: 6h',
-			Situacao: 'pendente',
-			image: 'image 2.png',
-		},
-	];
-
 	async function loadEvents() {
-		const res = await api.get('/Evento/BuscarPorData?data=22%2F10%2F2024');
+		console.log(calendarDate)
+		const res = await api.get('/Evento/BuscarPorData?data=25%2F10%2F2024');
 
 		const data = await res.data;
+		setEventos(data)
 	}
 
 	async function loadUser() {
 		const userCode = await userDecodeToken();
 		setUser(userCode)
-		console.log('Usuário')
-		console.log(userCode)
 	}
 
 	useEffect(() => {
 		setCalendarDate(moment().format('YYYY-MM-DD'));
-		navigation.navigate('Main');
 
 		loadEvents()
 		loadUser()
@@ -135,7 +127,7 @@ const Home = ({ navigation }) => {
 						}}
 					>
 						<ImageProfile
-							source={{uri: user.foto}}
+							source={{ uri: user.foto }}
 						/>
 					</ImageButton>
 				</Header>
@@ -143,13 +135,13 @@ const Home = ({ navigation }) => {
 				<Calendar setCalendarDate={setCalendarDate} />
 
 				<BodyHome>
-					{statusLista == 'pendente' ? (
+					{statusLista == 'Pendente' ? (
 						<>
 							<LatoBold20Dourado>Pendentes</LatoBold20Dourado>
 
 							<CardList
 								statusLista={statusLista}
-								cardsData={ListBudgets}
+								cardsData={eventos}
 								onPress={handleCardPress}
 							/>
 							{/* // * Se o card for selecionado ele vai levar os dados */}
@@ -182,7 +174,7 @@ const Home = ({ navigation }) => {
 							</StatusButtonContainer>
 							<CardList
 								statusLista={statusLista}
-								cardsData={ListBudgets}
+								cardsData={eventos}
 								onPress={handleCardPress}
 							/>
 							{selectedCard && (
@@ -195,12 +187,12 @@ const Home = ({ navigation }) => {
 							)}
 							<ButtonEditar
 								textButton={'Pendente'}
-								onPress={() => setStatusLista('pendente')}
+								onPress={() => setStatusLista('Pendente')}
 							/>
 						</>
 					)}
 				</BodyHome>
-				{/* <Button title="ir para a navegação" onPress={() => { navigation.navigate('Main') }} /> */}
+				<CreateModal user={user}  />
 			</Container>
 		</HomeContainer>
 	);

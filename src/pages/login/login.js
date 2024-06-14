@@ -23,8 +23,8 @@ const Login = ({ navigation }) => {
 	const [loading, setLoading] = useState(false);
 
     const [userLogin, setUserLogin] = useState({
-        email: 'abrizidobasilio@gmail.com',
-        senha: 'Jaca'
+        email: 'maumarqz007@gmail.com',
+        senha: 'Pinha'
     })
 
 

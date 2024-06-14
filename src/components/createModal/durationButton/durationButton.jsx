@@ -10,8 +10,7 @@ import {
 import { Text, View } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 
-export const DurationButton = ({ hours }) => {
-	const [durationTime, setDurationTime] = useState(0);
+export const DurationButton = ({ durationTime, setDurationTime }) => {
 
 	function handleAdd() {
 		setDurationTime(durationTime + 1);
@@ -31,7 +30,6 @@ export const DurationButton = ({ hours }) => {
 			<VisualizeDurationButton>
 				<TextDuration>
 					{durationTime}
-					{hours}
 				</TextDuration>
 			</VisualizeDurationButton>
 			<AddButton onPress={() => handleAdd()}>

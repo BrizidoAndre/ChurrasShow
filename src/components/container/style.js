@@ -9,6 +9,12 @@ export const Container = styled.View`
 
     align-items: center;
 `
+
+export const ContainerCream = styled.View`
+    flex: 1;
+
+    align-items: center;
+`
 export const HomeContainer = styled(Container)`
     gap: 20px;
 `

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Modal, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Modal, ScrollView, TouchableOpacity, View } from 'react-native';
 import {
 	ContentCreateModal,
 	CreateModalX,
@@ -20,9 +20,27 @@ import {
 import { ButtonModal, TextButton } from '../button/style';
 import { ButtonText } from '../packageButton/style';
 import { Back } from '../back/back';
+import { dateBeautify } from '../../utils/date';
+import { ContainerCream } from '../container/style';
+import Spacing from '../spacing/spacing';
 
 export const BudgetSummary = ({ visible, onClose, cardData, statusLista }) => {
-	////
+
+	const [dateEvent, setEventDate] = useState({
+		hour: '',
+		date: '',
+	})
+
+
+	function loadData() {
+		console.log(dateBeautify(cardData.dataHoraEvento))
+		setEventDate(dateBeautify(cardData.dataHoraEvento));
+	}
+
+	useEffect(() => {
+		loadData()
+	}, [])
+
 	// * se o card nao existe ele retorna null
 	if (!cardData) return null;
 
@@ -38,49 +56,58 @@ export const BudgetSummary = ({ visible, onClose, cardData, statusLista }) => {
 
 					{/* //? importacao dos conteudos do orcamento */}
 					<ContentSummary>
-						{/* //? importacao do title do resumo */}
-						<TitleSummary>{cardData.title}</TitleSummary>
 
-						{/* importacao do componente de conteudo dos dados do evento */}
-						<ContentSummaryData>
-							{/* // ? importacao dos dados */}
-							<SubDescriptionData>30/12/2024</SubDescriptionData>
+						<ScrollView>
 
-							<SubDescriptionData>19:00h</SubDescriptionData>
+							{/* //? importacao do title do resumo */}
+							<TitleSummary>{cardData.nomePacote}</TitleSummary>
 
-							<SubDescriptionData>
-								{cardData.duracao}
-							</SubDescriptionData>
+							{/* importacao do componente de conteudo dos dados do evento */}
+							<ContentSummaryData>
+								{/* // ? importacao dos dados */}
+								<SubDescriptionData>{dateEvent.date}</SubDescriptionData>
 
-							<SubDescriptionData>
-								{cardData.convidados}
-							</SubDescriptionData>
+								<SubDescriptionData>{dateEvent.hour} h</SubDescriptionData>
 
-							<SubDescriptionData>
-								1 Garçonetes
-							</SubDescriptionData>
+								<SubDescriptionData>
+									{cardData.duracaoEvento} Horas de duração
+								</SubDescriptionData>
+
+								<SubDescriptionData>
+									{cardData.quantidadePessoasEvento} Pessoas
+								</SubDescriptionData>
+
+								<SubDescriptionData>
+									{cardData.garconete} Garçonetes
+								</SubDescriptionData>
+								{/*  */}
+							</ContentSummaryData>
+
+							{/* //? importacao do content que segura as descricoes dos plus */}
+							<ContentSummaryDescriptions>
+								{/* //? importacao dos componentes de texto de descricoes dos plus */}
+								<DescriptionsPlusSummary>
+									{cardData.descricaoPacote}
+								</DescriptionsPlusSummary>
+								{/* //! */}
+								{cardData.acompanhamentos ? <DescriptionsPlusSummary>
+									Acompanhamentos: Arroz/ Farofa/ Salada de
+									maionese/ Vinagrete.
+								</DescriptionsPlusSummary>: null}
+								
+								{/* //! */}
+								{cardData.descartaveis ? <DescriptionsPlusSummary>
+									Descartáveis: Pratos/ Talheres/ Guardanapos.
+								</DescriptionsPlusSummary>: null}
+								
+								{/* //! */}
+
+								<Spacing marginBottom={'3'} />
+								{/*  */}
+							</ContentSummaryDescriptions>
+
 							{/*  */}
-						</ContentSummaryData>
-
-						{/* //? importacao do content que segura as descricoes dos plus */}
-						<ContentSummaryDescriptions>
-							{/* //? importacao dos componentes de texto de descricoes dos plus */}
-							<DescriptionsPlusSummary>
-								Linguiça/ Tulipa/ Panceta/ Picanha/ Fraldinha/
-								Bife Ancho ou Bife de Chorizo/ Pão de Alho/
-								Queijo Coalho/ Carvão.
-							</DescriptionsPlusSummary>
-							{/* //! */}
-							<DescriptionsPlusSummary>
-								Acompanhamentos: Arroz/ Farofa/ Salada de
-								maionese/ Vinagrete.
-							</DescriptionsPlusSummary>
-							{/* //! */}
-							<DescriptionsPlusSummary>
-								Descartáveis: Pratos/ Talheres/ Guardanapos.
-							</DescriptionsPlusSummary>
-							{/* //! */}
-						</ContentSummaryDescriptions>
+						</ScrollView>
 						{/*  */}
 					</ContentSummary>
 
@@ -89,7 +116,7 @@ export const BudgetSummary = ({ visible, onClose, cardData, statusLista }) => {
 						{/* //? importacao do botao */}
 						<ButtonBudgetModal>
 							{/* //? importacao do texto do botao */}
-							{statusLista === 'pendente' ? (
+							{statusLista === 'Pendente' ? (
 								<TextButtonModal>Aprovar</TextButtonModal>
 							) : (
 								<TextButtonModal>Comentar</TextButtonModal>

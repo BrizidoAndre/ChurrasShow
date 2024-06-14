@@ -6,7 +6,7 @@ import { ButtonLogin, TextButton } from '../../components/button/style';
 import CommentCard from '../../components/commentCard/commentCard';
 import { CommentFlatlist } from '../../components/commentFlatlist/styles';
 import CreateModal from '../../components/createModal/createModal';
-import { useWindowDimensions } from 'react-native';
+import { ActivityIndicator, useWindowDimensions } from 'react-native';
 import api from '../../service/service';
 import { MadeBy } from '../../components/texts/style';
 
@@ -50,6 +50,7 @@ const FirstPage = ({ navigation }) => {
 				)}
 				keyExtractor={(item) => item.idComentario.toString()} // keyExtractor espera uma string
 				horizontal={true}
+				ListEmptyComponent={<ActivityIndicator size={'large'} color={'#caa858'} style={{marginLeft:150}} />}
 			/>
 
 			<MadeBy height={height}>Made by Gamel Tec</MadeBy>
