@@ -23,12 +23,12 @@ const CreateAccount = ({ navigation }) => {
 	const { width, height } = useWindowDimensions();
 
 	const [newAccount, setNewAccont] = useState({
-		name: 'Merda',
-		email: 'Irhemas@email.com',
-		cpf: '01186595027',
-		rg: '487982472',
-		password: 'senhas',
-		confirmPassword: 'senhas',
+		name: '',
+		email: '',
+		cpf: '',
+		rg: '',
+		password: '',
+		confirmPassword: '',
 	});
 
 	const [loading, setLoading] = useState(false);
@@ -53,7 +53,7 @@ const CreateAccount = ({ navigation }) => {
 			form.append('Cpf', newAccount.cpf);
 			form.append(
 				'IdTipoUsuario',
-				'313b86a0-e84d-4eb8-b892-d0bcfd293918',
+				'861ea747-ff1d-4d83-85fd-5d6e283c4ab5',
 			);
 
 			const res = await api.post('/Usuario', form, {

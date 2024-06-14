@@ -27,6 +27,8 @@ export const ImageButton = styled.TouchableOpacity`
 
 export const ImageProfile = styled.Image`
     border-radius: 200px;
+    width: 162px;
+    height: 158px;
     
 `
 
