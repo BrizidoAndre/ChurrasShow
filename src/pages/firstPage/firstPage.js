@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from '../../components/container/style';
-import ContainerLogo from '../../components/container/container';
-import Logo from '../../components/logo/logo';
 import img from '../../assets/logo.png';
 import { Logotipo } from '../../components/logo/style';
 import { ButtonLogin, TextButton } from '../../components/button/style';
-import { LatoBoldItalic15, MadeBy } from '../../components/texts/style';
 import CommentCard from '../../components/commentCard/commentCard';
 import { CommentFlatlist } from '../../components/commentFlatlist/styles';
 import CreateModal from '../../components/createModal/createModal';
-import { useNavigation } from '@react-navigation/native'; // Importação do useNavigation
 import { useWindowDimensions } from 'react-native';
+import api from '../../service/service';
+import { MadeBy } from '../../components/texts/style';
 
 const FirstPage = ({ navigation }) => {
 	const [isModalVisible, setModalVisible] = useState(false);
@@ -18,13 +16,13 @@ const FirstPage = ({ navigation }) => {
 
 	const { width, height } = useWindowDimensions();
 
-	const toggleModalVisibility = () => {
-		setModalVisible(!isModalVisible);
-	};
 
 	async function loadComments(){
+
 		const res = await api.get('/Comentario/ListarComentariosValidos')
 		const data = await res.data;
+
+		console.log(data)
 		
 		setComments(data)
 	} 
@@ -54,7 +52,7 @@ const FirstPage = ({ navigation }) => {
 				horizontal={true}
 			/>
 
-			<MadeBy>Made by Gamel Tec</MadeBy>
+			<MadeBy height={height}>Made by Gamel Tec</MadeBy>
 
 			<CreateModal visible={isModalVisible} />
 		</Container>

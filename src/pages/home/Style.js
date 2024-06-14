@@ -5,7 +5,7 @@ export const Header = styled.View`
     width: 90%;
     align-items: center;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 10%;
 `
 
 export const BoxHeader = styled.View`

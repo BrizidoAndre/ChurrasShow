@@ -9,9 +9,35 @@ import {
 } from '../../components/texts/style';
 import { ButtonLogin, TextButton } from '../../components/button/style';
 import { CodeInput } from '../../components/codeInput/codeInput';
+import Spacing from '../../components/spacing/spacing';
+import { useWindowDimensions } from 'react-native';
+import api from '../../service/service';
 
 export const CheckEmail = ({ navigation, route }) => {
 	const [code, setCode] = useState('');
+
+	const { height, width } = useWindowDimensions();
+
+
+	const { email } = route.params
+
+
+
+	async function checkCode() {
+		try {
+			const res = await api.post(`/RecuperarSenha/ValidarCodigoRecuperacaoSenha?email=${encodeURIComponent(email)}&codigo=${code}`)
+			
+			navigation.navigate('RedefinePassword',{
+				email:email
+			})
+
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
+
+
 	return (
 		// *importacao do logo
 		<ContainerLogo>
@@ -22,14 +48,20 @@ export const CheckEmail = ({ navigation, route }) => {
 				Digite o código enviado para o seu email
 			</LatoRegular25>
 
+			<Spacing marginTop={'10'} />
+
 			<CodeInput code={code} setCode={setCode} />
 
+			<Spacing marginTop={'20'} />
+
 			<ButtonLogin
-				onPress={() => { navigation.navigate('') }}
+				onPress={() => {
+					checkCode()
+				}}
 			>
 				<TextButton>Continuar</TextButton>
 			</ButtonLogin>
-			<MadeBy>Made by Gamel Tec</MadeBy>
+			<MadeBy height={height}>Made by Gamel Tec</MadeBy>
 		</ContainerLogo>
 	);
 };

@@ -1,19 +1,13 @@
-import { Button, View } from 'react-native';
-import { ButtonLogin, TextButton } from '../../components/button/style';
-import { CardPacotePremiumPendente } from '../../components/Card/Card';
+
 import {
 	Container,
-	ContainerFlatList,
 	HomeContainer,
 	StatusButtonContainer,
 } from '../../components/container/style';
 import {
 	LatoBold20Dourado,
 	LatoLight16Creme,
-	LatoRegular14Creme,
-	LatoRegular15,
 	LatoRegular20Creme,
-	LatoRegular20Dourado,
 } from '../../components/texts/style';
 import {
 	Header,
@@ -31,12 +25,12 @@ import {
 } from '../../components/packageButton/packageButton';
 import { CardList, CardListPendente } from '../../components/cardList/cardList';
 import { BudgetSummary } from '../../components/budgetSummary/budgetSummary';
+import api from '../../service/service';
+import { userDecodeToken } from '../../utils/auth';
 
 const Home = ({ navigation }) => {
 	const [statusLista, setStatusLista] = useState('pendente');
-	const [budgetAccept, setBudgetAccept] = useState(false);
 	const [calendarDate, setCalendarDate] = useState('');
-	const [cardsDataList, setCardsDataList] = useState([]);
 
 	// * Criando o state para ver se o modal esta visivel ou nao
 	const [isModalVisible, setModalVisible] = useState(false);
@@ -44,10 +38,17 @@ const Home = ({ navigation }) => {
 	// * Criando um state para verificar qual card foi selecionado para transpor ao modal
 	const [selectedCard, setSelectedCard] = useState();
 
-	// * Criacao dos toggle visible para chamar os modais quando clicar nos cards
-	const summaryModalVisibility = () => {
-		setModalVisible(!isModalVisible);
-	};
+
+	const [user, setUser] = useState({
+		aud: '',
+		email: '',
+		exp: '',
+		foto: '',
+		iss: '',
+		jti: '',
+		name: '',
+		role: ''
+	})
 
 	// * Criacao da funcao de pressionar o card e levar dados ao modal
 
@@ -98,30 +99,25 @@ const Home = ({ navigation }) => {
 		},
 	];
 
-	async function budgetLockDay() {
-		if (statusLista != 'pendente') {
-			calendarDate == statusLista;
-		}
+	async function loadEvents() {
+		const res = await api.get('/Evento/BuscarPorData?data=22%2F10%2F2024');
+
+		const data = await res.data;
 	}
 
-	async function budgetAccepted() {
-		if (budgetAccept == true) {
-			setStatusLista('agendado');
-		}
+	async function loadUser() {
+		const userCode = await userDecodeToken();
+		setUser(userCode)
+		console.log('Usuário')
+		console.log(userCode)
 	}
 
 	useEffect(() => {
-		if (calendarDate !== '') {
-			console.log(calendarDate);
-			console.log(statusLista);
-		}
-	}, [calendarDate]);
-
-	useEffect(() => {
-		budgetLockDay;
-		budgetAccepted();
 		setCalendarDate(moment().format('YYYY-MM-DD'));
 		navigation.navigate('Main');
+
+		loadEvents()
+		loadUser()
 	}, []);
 
 	return (
@@ -130,7 +126,7 @@ const Home = ({ navigation }) => {
 				<Header>
 					<BoxHeader>
 						<LatoLight16Creme>Bem vindo!</LatoLight16Creme>
-						<LatoRegular20Creme>Nome da Pessoa</LatoRegular20Creme>
+						<LatoRegular20Creme>{user.name}</LatoRegular20Creme>
 					</BoxHeader>
 
 					<ImageButton
@@ -139,7 +135,7 @@ const Home = ({ navigation }) => {
 						}}
 					>
 						<ImageProfile
-							source={require('../../assets/ProfilePicture01.png')}
+							source={{uri: user.foto}}
 						/>
 					</ImageButton>
 				</Header>
