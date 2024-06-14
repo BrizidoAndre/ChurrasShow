@@ -15,18 +15,20 @@ import { useWindowDimensions } from 'react-native';
 import { useState } from 'react';
 import api from '../../service/service';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { userDecodeToken } from '../../utils/auth';
+import { useRoute } from '@react-navigation/native';
 
-const Login = ({ navigation }) => {
+
+const Login = ({ navigation, navigation: { setParams } }) => {
 	const { width, height } = useWindowDimensions();
 
 	const [loading, setLoading] = useState(false);
 
     const [userLogin, setUserLogin] = useState({
-        email: 'abrizidobasilio@gmail.com',
-        senha: 'Jaca'
+        email: 'everton_araujo88@yahoo.com.br',
+        senha: 'Senai123'
     })
 
+	const { params } = useRoute();
 
 	async function signIn() {
 		try {
@@ -37,7 +39,7 @@ const Login = ({ navigation }) => {
 
 			if (res.status === 200) {
 				AsyncStorage.setItem('token', data.token);
-				navigation.navigate('Main');
+				navigation.navigate('Home');
 			}
 		} catch (error) {
 			Alert.alert(

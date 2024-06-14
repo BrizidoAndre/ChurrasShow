@@ -14,6 +14,7 @@ import { ImageStar } from '../commentCard/styles';
 import { ButtonModal } from '../button/style';
 import { ButtonText } from '../packageButton/style';
 import { Back } from '../back/back';
+import { useRoute } from '@react-navigation/native';
 
 const CommentStars = ({ star, onChange}) => {
 	const [score, setScore] = useState(star);
@@ -38,6 +39,7 @@ const CommentStars = ({ star, onChange}) => {
 
 	useEffect(() => {
 		setScore(star);
+		console.log(params.data)
 	}, [star]);
 
 	return (
@@ -47,9 +49,10 @@ const CommentStars = ({ star, onChange}) => {
 	);
 };
 
-export const CommentModal = ({ visible, stars, onClose }) => {
+export const CommentModal = ({ visible, stars, onClose, navigation: { setParams } }) => {
 	const [userStars, setUserStars] = useState(stars);
 	const [comment, setComment] = useState('');
+	const { params } = useRoute()
 
 	const handleStarsChange = (newStars) => {
 		setUserStars(newStars);
@@ -62,7 +65,7 @@ export const CommentModal = ({ visible, stars, onClose }) => {
 			pontuacao: userStars,
 		};
 		// Aqui você pode enviar `userCommentData` para seu backend ou processá-lo como necessário
-		console.log(userCommentData);
+	/* 	console.log(params); */
 
 		// Fechar o modal
 		onClose();

@@ -27,10 +27,12 @@ import { CardList, CardListPendente } from '../../components/cardList/cardList';
 import { BudgetSummary } from '../../components/budgetSummary/budgetSummary';
 import api from '../../service/service';
 import { userDecodeToken } from '../../utils/auth';
+import { useRoute } from '@react-navigation/native';
 
-const Home = ({ navigation }) => {
+const Home = ({ navigation, navigation: { setParams } } ) => {
 	const [statusLista, setStatusLista] = useState('pendente');
 	const [calendarDate, setCalendarDate] = useState('');
+	const { params } = useRoute()
 
 	// * Criando o state para ver se o modal esta visivel ou nao
 	const [isModalVisible, setModalVisible] = useState(false);
@@ -103,18 +105,23 @@ const Home = ({ navigation }) => {
 		const res = await api.get('/Evento/BuscarPorData?data=22%2F10%2F2024');
 
 		const data = await res.data;
+
+		
 	}
 
 	async function loadUser() {
 		const userCode = await userDecodeToken();
 		setUser(userCode)
-		console.log('Usuário')
-		console.log(userCode)
+		/* console.log('Usuário')
+		console.log(userCode) */
+	/* 	console.log(user) */
+		console.log(user)
 	}
 
 	useEffect(() => {
 		setCalendarDate(moment().format('YYYY-MM-DD'));
 		navigation.navigate('Main');
+
 
 		loadEvents()
 		loadUser()
