@@ -11,4 +11,5 @@ export const TrueModal = styled.Modal`
 display: flex;
 align-items: center;
 justify-content:space-between;
+height: 100%;
 `

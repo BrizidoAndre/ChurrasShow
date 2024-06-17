@@ -22,7 +22,7 @@ const Profile = ({ navigation }) => {
     // const [loadModal, setLoadModal] = useState(false)
 
     const [uriCameraCapture, setUriCameraCapture] = useState({
-        uri: '',
+        uri: 'https://blobchurrasshow.blob.core.windows.net/churrasshow/06af2ba51e884d4db7614ab208fe182b.exp',
         data: '',
     })
 
@@ -86,7 +86,7 @@ const Profile = ({ navigation }) => {
                         rg: response.data.rg,
                         cidade: response.data.cidade,
                         logradouro: response.data.logradouro,
-                        foto: token.foto
+                        foto: response.data.image_src
 
                     })
 
@@ -132,12 +132,13 @@ const Profile = ({ navigation }) => {
         }).then(async response => {
 
         }).catch(error => {
-            console.log(error);
+            console.log(`Algo deu errado: ${error}`);
         })
     }
 
 
     useEffect(() => {
+        console.log(uriCameraCapture);
         AlterarFotoPerfil()
     }, [uriCameraCapture])
 

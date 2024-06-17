@@ -5,7 +5,7 @@ export const ContainerPerfilScroll = styled.ScrollView`
     background-color:#1D1D1D;
     
 `
-export const ContainerPerfil = styled.SafeAreaView`
+export const ContainerPerfil = styled.View`
     justify-content: center;
     background-color:#1D1D1D;
     gap: 15px;

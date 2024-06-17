@@ -9,9 +9,11 @@ const door = '5209';
 
 const apiUrlLocal = `http://${ip}:${door}/api`
 
+const apiUrlAzure = `https://churrasshowwebapi.azurewebsites.net/api`
+
 
 const api = axios.create({
-    baseURL: apiUrlLocal
+    baseURL: apiUrlAzure
 })
 
 export default api;
