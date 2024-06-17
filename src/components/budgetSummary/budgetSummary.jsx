@@ -1,5 +1,5 @@
-import React from 'react';
-import { Modal, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Alert, Modal, ScrollView, TouchableOpacity, View } from 'react-native';
 import {
 	ContentCreateModal,
 	CreateModalX,
@@ -20,9 +20,62 @@ import {
 import { ButtonModal, TextButton } from '../button/style';
 import { ButtonText } from '../packageButton/style';
 import { Back } from '../back/back';
+import { dateBeautify } from '../../utils/date';
+import { ContainerCream } from '../container/style';
+import Spacing from '../spacing/spacing';
+import api from '../../service/service';
+import { CommentImage } from '../commentCard/styles';
+import CommentModal from '../commentModal/commentModal';
 
-export const BudgetSummary = ({ visible, onClose, cardData, statusLista }) => {
-	////
+export const BudgetSummary = ({
+	visible,
+	onClose,
+	cardData,
+	statusLista,
+	close,
+}) => {
+	// * Criando o state para ver se o modal esta visivel ou nao
+	const [isModalVisible, setModalVisible] = useState(false);
+
+	const modalVisible = () => {
+		setModalVisible(true);
+	};
+
+	const [dateEvent, setEventDate] = useState({
+		hour: '',
+		date: '',
+	});
+
+	function loadData() {
+		console.log(cardData._idEvento);
+		setEventDate(dateBeautify(cardData.dataHoraEvento));
+	}
+
+	useEffect(() => {
+		loadData();
+	}, []);
+
+	async function cancelarOrcamento(id) {
+		const res = await api.put('/Evento/AtualizarStatus?id=' + id, {
+			idStatusEvento: '3786ca9b-8a94-4f1a-8a3e-0154dcf9a798',
+		});
+		const data = await res.data;
+		Alert.alert(
+			'Confirmação concluída',
+			'Seu evento foi aprovado corretamente',
+		);
+		onClose();
+	}
+
+	async function aprovarOrcamento(id) {
+		const res = await api.put('/Evento/AtualizarStatus?id=' + id, {
+			idStatusEvento: '787fd592-c85c-4049-ba5d-7a28f15795e1',
+		});
+		const data = await res.data;
+		Alert.alert('Cancelado', 'Seu evento foi devidamente cancelado');
+		onClose();
+	}
+
 	// * se o card nao existe ele retorna null
 	if (!cardData) return null;
 
@@ -38,65 +91,93 @@ export const BudgetSummary = ({ visible, onClose, cardData, statusLista }) => {
 
 					{/* //? importacao dos conteudos do orcamento */}
 					<ContentSummary>
-						{/* //? importacao do title do resumo */}
-						<TitleSummary>{cardData.title}</TitleSummary>
+						<ScrollView>
+							{/* //? importacao do title do resumo */}
+							<TitleSummary>{cardData.nomePacote}</TitleSummary>
 
-						{/* importacao do componente de conteudo dos dados do evento */}
-						<ContentSummaryData>
-							{/* // ? importacao dos dados */}
-							<SubDescriptionData>30/12/2024</SubDescriptionData>
+							{/* importacao do componente de conteudo dos dados do evento */}
+							<ContentSummaryData>
+								{/* // ? importacao dos dados */}
+								<SubDescriptionData>
+									{dateEvent.date}
+								</SubDescriptionData>
 
-							<SubDescriptionData>19:00h</SubDescriptionData>
+								<SubDescriptionData>
+									{dateEvent.hour} h
+								</SubDescriptionData>
 
-							<SubDescriptionData>
-								{cardData.duracao}
-							</SubDescriptionData>
+								<SubDescriptionData>
+									{cardData.duracaoEvento} Horas de duração
+								</SubDescriptionData>
 
-							<SubDescriptionData>
-								{cardData.convidados}
-							</SubDescriptionData>
+								<SubDescriptionData>
+									{cardData.quantidadePessoasEvento} Pessoas
+								</SubDescriptionData>
 
-							<SubDescriptionData>
-								1 Garçonetes
-							</SubDescriptionData>
+								<SubDescriptionData>
+									{cardData.garconete} Garçonetes
+								</SubDescriptionData>
+								{/*  */}
+							</ContentSummaryData>
+
+							{/* //? importacao do content que segura as descricoes dos plus */}
+							<ContentSummaryDescriptions>
+								{/* //? importacao dos componentes de texto de descricoes dos plus */}
+								<DescriptionsPlusSummary>
+									{cardData.descricaoPacote}
+								</DescriptionsPlusSummary>
+								{/* //! */}
+								{cardData.acompanhamentos ? (
+									<DescriptionsPlusSummary>
+										Acompanhamentos: Arroz/ Farofa/ Salada
+										de maionese/ Vinagrete.
+									</DescriptionsPlusSummary>
+								) : null}
+
+								{/* //! */}
+								{cardData.descartaveis ? (
+									<DescriptionsPlusSummary>
+										Descartáveis: Pratos/ Talheres/
+										Guardanapos.
+									</DescriptionsPlusSummary>
+								) : null}
+
+								{/* //! */}
+
+								<Spacing marginBottom={'3'} />
+								{/*  */}
+							</ContentSummaryDescriptions>
+
 							{/*  */}
-						</ContentSummaryData>
-
-						{/* //? importacao do content que segura as descricoes dos plus */}
-						<ContentSummaryDescriptions>
-							{/* //? importacao dos componentes de texto de descricoes dos plus */}
-							<DescriptionsPlusSummary>
-								Linguiça/ Tulipa/ Panceta/ Picanha/ Fraldinha/
-								Bife Ancho ou Bife de Chorizo/ Pão de Alho/
-								Queijo Coalho/ Carvão.
-							</DescriptionsPlusSummary>
-							{/* //! */}
-							<DescriptionsPlusSummary>
-								Acompanhamentos: Arroz/ Farofa/ Salada de
-								maionese/ Vinagrete.
-							</DescriptionsPlusSummary>
-							{/* //! */}
-							<DescriptionsPlusSummary>
-								Descartáveis: Pratos/ Talheres/ Guardanapos.
-							</DescriptionsPlusSummary>
-							{/* //! */}
-						</ContentSummaryDescriptions>
+						</ScrollView>
 						{/*  */}
 					</ContentSummary>
 
 					{/* //? importacao do componente de content dos botoes */}
 					<ContentButton>
 						{/* //? importacao do botao */}
-						<ButtonBudgetModal>
-							{/* //? importacao do texto do botao */}
-							{statusLista === 'pendente' ? (
+
+						{/* //? importacao do texto do botao */}
+						{statusLista === 'Pendente' ? (
+							<ButtonBudgetModal
+								onPress={() =>
+									aprovarOrcamento(cardData._idEvento)
+								}
+							>
 								<TextButtonModal>Aprovar</TextButtonModal>
-							) : (
+							</ButtonBudgetModal>
+						) : (
+							<ButtonBudgetModal onPress={() => modalVisible()}>
 								<TextButtonModal>Comentar</TextButtonModal>
-							)}
-						</ButtonBudgetModal>
+							</ButtonBudgetModal>
+						)}
+
 						{/*  */}
-						<ButtonBudgetModal>
+						<ButtonBudgetModal
+							onPress={() =>
+								cancelarOrcamento(cardData._idEvento)
+							}
+						>
 							<TextButtonModal>Cancelar</TextButtonModal>
 						</ButtonBudgetModal>
 						{/*  */}
@@ -107,6 +188,7 @@ export const BudgetSummary = ({ visible, onClose, cardData, statusLista }) => {
 					<Back onPress={onClose}>Voltar</Back>
 				</ContentBudgetModal>
 			</CreateModalX>
+			<CommentModal visible={isModalVisible} onClose={close} />
 		</Modal>
 	);
 };

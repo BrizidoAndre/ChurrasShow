@@ -32,7 +32,6 @@ export default function App() {
     lato_bold: Lato_700Bold,
     lato_light: Lato_300Light,
     lato_bold_italic: Lato_700Bold_Italic
-
   });
 
   const onLayoutRootView = useCallback(async () => {

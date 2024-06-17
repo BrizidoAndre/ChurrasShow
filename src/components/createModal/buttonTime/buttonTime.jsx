@@ -6,9 +6,9 @@ import { Ionicons } from '@expo/vector-icons';
 import moment from 'moment';
 import { ButtonSelectDate } from '../buttonDate/style'; // Certifique-se que o caminho está correto
 
-export const ButtonTime = () => {
+export const ButtonTime = ({selectedTime, setSelectedTime}) => {
 	const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-	const [selectedTime, setSelectedTime] = useState(new Date());
+	
 
 	const showTimePicker = () => {
 		setDatePickerVisibility(true);
