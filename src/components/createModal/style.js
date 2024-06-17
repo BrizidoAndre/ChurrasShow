@@ -10,7 +10,7 @@ export const CreateModalX = styled.View`
 
 export const ContentCreateModal = styled.View`
 	width: 90%;
-	height: 650px;
+	height: 95%;
 	border: 1px solid #caa858;
 	background-color: #000;
 	border-radius: 20px;

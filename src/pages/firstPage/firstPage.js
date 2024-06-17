@@ -1,115 +1,62 @@
-
-import { ActivityIndicator, Alert, Text } from 'react-native';
-import ContainerLogo from '../../components/container/container';
+import React, { useEffect, useState } from 'react';
+import { Container } from '../../components/container/style';
+import img from '../../assets/logo.png';
+import { Logotipo } from '../../components/logo/style';
 import { ButtonLogin, TextButton } from '../../components/button/style';
-import {
-	LatoBoldUnderline,
-	LatoItalic14,
-	MadeBy,
-	Title,
-} from '../../components/texts/style';
-import Input from '../../components/input/input';
-import { ContainerForm } from '../../components/container/style';
-import Spacing from '../../components/spacing/spacing';
-
+import CommentCard from '../../components/commentCard/commentCard';
+import { CommentFlatlist } from '../../components/commentFlatlist/styles';
+import CreateModal from '../../components/createModal/createModal';
 import { useWindowDimensions } from 'react-native';
-import { useState } from 'react';
 import api from '../../service/service';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { userDecodeToken } from '../../utils/auth';
+import { MadeBy } from '../../components/texts/style';
 
-const Login = ({ navigation }) => {
+const FirstPage = ({ navigation }) => {
+	const [isModalVisible, setModalVisible] = useState(false);
+	const [comments, setComments] = useState([])
+
 	const { width, height } = useWindowDimensions();
 
-	const [loading, setLoading] = useState(false);
 
-    const [userLogin, setUserLogin] = useState({
-        email: 'abrizidobasilio@gmail.com',
-        senha: 'Jaca'
-    })
+	async function loadComments(){
 
+		const res = await api.get('/Comentario/ListarComentariosValidos')
+		const data = await res.data;
 
-	async function signIn() {
-		try {
-			setLoading(true);
+		console.log(data)
+		
+		setComments(data)
+	} 
 
-			const res = await api.post('/Login', userLogin);
-			const data = await res.data;
-
-			if (res.status === 200) {
-				AsyncStorage.setItem('token', data.token);
-				navigation.navigate('Main');
-			}
-		} catch (error) {
-			Alert.alert(
-				'Informações inválidas',
-				'Verifique o email e a senha digitadas',
-			);
-			setUserLogin({
-				...userLogin,
-				senha: '',
-			});
-		}
-		setLoading(false);
-	}
+	useEffect(()=>{
+		loadComments()
+	},[])
 
 	return (
-		<ContainerLogo>
-			<Title>Login</Title>
-
-			<ContainerForm>
-				<Input
-					placeholder={'Email ou Username...'}
-					setValue={(txt) =>
-						setUserLogin({
-							...userLogin,
-							email: txt,
-						})
-					}
-					value={userLogin.email}
-				/>
-				<Input
-					placeholder={'Senha'}
-					setValue={(txt) =>
-						setUserLogin({
-							...userLogin,
-							senha: txt,
-						})
-					}
-					value={userLogin.senha}
-					secure={true}
-				/>
-
-				<LatoBoldUnderline
-					onPress={() => navigation.navigate('RecoverPassword')}
-				>
-					Esqueceu a senha?
-				</LatoBoldUnderline>
-			</ContainerForm>
-
-			<Spacing marginTop={'20'} />
-
-			<ButtonLogin onPress={() => signIn()} disabled={loading}>
-				{loading ? (
-					<ActivityIndicator color={'#CAA858'} />
-				) : (
-					<TextButton>Login</TextButton>
-				)}
+		<Container>
+			<Logotipo source={img} />
+			<ButtonLogin onPress={()=> navigation.navigate('Login')}>
+				<TextButton>Orçamento</TextButton>
 			</ButtonLogin>
 
-			<Spacing marginTop={20} />
-			<LatoItalic14>
-				Não possui conta?{' '}
-				<LatoBoldUnderline
-					onPress={() => navigation.navigate('CreateAccount')}
-				>
-					Crie Uma agora
-				</LatoBoldUnderline>
-			</LatoItalic14>
+			<CommentFlatlist
+				data={comments}
+				renderItem={({ item }) => (
+					<CommentCard
+						img={item.usuario.foto }
+						name={item.usuario.nome}
+						comment={item.descricaoComentario}
+						stars={item.pontuacao}
+					/>
+				)}
+				keyExtractor={(item) => item.idComentario.toString()} // keyExtractor espera uma string
+				horizontal={true}
+			/>
 
 			<MadeBy height={height}>Made by Gamel Tec</MadeBy>
-		</ContainerLogo>
+
+			<CreateModal visible={isModalVisible} />
+		</Container>
 	);
 };
 
-export default Login;
+export default FirstPage;

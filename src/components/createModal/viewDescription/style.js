@@ -12,4 +12,5 @@ export const Description = styled.Text`
 	color: #caa858;
 	font-size: 15px;
 	font-family: 'lato_regular';
+    margin-top: 3px;
 `;

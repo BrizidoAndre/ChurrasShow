@@ -6,9 +6,9 @@ import { ButtonSelectDate } from './style';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import moment from 'moment';
 
-export const ButtonDate = () => {
+export const ButtonDate = ({selectedDate, setSelectedDate}) => {
 	const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-	const [selectedDate, setSelectedDate] = useState(new Date());
+	
 
 	const showDatePicker = () => {
 		setDatePickerVisibility(true);

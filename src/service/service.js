@@ -6,7 +6,7 @@ import axios from "axios";
 const ip = 'churrasshowwebapi.azurewebsites.net';
 
 
-const apiUrlLocal = `http://${ip}/api`
+const apiUrlLocal = `https://${ip}/api`
 
 
 const api = axios.create({
