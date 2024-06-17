@@ -20,7 +20,7 @@ export const CardList = ({ statusLista, cardsData, onPress }) => {
 							guests={item.quantidadePessoasEvento}
 							duration={item.duracaoEvento}
 							packageName={item.nomePacote}
-							img={img}
+							img={item.img}
 							preco={item.valorTotal}
 						/>
 					</TouchableOpacity>

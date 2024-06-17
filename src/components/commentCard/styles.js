@@ -7,6 +7,8 @@ export const CommentImage = styled.Image`
     height:60px;
     border-radius: 50px;
 
+    z-index: 1;
+
     object-position: center;
 
     position: absolute;

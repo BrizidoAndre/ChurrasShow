@@ -38,7 +38,7 @@ export const CardPacoteBasico = ({ id, situacao, guests, duration, packageName, 
                             <BoxTextPrice>
                                 <PriceText>R${preco}</PriceText>
 
-                                <Image source={require('../../assets/PerfilCard.png')} />
+                                <Image source={img ? {uri: img} :require('../../assets/PerfilCard.png')} />
 
                             </BoxTextPrice>
 
