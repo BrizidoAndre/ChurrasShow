@@ -40,7 +40,7 @@ export const Calendar = ({ setCalendarDate }) => {
     return (
         <CalendarStyle
             scrollable
-            onDateSelected={date => setCalendarDate(moment(date).format('YYYY-MM-DD'))}
+            onDateSelected={date => setCalendarDate(moment(date).format('DD/MM/YYYY'))}
 
             calendarAnimation={{ type: "sequence", duration: 30 }}
             daySelectionAnimation={styleCalendar.selectedAnimationStyle}

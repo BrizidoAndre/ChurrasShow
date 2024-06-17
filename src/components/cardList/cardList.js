@@ -35,7 +35,7 @@ export const CardList = ({ statusLista, cardsData, onPress }) => {
 			data={cardsData}
 			keyExtractor={(item) => item._id}
 			renderItem={({ item }) =>
-				statusLista == item.statusEvento && (
+				statusLista === item.statusEvento && (
 					<TouchableOpacity onPress={() => onPress(item)}>
 						<CardPacoteBasico
 							id={item._id}

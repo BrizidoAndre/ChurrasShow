@@ -27,16 +27,16 @@ export const CardPacoteBasico = ({ id, situacao, guests, duration, packageName, 
 
 
                     <View>
-                        <Text> - {guests}</Text>
+                        <Text>Nº de convidados - {guests}</Text>
 
-                        <Text> - {duration}</Text>
+                        <Text>Q. de horas - {duration}</Text>
                     </View>
 
 
                     {
-                        situacao == 'pendente' ? (
+                        situacao === 'Pendente' ? (
                             <BoxTextPrice>
-                                <PriceText>R$0000,00</PriceText>
+                                {/*<PriceText>R$0000,00</PriceText>*/}
 
                                 <Image source={require('../../assets/PerfilCard.png')} />
 

@@ -21,9 +21,6 @@ const FirstPage = ({ navigation }) => {
 
 		const res = await api.get('/Comentario/ListarComentariosValidos')
 		const data = await res.data;
-
-		console.log(data)
-		
 		setComments(data)
 	} 
 

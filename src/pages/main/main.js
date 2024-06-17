@@ -45,7 +45,7 @@ const Main = () => {
         }
         })}>
 
-      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Home" component={Home}  />
 
       {/* <Tab.Screen name="Login" component={Login} /> */}
       <Tab.Screen name="Profile" component={Profile} />

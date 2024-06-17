@@ -28,6 +28,7 @@ import { BudgetSummary } from '../../components/budgetSummary/budgetSummary';
 import api from '../../service/service';
 import { userDecodeToken } from '../../utils/auth';
 import CreateModal from '../../components/createModal/createModal';
+import {CreateEventButton} from "../../components/createEventButton/createEventButton";
 
 const Home = ({ navigation }) => {
 	const [statusLista, setStatusLista] = useState('Pendente');
@@ -38,6 +39,10 @@ const Home = ({ navigation }) => {
 
 	// * Criando um state para verificar qual card foi selecionado para transpor ao modal
 	const [selectedCard, setSelectedCard] = useState();
+
+
+	//criando state para o modal de criar cadastro
+	const [createModalVisible, setCreateModalVisible] = useState(false)
 
 
 	const [user, setUser] = useState({
@@ -51,32 +56,7 @@ const Home = ({ navigation }) => {
 		role: ''
 	})
 
-	const [eventos, setEventos] = useState({
-		_id: "4d671553-649c-448d-a7a4-bed23412101d",
-		nomeCliente: "André",
-		dataHoraEvento: "2024-10-22T13:00:00",
-		quantidadePessoasEvento: 5,
-		duracaoEvento: 5,
-		descartaveis: true,
-		acompanhamentos: true,
-		garconete: 1,
-		confirmado: true,
-		idPacote: "67104252-0e65-4c1e-95f7-337febd2f631",
-		nomePacote: "Pacote Premium",
-		descricaoPacote: "Experiencie o auge do sabor com o nosso Pacote Churrasco Premium. Este pacote exclusivo inclui uma seleção de carnes nobres como ancho, costela premium e cordeiro, todas preparadas e servidas por um churrasqueiro profissional. Acompanhamentos gourmet como salada de rúcula com parmesão, pães artesanais e molhos especiais complementam a refeição. Perfeito para ocasiões especiais que pedem um toque de sofisticação.",
-		valorPorPessoa: 100,
-		idEndereco: "b393d1cd-7098-46de-84de-6a4b44c18818",
-		logradouro: "Rua Shiguera Ishii",
-		cidade: "Santa América",
-		uf: "SP",
-		cep: 16455970,
-		numero: 726,
-		bairro: "Santa América",
-		complemento: null,
-		dataDeCriacao: "2024-06-12T08:10:08.777",
-		statusEvento: "Aprovado",
-		valorTotal: 725
-	})
+	const [eventos, setEventos] = useState()
 
 	// * Criacao da funcao de pressionar o card e levar dados ao modal
 
@@ -93,10 +73,10 @@ const Home = ({ navigation }) => {
 	};
 
 	async function loadEvents() {
-		console.log(calendarDate)
-		const res = await api.get('/Evento/BuscarPorData?data=25%2F10%2F2024');
+		const res = await api.get('/Evento/BuscarPorData?data=' + encodeURIComponent(calendarDate));
 
 		const data = await res.data;
+		console.log(data)
 		setEventos(data)
 	}
 
@@ -106,11 +86,16 @@ const Home = ({ navigation }) => {
 	}
 
 	useEffect(() => {
-		setCalendarDate(moment().format('YYYY-MM-DD'));
+		setCalendarDate(moment().format('DD/MM/YYYY'));
 
 		loadEvents()
 		loadUser()
 	}, []);
+
+
+	useEffect(() => {
+		loadEvents()
+	}, [calendarDate]);
 
 	return (
 		<HomeContainer>
@@ -137,7 +122,7 @@ const Home = ({ navigation }) => {
 				<BodyHome>
 					{statusLista == 'Pendente' ? (
 						<>
-							<LatoBold20Dourado>Pendentes</LatoBold20Dourado>
+							<LatoBold20Dourado>Pendente</LatoBold20Dourado>
 
 							<CardList
 								statusLista={statusLista}
@@ -162,9 +147,9 @@ const Home = ({ navigation }) => {
 						<>
 							<StatusButtonContainer>
 								<ButtonStatus
-									onPress={() => setStatusLista('agendado')}
-									clickButton={statusLista === 'agendado'}
-									textButton={'Agendado'}
+									onPress={() => setStatusLista('Aprovado')}
+									clickButton={statusLista === 'Aprovado'}
+									textButton={'Aprovado'}
 								/>
 								<ButtonStatus
 									onPress={() => setStatusLista('cancelado')}
@@ -192,7 +177,9 @@ const Home = ({ navigation }) => {
 						</>
 					)}
 				</BodyHome>
-				<CreateModal user={user}  />
+				<CreateModal user={user} visible={createModalVisible} setVisible={setCreateModalVisible}  />
+
+				<CreateEventButton  onPress={setCreateModalVisible}/>
 			</Container>
 		</HomeContainer>
 	);
