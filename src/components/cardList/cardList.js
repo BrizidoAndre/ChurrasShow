@@ -6,29 +6,6 @@ import { ListCard } from './style';
 
 import img from '../../assets/image 1.png'
 
-// export const CardListPendente = ({ statusLista, cardsData }) => {
-
-//     return (
-//         <ListCard
-//             data={cardsData}
-//             keyExtractor={(item) => item.id}
-//             renderItem={({ item }) => statusLista == item.Situacao && (
-
-//                 <CardPacoteBasicoPendente
-//                     id={item.id}
-//                     situacao={item.Situacao}
-//                     dados={item.data}
-//                     packageName={item.title}
-
-//                 />
-//             )}
-
-//         />
-
-//     )
-
-// }
-
 export const CardList = ({ statusLista, cardsData, onPress }) => {
 	return (
 		<ListCard
@@ -44,6 +21,7 @@ export const CardList = ({ statusLista, cardsData, onPress }) => {
 							duration={item.duracaoEvento}
 							packageName={item.nomePacote}
 							img={img}
+							preco={item.valorTotal}
 						/>
 					</TouchableOpacity>
 				)

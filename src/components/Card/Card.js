@@ -1,7 +1,7 @@
 import { Image, SectionList, Text, View } from "react-native"
 import { CardContainer, BoxImage, BoxText, TitleList, BoxCard, PriceText, BoxTextPrice, FoodImage } from "./Style"
 
-export const CardPacoteBasico = ({ id, situacao, guests, duration, packageName, img }) => {
+export const CardPacoteBasico = ({ id, situacao, guests, duration, packageName, img, preco }) => {
 
     return (
         <CardContainer>
@@ -36,7 +36,7 @@ export const CardPacoteBasico = ({ id, situacao, guests, duration, packageName, 
                     {
                         situacao === 'Pendente' ? (
                             <BoxTextPrice>
-                                {/*<PriceText>R$0000,00</PriceText>*/}
+                                <PriceText>R${preco}</PriceText>
 
                                 <Image source={require('../../assets/PerfilCard.png')} />
 
@@ -45,7 +45,7 @@ export const CardPacoteBasico = ({ id, situacao, guests, duration, packageName, 
                         ) : (
 
                             <>
-                                <PriceText>R$0000,00</PriceText>
+                                <PriceText>R${preco}</PriceText>
                             </>
                         )
                     }

@@ -152,8 +152,8 @@ const Home = ({ navigation }) => {
 									textButton={'Aprovado'}
 								/>
 								<ButtonStatus
-									onPress={() => setStatusLista('cancelado')}
-									clickButton={statusLista === 'cancelado'}
+									onPress={() => setStatusLista('Cancelado')}
+									clickButton={statusLista === 'Cancelado'}
 									textButton={'Cancelado'}
 								/>
 							</StatusButtonContainer>

@@ -150,7 +150,7 @@ const CreateModal = ({user, visible, setVisible, navigation}) => {
                     </ContentComponentsX>
 
                     <ContentComponentsX>
-                        <SubTitle text={'DURAÇÃO:'}/>
+                        <SubTitle text={'DURAÇÃO (em horas):'}/>
                         {/* //?Importacao do componente de adicionar a duracao do evento */}
                         <DurationButton durationTime={duracao} setDurationTime={setDuracao}/>
                     </ContentComponentsX>
