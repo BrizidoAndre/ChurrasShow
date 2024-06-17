@@ -106,15 +106,12 @@ export const CommentModal = ({ visible, stars, onClose, cardData }) => {
 					<TitleModal>COMENTÁRIO</TitleModal>
 					<ContainerComment>
 					<LatoComment
-    multiline
-    numberOfLines={4}
-    placeholder="Digite seu comentário..."
-    value={comment}
-    onChangeText={(text) => {
-        setComment(text);
-        console.log('Novo valor de comment:', text);
-    }}
-/>
+    					multiline
+    					numberOfLines={4}
+    					placeholder="Digite seu comentário..."
+    					value={comment}
+    					onChangeText={(text) => {setComment(text)}}
+					/>
 					</ContainerComment>
 
 					<CommentStars star={userStars} onChange={handleStarsChange} />
