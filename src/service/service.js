@@ -3,17 +3,14 @@
 import axios from "axios";
 
 
-const ip = '172.16.39.118';
+const ip = 'churrasshowwebapi.azurewebsites.net';
 
-const door = '5209';
 
-const apiUrlLocal = `http://${ip}:${door}/api`
-
-const apiUrlAzure = `https://churrasshowwebapi.azurewebsites.net/api`
+const apiUrlLocal = `http://${ip}/api`
 
 
 const api = axios.create({
-    baseURL: apiUrlAzure
+    baseURL: apiUrlLocal
 })
 
 export default api;
