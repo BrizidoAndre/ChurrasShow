@@ -39,7 +39,7 @@ export const FoodImage = styled.Image`
 
 export const BoxText = styled.View`
     /* width:auto ; */
-    width: 48%;
+    width: 55%;
     /* border: 1px solid red; */
 `
 

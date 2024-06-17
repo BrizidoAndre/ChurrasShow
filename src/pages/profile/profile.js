@@ -43,7 +43,7 @@ const Profile = ({ navigation }) => {
         if (photo) {
             await MediaLibrary.createAssetAsync(photo)
                 .then(() => {
-                    alert('Foto salva com sucesso, saia do aplicativo para foto aparecer+');
+                    alert('Foto salva com sucesso');
                 })
                 .catch(error => {
                     alert('Erro ao salvar foto')
@@ -137,6 +137,7 @@ const Profile = ({ navigation }) => {
             }
         }).then(async response => {
             setEffect('Adios')
+            console.log('Adiosss');
         }).catch(error => {
             console.log(`Algo deu errado: ${error}`);
         })
@@ -149,13 +150,16 @@ const Profile = ({ navigation }) => {
         loadUserData()
     }, [uriCameraCapture])
 
+    
     useEffect(() => {
         AlterarFotoPerfil()
         loadUserData()
+        
 
     }, [])
 
     useEffect(() => {
+        AlterarFotoPerfil()
         loadUserData()
     }, [effet])
 

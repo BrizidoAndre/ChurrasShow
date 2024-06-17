@@ -6,6 +6,7 @@ import { LatoRegular18 } from "../texts/style"
 import starFull from '../../assets/star.png'
 import starEmpty from '../../assets/starEmpty.png'
 import { useEffect, useState } from "react"
+import { Entypo } from '@expo/vector-icons';
 import { reloadAppAsync } from "expo"
 
 
@@ -31,10 +32,10 @@ const CommentStars = ({ star }) => {
         let arrayStar = []
         for (let index = 0; index < 5; index++) {
             if(points > 0){
-                arrayStar.push(<ImageStar source={starFull} />)
+                arrayStar.push(<Entypo name="star" size={24} color="#CAA858" />)
             }
             else{
-                arrayStar.push(<ImageStar source={starEmpty} />)
+                arrayStar.push(<Entypo name="star-outlined" size={24} color="#CAA858" /> )
             }
             points --;
         }

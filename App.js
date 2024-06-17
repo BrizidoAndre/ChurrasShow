@@ -22,6 +22,19 @@ import { useCallback } from 'react';
 import RedefinePassword from './src/pages/redefinePassword/redefinePassword';
 import { CheckEmail } from './src/pages/checkEmail/checkEmail';
 import RecoverPassword from "./src/pages/recoverPassword/recoverPassword";
+import {LogBox} from 'react-native';
+
+// Ignore log notification by message
+LogBox.ignoreLogs([
+  // Exact message
+  'Warning: componentWillReceiveProps has been renamed',
+
+  // Substring or regex match
+  /GraphQL error: .*/,
+]);
+
+// Ignore all log notifications
+LogBox.ignoreAllLogs();
 
 const Stack = createNativeStackNavigator();
 
