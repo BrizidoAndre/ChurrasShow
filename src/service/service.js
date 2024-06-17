@@ -3,12 +3,10 @@
 import axios from "axios";
 
 
-/* const ip = '172.16.39.118'; */
-const ip = '172.16.39.118';/* ip Everton */
+const ip = 'churrasshowwebapi.azurewebsites.net';
 
-const door = '5209';
 
-const apiUrlLocal = `http://${ip}:${door}/api`
+const apiUrlLocal = `https://${ip}/api`
 
 
 const api = axios.create({

@@ -3,13 +3,151 @@ import Input from '../../components/input/input';
 import { ContainerPerfil, ContainerPerfilScroll, Header, ImageProfile, Body, Footer, ImageButton } from './Style';
 import { ButtonEditar } from '../../components/packageButton/packageButton';
 import { Link } from '../../components/Link/Link';
-import { useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { LatoRegular14Creme, LatoRegular20Creme } from '../../components/texts/style';
+import { userDecodeToken } from '../../utils/auth';
+import api from '../../service/service';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { CameraModal } from '../../components/camera/CameraModal/cameraModal';
 
 
 
 const Profile = ({ navigation }) => {
-    const [isEditing, useIsEditing] = useState(true)
+    const [photo, setPhoto] = useState(null)
+    const cameraRef = useRef(null)
+
+    const [isEditing, setIsEditing] = useState(true)
+
+    const [openModal, setOpenModal] = useState(false)
+    // const [loadModal, setLoadModal] = useState(false)
+
+    const [uriCameraCapture, setUriCameraCapture] = useState({
+        uri: 'https://blobchurrasshow.blob.core.windows.net/churrasshow/06af2ba51e884d4db7614ab208fe182b.exp',
+        data: '',
+    })
+
+    const [userData, setUserData] = useState({
+        id: '',
+        name: '',
+        email: '',
+        cpf: '',
+        rg: '',
+        cidade: '',
+        logradouro: '',
+        foto: '',
+    })
+
+    async function SavePhoto() {
+        if (photo) {
+            await MediaLibrary.createAssetAsync(photo)
+                .then(() => {
+                    alert('Foto salva com sucesso');
+                })
+                .catch(error => {
+                    alert('Erro ao salvar foto')
+                })
+        }
+    }
+
+    async function capturePhoto() {
+        if (cameraRef) {
+            const image = await cameraRef.current.takePictureAsync();
+
+            setPhoto(image.uri)
+            setUriCameraCapture({ data: image.uri })
+
+            SavePhoto()
+            setOpenModal(false)
+        }
+
+        if (photo) {
+            await MediaLibrary.createAssetAsync(photo)
+        }
+    }
+
+    async function loadUserData() {
+        const token = await userDecodeToken()
+
+
+
+        if (token !== null) {
+
+            await api.get(`/Usuario/${token.id}`)
+                .then(response => {
+                    console.log(response.data)
+
+
+                    setUserData({
+                        ...userData,
+                        id: token.id,
+                        name: response.data.name,
+                        email: response.data.email,
+                        cpf: response.data.cpf,
+                        rg: response.data.rg,
+                        cidade: response.data.cidade,
+                        logradouro: response.data.logradouro,
+                        foto: response.data.image_src
+
+                    })
+
+
+
+                }).catch(error => {
+                    console.log(error)
+                })
+
+        }
+    }
+
+    async function updateUserData() {
+        try {
+            await api.put(`/Usuario/AtualizarUsuario?id=${userData.id}`, {
+                name: userData.name,
+                rg: userData.rg,
+                cpf: userData.cpf,
+                logradouro: userData.logradouro,
+                cidade: userData.cidade
+            })
+
+            console.log(`Dados atualizado`)
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
+
+    async function AlterarFotoPerfil() {
+
+        const formData = new FormData();
+        formData.append("Arquivo", {
+            uri: uriCameraCapture.data,
+            name: `image.${uriCameraCapture.data.split(".")[1]}`,
+            type: `image/${uriCameraCapture.data.split(".")[1]}`
+        })
+
+        await api.put(`/Usuario/AlterarFotoPerfil?id=${userData.id}`, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        }).then(async response => {
+
+        }).catch(error => {
+            console.log(`Algo deu errado: ${error}`);
+        })
+    }
+
+
+    useEffect(() => {
+        console.log(uriCameraCapture);
+        AlterarFotoPerfil()
+    }, [uriCameraCapture])
+
+    useEffect(() => {
+
+        loadUserData()
+
+    }, [])
+
 
     return (
         <>
@@ -23,16 +161,19 @@ const Profile = ({ navigation }) => {
                             isEditing ? (
 
                                 <>
-                                    <ImageProfile source={require('../../assets/ProfilePicture01.png')} />
+                                    <ImageProfile source={{ uri: userData.foto }} />
+
+                                    <LatoRegular14Creme>{userData.name} - {userData.email}</LatoRegular14Creme>
+
                                 </>
 
                             ) : (
                                 <>
-                                    <ImageButton>
-                                        <ImageProfile source={require('../../assets/ProfilePicture01.png')} />
+                                    <ImageButton onPress={() => { setOpenModal(!openModal) }} >
+                                        <ImageProfile source={{ uri: userData.foto }} />
                                     </ImageButton>
 
-                                    <LatoRegular14Creme>Clique na imagem para editar a foto</LatoRegular14Creme>
+                                    <LatoRegular14Creme>Clique na imagem para uma nova foto</LatoRegular14Creme>
 
                                 </>
 
@@ -46,19 +187,81 @@ const Profile = ({ navigation }) => {
                     {
                         isEditing ? (
                             <Body>
-                                <Input editable={false} value={"Gamel"} />
-                                <Input editable={false} value={"teste@gmail.com"} />
-                                <Input editable={false} value={"09090909090"} />
-                                <Input editable={false} value={"Rua Fernando Bollini, 09"} />
-                                <Input editable={false} value={"São Paulo"} />
+                                <Input editable={false} value={userData.name} />
+                                <Input editable={false} value={userData.cpf} />
+                                <Input editable={false} value={userData.rg} />
+
+                                {/* Verfica se os inputs tem um componente vázio ou não. Caso esteja vázio, ele entrega o 'value = Endereço..'  */}
+                                {
+                                    userData.logradouro == null || userData.cidade == null ? (
+                                        <>
+                                            <Input editable={false} value={'Endereço...'} />
+                                            <Input editable={false} value={'Cidade...'} />
+                                        </>
+
+                                    ) : (
+                                        <>
+                                            <Input editable={false} value={userData.logradouro} />
+                                            <Input editable={false} value={userData.cidade} />
+                                        </>
+                                    )
+                                }
+
                             </Body>
                         ) : (
                             <Body>
-                                <Input editable={true} value={"Username..."} />
-                                <Input editable={true} value={"Email..."} />
-                                <Input editable={true} value={"CPF..."} />
-                                <Input editable={true} value={"Endereço..."} />
-                                <Input editable={true} value={"Cidade..."} />
+                                <Input
+                                    editable={true}
+                                    value={userData.name}
+                                    setValue={(txt) => {
+                                        setUserData({
+                                            ...userData,
+                                            name: txt
+                                        })
+                                    }}
+                                />
+                                <Input
+                                    editable={true}
+                                    value={userData.cpf}
+                                    setValue={(txt) => {
+                                        setUserData({
+                                            ...userData,
+                                            cpf: txt
+                                        })
+                                    }}
+                                />
+
+                                <Input
+                                    editable={true}
+                                    value={userData.rg}
+                                    setValue={(txt) => {
+                                        setUserData({
+                                            ...userData,
+                                            rg: txt
+                                        })
+                                    }}
+                                />
+
+                                <Input
+                                    editable={true}
+                                    value={userData.logradouro}
+                                    setValue={(txt) => {
+                                        setUserData({
+                                            ...userData,
+                                            logradouro: txt
+                                        })
+                                    }}
+                                />
+                                <Input
+                                    editable={true}
+                                    value={userData.cidade}
+                                    setValue={(txt) => {
+                                        setUserData({
+                                            ...userData,
+                                            cidade: txt
+                                        })
+                                    }}
+                                />
                             </Body>
 
                         )
@@ -70,14 +273,16 @@ const Profile = ({ navigation }) => {
                             <>
                                 <ButtonEditar
                                     textButton={"Editar"}
-                                    onPress={() => { useIsEditing(false) }}
+                                    onPress={() => { setIsEditing(false) }}
                                 />
 
                                 <Link
                                     textLink={'Sair da Conta'}
                                     fontSize={14}
                                     color={'F2E6D0'}
-                                    onPress={() => { navigation.navigate('FirstPage') }}
+                                    onPress={() => {
+                                        navigation.navigate('FirstPage'), AsyncStorage.removeItem('token')
+                                    }}
                                 />
                             </>
 
@@ -85,14 +290,14 @@ const Profile = ({ navigation }) => {
                             <>
                                 <ButtonEditar
                                     textButton={"Salvar"}
-                                    onPress={() => { useIsEditing(true) }}
+                                    onPress={() => { setIsEditing(true), updateUserData() }}
                                 />
 
                                 <Link
                                     textLink={'Voltar'}
                                     fontSize={14}
                                     color={'F2E6D0'}
-                                    onPress={() => { useIsEditing(true) }}
+                                    onPress={() => { setIsEditing(true) }}
                                 />
                             </>
                         )}
@@ -103,6 +308,13 @@ const Profile = ({ navigation }) => {
 
             </ContainerPerfilScroll>
 
+            <CameraModal
+                cameraRef={cameraRef}
+                getMediaLibrary={true}
+                openModal={openModal}
+                setOpenModal={setOpenModal}
+                capturePhoto={capturePhoto}
+            />
         </>
 
     )

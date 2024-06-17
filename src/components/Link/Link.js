@@ -1,6 +1,6 @@
 import { LinkText, LinkTouch } from "./Style"
 
-export const Link = ({ textLink, fontSize, color, onPress,fontFamily }) => {
+export const Link = ({ textLink, fontSize, color, onPress, fontFamily }) => {
 
     return (
         <LinkTouch
@@ -9,10 +9,10 @@ export const Link = ({ textLink, fontSize, color, onPress,fontFamily }) => {
                 fontSize={fontSize}
                 color={color}
                 fontFamily={fontFamily}
-            >{textLink}</LinkText>
+            >
+                {textLink}
+            </LinkText>
         </LinkTouch>
     );
-
-
 
 }

@@ -9,6 +9,12 @@ export const Container = styled.View`
 
     align-items: center;
 `
+
+export const ContainerCream = styled.View`
+    flex: 1;
+
+    align-items: center;
+`
 export const HomeContainer = styled(Container)`
     gap: 20px;
 `
@@ -56,4 +62,31 @@ export const StatusButtonContainer = styled.View`
     flex-direction: row;
     justify-content: space-between;
     width: 90%;
+`
+
+export const CameraPermissionContainer = styled.View`
+    display: flex;
+
+    background-color:#1D1D1D ;
+
+    justify-content: center;
+    align-items:center;
+    gap: 20px;
+
+    height: 100%;
+    z-index: 1;
+    
+`
+
+export const BottomRowButtonContainer = styled.View`
+    width:80%;
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+
+    gap: 30px;
+    
+    position: absolute;
+    bottom: 30px;
+    align-self:center;
 `

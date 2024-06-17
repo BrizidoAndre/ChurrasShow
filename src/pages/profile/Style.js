@@ -5,7 +5,7 @@ export const ContainerPerfilScroll = styled.ScrollView`
     background-color:#1D1D1D;
     
 `
-export const ContainerPerfil = styled.SafeAreaView`
+export const ContainerPerfil = styled.View`
     justify-content: center;
     background-color:#1D1D1D;
     gap: 15px;
@@ -27,6 +27,8 @@ export const ImageButton = styled.TouchableOpacity`
 
 export const ImageProfile = styled.Image`
     border-radius: 200px;
+    width: 162px;
+    height: 158px;
     
 `
 

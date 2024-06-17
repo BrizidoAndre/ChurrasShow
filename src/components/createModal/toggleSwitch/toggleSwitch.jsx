@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { TouchableOpacity, View, StyleSheet, Animated } from 'react-native';
 
-export const ToggleSwitch = () => {
-	const [isOn, setIsOn] = useState(false);
+export const ToggleSwitch = ( {isOn, setIsOn}) => {
 	const translateX = useState(new Animated.Value(0))[0];
 
 	const toggleSwitch = () => {

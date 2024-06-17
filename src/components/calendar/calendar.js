@@ -2,6 +2,7 @@ import { CalendarStyle } from "./style";
 import { StyleSheet } from "react-native";
 import moment from "moment"
 import 'moment/locale/pt-br';
+import { useEffect, useState } from "react";
 
 //instância da data atual
 const currentDate = new Date();
@@ -12,35 +13,39 @@ const startingDate = new Date(currentDate.getFullYear(), currentDate.getMonth(),
 //define a data final como sendo o último dia do mês
 const endingDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
 
-const markedDatesArray = [
-    {
-        date: ('', currentDate),
-        lines: [
-            {
-                color: '#F2E6D0'
-            }
-        ]
-    }
-]
+
 
 export const Calendar = ({ setCalendarDate }) => {
 
-    markedDatesFunc = date => {
+    const [markedDatesArray, setMarkedDatesArray] = useState([]);
+
+    const markedDatesFunc = date => {
         // Line
-        if (date.isoWeekday() === 6) { // Saturdays
+        if (date.isoWeekday() === 5) { // Saturdays
             return {
+                date: date.format('YYYY-MM-DD'),
                 lines: [{
-                color: '#F2E6D0'
-            }]
+                    color: '#F2E6D0',
+                    selectedColor: '#F2E6D0'
+                }]
             };
         }
-        return {};
+        return null;
     }
+
+    useEffect(() => {
+        const datesArray = [];
+        for (let d = moment(startingDate); d.isBefore(endingDate); d.add(1, 'day')) {
+            const markedDate = markedDatesFunc(d);
+            if (markedDate) datesArray.push(markedDate);
+        }
+        setMarkedDatesArray(datesArray);
+    }, []);
 
     return (
         <CalendarStyle
             scrollable
-            onDateSelected={date => setCalendarDate(moment(date).format('YYYY-MM-DD'))}
+            onDateSelected={date => setCalendarDate(moment(date).format('DD/MM/YYYY'))}
 
             calendarAnimation={{ type: "sequence", duration: 30 }}
             daySelectionAnimation={styleCalendar.selectedAnimationStyle}
@@ -51,6 +56,8 @@ export const Calendar = ({ setCalendarDate }) => {
             startingDate={moment()}
             minDate={moment()}
             maxDate={endingDate}
+
+            markedDates={markedDatesArray}
 
             calendarHeaderStyle={styleCalendar.calendarHeaderStyle}
             dateNumberStyle={styleCalendar.numberDateStyle}
