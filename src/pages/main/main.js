@@ -50,6 +50,8 @@ const Main = () => {
       {/* <Tab.Screen name="Login" component={Login} /> */}
       <Tab.Screen name="Profile" component={Profile} />
 
+      {/* <Tab.Screen name="CreateAccount" component={CreateAccount} /> */}
+
     </Tab.Navigator>
   );
 }

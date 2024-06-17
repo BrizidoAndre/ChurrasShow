@@ -31,6 +31,10 @@ export const CheckEmail = ({ navigation, route }) => {
 			navigation.navigate('RedefinePassword', {
 				email: email,
 			});
+
+			navigation.navigate('RedefinePassword', {
+				email: email,
+			});
 		} catch (error) {
 			console.log(error);
 		}

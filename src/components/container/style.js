@@ -57,3 +57,30 @@ export const StatusButtonContainer = styled.View`
     justify-content: space-between;
     width: 90%;
 `
+
+export const CameraPermissionContainer = styled.View`
+    display: flex;
+
+    background-color:#1D1D1D ;
+
+    justify-content: center;
+    align-items:center;
+    gap: 20px;
+
+    height: 100%;
+    z-index: 1;
+    
+`
+
+export const BottomRowButtonContainer = styled.View`
+    width:80%;
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+
+    gap: 30px;
+    
+    position: absolute;
+    bottom: 30px;
+    align-self:center;
+`

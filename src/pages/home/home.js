@@ -26,18 +26,29 @@ import {
 import { CardList, CardListPendente } from '../../components/cardList/cardList';
 import { BudgetSummary } from '../../components/budgetSummary/budgetSummary';
 import api from '../../service/service';
+import { userDecodeToken } from '../../utils/auth';
 
 const Home = ({ navigation }) => {
 	const [statusLista, setStatusLista] = useState('pendente');
-	const [budgetAccept, setBudgetAccept] = useState(false);
 	const [calendarDate, setCalendarDate] = useState('');
-	const [cardsDataList, setCardsDataList] = useState([]);
 
 	// * Criando o state para ver se o modal esta visivel ou nao
 	const [isModalVisible, setModalVisible] = useState(false);
 
 	// * Criando um state para verificar qual card foi selecionado para transpor ao modal
 	const [selectedCard, setSelectedCard] = useState();
+
+
+	const [user, setUser] = useState({
+		aud: '',
+		email: '',
+		exp: '',
+		foto: '',
+		iss: '',
+		jti: '',
+		name: '',
+		role: ''
+	})
 
 	// * Criacao da funcao de pressionar o card e levar dados ao modal
 
@@ -88,33 +99,25 @@ const Home = ({ navigation }) => {
 		},
 	];
 
-	async function budgetLockDay() {
-		if (statusLista != 'pendente') {
-			calendarDate == statusLista;
-		}
-	}
-
-	async function budgetAccepted() {
-		if (budgetAccept == true) {
-			setStatusLista('agendado');
-		}
-	}
-
-	async function loadEvents(){
+	async function loadEvents() {
 		const res = await api.get('/Evento/BuscarPorData?data=22%2F10%2F2024');
 
 		const data = await res.data;
+	}
 
-		console.log(data)
+	async function loadUser() {
+		const userCode = await userDecodeToken();
+		setUser(userCode)
+		console.log('Usuário')
+		console.log(userCode)
 	}
 
 	useEffect(() => {
-		budgetLockDay;
-		budgetAccepted();
 		setCalendarDate(moment().format('YYYY-MM-DD'));
 		navigation.navigate('Main');
 
 		loadEvents()
+		loadUser()
 	}, []);
 
 	return (
@@ -123,7 +126,7 @@ const Home = ({ navigation }) => {
 				<Header>
 					<BoxHeader>
 						<LatoLight16Creme>Bem vindo!</LatoLight16Creme>
-						<LatoRegular20Creme>Nome da Pessoa</LatoRegular20Creme>
+						<LatoRegular20Creme>{user.name}</LatoRegular20Creme>
 					</BoxHeader>
 
 					<ImageButton
@@ -132,7 +135,7 @@ const Home = ({ navigation }) => {
 						}}
 					>
 						<ImageProfile
-							source={require('../../assets/ProfilePicture01.png')}
+							source={{uri: user.foto}}
 						/>
 					</ImageButton>
 				</Header>
