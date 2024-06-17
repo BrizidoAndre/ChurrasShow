@@ -9,7 +9,7 @@ export const ContentBudgetModal = styled(ContentCreateModal)`
 
 export const ContentSummary = styled.View`
 	width: 90%;
-	height: 352px;
+	max-height: 352px;
 	background-color: #f2e6d0;
 	display: flex;
 	flex-direction: column;
@@ -22,6 +22,7 @@ export const TitleSummary = styled(LatoRegular15)`
 	text-transform: uppercase;
 	margin-top: 30px;
 	font-weight: bold;
+	align-self: center;
 `;
 
 export const ContentSummaryData = styled.View`

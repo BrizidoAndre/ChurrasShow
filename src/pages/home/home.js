@@ -27,9 +27,11 @@ import { CardList, CardListPendente } from '../../components/cardList/cardList';
 import { BudgetSummary } from '../../components/budgetSummary/budgetSummary';
 import api from '../../service/service';
 import { userDecodeToken } from '../../utils/auth';
+import CreateModal from '../../components/createModal/createModal';
+import {CreateEventButton} from "../../components/createEventButton/createEventButton";
 
 const Home = ({ navigation }) => {
-	const [statusLista, setStatusLista] = useState('pendente');
+	const [statusLista, setStatusLista] = useState('Pendente');
 	const [calendarDate, setCalendarDate] = useState('');
 
 	// * Criando o state para ver se o modal esta visivel ou nao
@@ -37,6 +39,10 @@ const Home = ({ navigation }) => {
 
 	// * Criando um state para verificar qual card foi selecionado para transpor ao modal
 	const [selectedCard, setSelectedCard] = useState();
+
+
+	//criando state para o modal de criar cadastro
+	const [createModalVisible, setCreateModalVisible] = useState(false)
 
 
 	const [user, setUser] = useState({
@@ -49,6 +55,8 @@ const Home = ({ navigation }) => {
 		name: '',
 		role: ''
 	})
+
+	const [eventos, setEventos] = useState()
 
 	// * Criacao da funcao de pressionar o card e levar dados ao modal
 
@@ -64,61 +72,30 @@ const Home = ({ navigation }) => {
 		setSelectedCard(null);
 	};
 
-	const ListBudgets = [
-		{
-			id: 1,
-			title: 'PACOTE BÁSICO',
-			convidados: '100 CONVIDADOS',
-			duracao: 'DURAÇÃO: 4h',
-			Situacao: 'agendado',
-			image: 'image 1.png',
-		},
-		{
-			id: 2,
-			title: 'PACOTE PREMIUM',
-			convidados: '150 CONVIDADOS',
-			duracao: 'DURAÇÃO: 6h',
-			Situacao: 'cancelado',
-			image: 'image 2.png',
-		},
-		{
-			id: 3,
-			title: 'PACOTE BÁSICO',
-			convidados: '100 CONVIDADOS',
-			duracao: 'DURAÇÃO: 2h',
-			Situacao: 'pendente',
-			image: 'image 1.png',
-		},
-		{
-			id: 4,
-			title: 'PACOTE PREMIUM',
-			convidados: '150 CONVIDADOS',
-			duracao: 'DURAÇÃO: 6h',
-			Situacao: 'pendente',
-			image: 'image 2.png',
-		},
-	];
-
 	async function loadEvents() {
-		const res = await api.get('/Evento/BuscarPorData?data=22%2F10%2F2024');
+		const res = await api.get('/Evento/BuscarPorData?data=' + encodeURIComponent(calendarDate));
 
 		const data = await res.data;
+		console.log(data)
+		setEventos(data)
 	}
 
 	async function loadUser() {
 		const userCode = await userDecodeToken();
 		setUser(userCode)
-		console.log('Usuário')
-		console.log(userCode)
 	}
 
 	useEffect(() => {
-		setCalendarDate(moment().format('YYYY-MM-DD'));
-		navigation.navigate('Main');
+		setCalendarDate(moment().format('DD/MM/YYYY'));
 
 		loadEvents()
 		loadUser()
 	}, []);
+
+
+	useEffect(() => {
+		loadEvents()
+	}, [calendarDate]);
 
 	return (
 		<HomeContainer>
@@ -135,7 +112,7 @@ const Home = ({ navigation }) => {
 						}}
 					>
 						<ImageProfile
-							source={{uri: user.foto}}
+							source={{ uri: user.foto }}
 						/>
 					</ImageButton>
 				</Header>
@@ -143,13 +120,13 @@ const Home = ({ navigation }) => {
 				<Calendar setCalendarDate={setCalendarDate} />
 
 				<BodyHome>
-					{statusLista == 'pendente' ? (
+					{statusLista == 'Pendente' ? (
 						<>
-							<LatoBold20Dourado>Pendentes</LatoBold20Dourado>
+							<LatoBold20Dourado>Pendente</LatoBold20Dourado>
 
 							<CardList
 								statusLista={statusLista}
-								cardsData={ListBudgets}
+								cardsData={eventos}
 								onPress={handleCardPress}
 							/>
 							{/* // * Se o card for selecionado ele vai levar os dados */}
@@ -170,19 +147,19 @@ const Home = ({ navigation }) => {
 						<>
 							<StatusButtonContainer>
 								<ButtonStatus
-									onPress={() => setStatusLista('agendado')}
-									clickButton={statusLista === 'agendado'}
-									textButton={'Agendado'}
+									onPress={() => setStatusLista('Aprovado')}
+									clickButton={statusLista === 'Aprovado'}
+									textButton={'Aprovado'}
 								/>
 								<ButtonStatus
-									onPress={() => setStatusLista('cancelado')}
-									clickButton={statusLista === 'cancelado'}
+									onPress={() => setStatusLista('Cancelado')}
+									clickButton={statusLista === 'Cancelado'}
 									textButton={'Cancelado'}
 								/>
 							</StatusButtonContainer>
 							<CardList
 								statusLista={statusLista}
-								cardsData={ListBudgets}
+								cardsData={eventos}
 								onPress={handleCardPress}
 							/>
 							{selectedCard && (
@@ -195,12 +172,14 @@ const Home = ({ navigation }) => {
 							)}
 							<ButtonEditar
 								textButton={'Pendente'}
-								onPress={() => setStatusLista('pendente')}
+								onPress={() => setStatusLista('Pendente')}
 							/>
 						</>
 					)}
 				</BodyHome>
-				{/* <Button title="ir para a navegação" onPress={() => { navigation.navigate('Main') }} /> */}
+				<CreateModal user={user} visible={createModalVisible} setVisible={setCreateModalVisible}  />
+
+				<CreateEventButton  onPress={setCreateModalVisible}/>
 			</Container>
 		</HomeContainer>
 	);
