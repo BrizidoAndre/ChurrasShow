@@ -24,8 +24,10 @@ const Login = ({ navigation, navigation: { setParams } }) => {
 	const [loading, setLoading] = useState(false);
 
     const [userLogin, setUserLogin] = useState({
-        email: 'abrizidobasilio@gmail.com',
-        senha: 'Banana'
+        /* email: 'abrizidobasilio@gmail.com',
+        senha: 'Banana' */
+		email: 'everton_araujo88@yahoo.com.br',
+        senha: 'Senai123'
     })
 
 	const { params } = useRoute();

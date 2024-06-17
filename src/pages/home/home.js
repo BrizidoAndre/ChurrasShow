@@ -78,7 +78,9 @@ const Home = ({ navigation }) => {
 		const res = await api.get('/Evento/BuscarPorData?data=' + encodeURIComponent(calendarDate));
 
 		const data = await res.data;
+		console.log("===========");
 		console.log(data)
+		console.log("=========");
 		setEventos(data)
 	}
 

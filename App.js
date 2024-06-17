@@ -8,9 +8,9 @@ import Home from "./src/pages/home/home";
 import Login from "./src/pages/login/login";
 import FirstPage from "./src/pages/firstPage/firstPage";
 import CreateAccount from "./src/pages/createAccount/createAccount";
-
+import { useFonts } from "expo-font";
 import {
-  useFonts,
+  
   Lato_400Regular,
   Lato_700Bold,
   Lato_300Light,
