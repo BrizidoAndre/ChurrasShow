@@ -8,9 +8,9 @@ import Home from "./src/pages/home/home";
 import Login from "./src/pages/login/login";
 import FirstPage from "./src/pages/firstPage/firstPage";
 import CreateAccount from "./src/pages/createAccount/createAccount";
-
+import { useFonts } from "expo-font";
 import {
-  useFonts,
+  
   Lato_400Regular,
   Lato_700Bold,
   Lato_300Light,
@@ -35,6 +35,7 @@ LogBox.ignoreLogs([
 
 // Ignore all log notifications
 LogBox.ignoreAllLogs();
+import CommentModal from "./src/components/commentModal/commentModal";
 
 const Stack = createNativeStackNavigator();
 
@@ -103,6 +104,10 @@ export default function App() {
         <Stack.Screen
           name="Profile"
           component={Profile} />
+
+        <Stack.Screen
+          name="CommentModal"
+          component={CommentModal} />
 
 
       </Stack.Navigator>

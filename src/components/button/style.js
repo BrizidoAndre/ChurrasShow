@@ -16,7 +16,7 @@ export const ButtonCadastrar = styled(ButtonLogin)`
     margin-top: 66px;
     margin-bottom:86px;
 `
-export const TextButton = styled.Text`
+ export const TextButton = styled.Text`
     font-family:'lato_bold';
 
 	align-items: center;

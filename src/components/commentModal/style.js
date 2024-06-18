@@ -38,7 +38,7 @@ export const TitleModal = styled.Text`
 
 export const ContainerComment = styled.TextInput.attrs({
 	multiline: true,
-	textAlignVertical: 'top'
+	textAlignVertical: 'top',
   })`
 	width: 90%;
 	height: 283px;

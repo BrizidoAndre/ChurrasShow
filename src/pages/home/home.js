@@ -29,10 +29,12 @@ import api from '../../service/service';
 import { userDecodeToken } from '../../utils/auth';
 import CreateModal from '../../components/createModal/createModal';
 import {CreateEventButton} from "../../components/createEventButton/createEventButton";
+import { useRoute } from '@react-navigation/native';
 
 const Home = ({ navigation }) => {
-	const [statusLista, setStatusLista] = useState('Pendente');
+	const [statusLista, setStatusLista] = useState('pendente');
 	const [calendarDate, setCalendarDate] = useState('');
+	const { params } = useRoute()
 
 	// * Criando o state para ver se o modal esta visivel ou nao
 	const [isModalVisible, setModalVisible] = useState(false);
@@ -76,7 +78,9 @@ const Home = ({ navigation }) => {
 		const res = await api.get('/Evento/BuscarPorData?data=' + encodeURIComponent(calendarDate));
 
 		const data = await res.data;
+		console.log("===========");
 		console.log(data)
+		console.log("=========");
 		setEventos(data)
 	}
 

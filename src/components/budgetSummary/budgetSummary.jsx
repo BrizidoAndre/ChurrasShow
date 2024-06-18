@@ -24,6 +24,7 @@ import { dateBeautify } from '../../utils/date';
 import { ContainerCream } from '../container/style';
 import Spacing from '../spacing/spacing';
 import api from '../../service/service';
+import CommentModal from '../commentModal/commentModal';
 
 export const BudgetSummary = ({ visible, onClose, cardData, statusLista }) => {
 
@@ -33,9 +34,10 @@ export const BudgetSummary = ({ visible, onClose, cardData, statusLista }) => {
 		date: '',
 	})
 
+	const [isCommentModalVisible, setCommentModalVisible] = useState(false);
 
 	function loadData() {
-		console.log(cardData._idEvento)
+		console.log(cardData)
 		setEventDate(dateBeautify(cardData.dataHoraEvento));
 	}
 
@@ -142,7 +144,7 @@ export const BudgetSummary = ({ visible, onClose, cardData, statusLista }) => {
 								<TextButtonModal>Aprovar</TextButtonModal>
 							</ButtonBudgetModal>
 						) : (
-							<ButtonBudgetModal>
+							<ButtonBudgetModal onPress={()=>setCommentModalVisible(true)}>
 								<TextButtonModal>Comentar</TextButtonModal>
 							</ButtonBudgetModal>
 						)}
@@ -159,6 +161,15 @@ export const BudgetSummary = ({ visible, onClose, cardData, statusLista }) => {
 					<Back onPress={onClose}>Voltar</Back>
 				</ContentBudgetModal>
 			</CreateModalX>
+
+			{/* Adicione o CommentModal */}
+			{isCommentModalVisible && (
+				<CommentModal
+					visible={isCommentModalVisible}
+					onClose={() => setCommentModalVisible(false)}
+					cardData={cardData}
+				/>
+			)}
 		</Modal>
 	);
 };
