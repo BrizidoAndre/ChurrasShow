@@ -148,10 +148,10 @@ export const BudgetSummary = ({ visible, onClose, cardData, statusLista }) => {
 						)}
 
 						{/*  */}
-						{statusLista === 'Pendente' ??
+						{statusLista === 'Pendente' ?
 							<ButtonBudgetModal onPress={() => cancelarOrcamento(cardData._idEvento)}>
 								<TextButtonModal>Cancelar</TextButtonModal>
-							</ButtonBudgetModal>
+							</ButtonBudgetModal> : <></>
 						}
 
 						{/*  */}

@@ -1,8 +1,12 @@
 import { Image, SectionList, Text, View } from "react-native"
 import { CardContainer, BoxImage, BoxText, TitleList, BoxCard, PriceText, BoxTextPrice, FoodImage } from "./Style"
+import {useEffect} from "react";
 
 export const CardPacoteBasico = ({ id, situacao, guests, duration, packageName, img, preco }) => {
 
+    useEffect(() => {
+        console.log(img)
+    }, []);
     return (
         <CardContainer>
             <BoxCard>
@@ -38,7 +42,7 @@ export const CardPacoteBasico = ({ id, situacao, guests, duration, packageName, 
                             <BoxTextPrice>
                                 <PriceText>R${preco}</PriceText>
 
-                                <Image source={img ? {uri: img} :require('../../assets/PerfilCard.png')} />
+                                <Image style={{width:35,height:35, borderRadius:200}} source={{uri: img}}/>
 
                             </BoxTextPrice>
 
