@@ -24,30 +24,18 @@ import { dateBeautify } from '../../utils/date';
 import { ContainerCream } from '../container/style';
 import Spacing from '../spacing/spacing';
 import api from '../../service/service';
-import { CommentImage } from '../commentCard/styles';
 import CommentModal from '../commentModal/commentModal';
 
-export const BudgetSummary = ({
-	visible,
-	onClose,
-	cardData,
-	statusLista,
-	close,
-}) => {
-	// * Criando o state para ver se o modal esta visivel ou nao
-	const [isModalVisible, setModalVisible] = useState(false);
-
-	const modalVisible = () => {
-		setModalVisible(true);
-	};
-
+export const BudgetSummary = ({ visible, onClose, cardData, statusLista }) => {
 	const [dateEvent, setEventDate] = useState({
 		hour: '',
 		date: '',
 	});
 
+	const [isCommentModalVisible, setCommentModalVisible] = useState(false);
+
 	function loadData() {
-		console.log(cardData._idEvento);
+		console.log(cardData);
 		setEventDate(dateBeautify(cardData.dataHoraEvento));
 	}
 
@@ -167,7 +155,9 @@ export const BudgetSummary = ({
 								<TextButtonModal>Aprovar</TextButtonModal>
 							</ButtonBudgetModal>
 						) : (
-							<ButtonBudgetModal onPress={() => modalVisible()}>
+							<ButtonBudgetModal
+								onPress={() => setCommentModalVisible(true)}
+							>
 								<TextButtonModal>Comentar</TextButtonModal>
 							</ButtonBudgetModal>
 						)}
@@ -188,7 +178,15 @@ export const BudgetSummary = ({
 					<Back onPress={onClose}>Voltar</Back>
 				</ContentBudgetModal>
 			</CreateModalX>
-			<CommentModal visible={isModalVisible} onClose={close} />
+
+			{/* Adicione o CommentModal */}
+			{isCommentModalVisible && (
+				<CommentModal
+					visible={isCommentModalVisible}
+					onClose={() => setCommentModalVisible(false)}
+					cardData={cardData}
+				/>
+			)}
 		</Modal>
 	);
 };
