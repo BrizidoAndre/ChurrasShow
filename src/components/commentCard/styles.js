@@ -6,12 +6,13 @@ export const CommentImage = styled.Image`
     width: 60px;
     height:60px;
     border-radius: 50px;
+    margin-top: 10px;
 
-    object-position: center;
+    /* object-position: center; */
 
-    position: absolute;
+    /* position: absolute;
     left:10px;
-    top:10px;
+    top:10px; */
 `
 
 export const ImageStar = styled.Image`

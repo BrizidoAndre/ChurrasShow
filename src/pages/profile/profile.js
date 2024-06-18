@@ -8,11 +8,13 @@ import { LatoRegular14Creme, LatoRegular20Creme } from '../../components/texts/s
 import { userDecodeToken } from '../../utils/auth';
 import api from '../../service/service';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { CameraModal } from '../../components/camera/CameraModal/cameraModal';
+import { CameraModal } from '../../components/camera/CameraModal/cameraModal';0
+import * as MediaLibrary from 'expo-media-library'
 
 
 
 const Profile = ({ navigation }) => {
+    const [effet, setEffect] = useState('')
     const [photo, setPhoto] = useState(null)
     const cameraRef = useRef(null)
 
@@ -51,6 +53,7 @@ const Profile = ({ navigation }) => {
 
     async function capturePhoto() {
         if (cameraRef) {
+       
             const image = await cameraRef.current.takePictureAsync();
 
             setPhoto(image.uri)
@@ -90,6 +93,8 @@ const Profile = ({ navigation }) => {
 
                     })
 
+                    
+
 
 
                 }).catch(error => {
@@ -98,6 +103,7 @@ const Profile = ({ navigation }) => {
 
         }
     }
+
 
     async function updateUserData() {
         try {
@@ -130,7 +136,8 @@ const Profile = ({ navigation }) => {
                 "Content-Type": "multipart/form-data"
             }
         }).then(async response => {
-
+            setEffect('Adios')
+            console.log('Adiosss');
         }).catch(error => {
             console.log(`Algo deu errado: ${error}`);
         })
@@ -140,13 +147,21 @@ const Profile = ({ navigation }) => {
     useEffect(() => {
         console.log(uriCameraCapture);
         AlterarFotoPerfil()
+        loadUserData()
     }, [uriCameraCapture])
 
+    
     useEffect(() => {
-
+        AlterarFotoPerfil()
         loadUserData()
+        
 
     }, [])
+
+    useEffect(() => {
+        AlterarFotoPerfil()
+        loadUserData()
+    }, [effet])
 
 
     return (

@@ -8,9 +8,9 @@ import Home from "./src/pages/home/home";
 import Login from "./src/pages/login/login";
 import FirstPage from "./src/pages/firstPage/firstPage";
 import CreateAccount from "./src/pages/createAccount/createAccount";
-
+import { useFonts } from "expo-font";
 import {
-  useFonts,
+  
   Lato_400Regular,
   Lato_700Bold,
   Lato_300Light,
@@ -22,6 +22,20 @@ import { useCallback } from 'react';
 import RedefinePassword from './src/pages/redefinePassword/redefinePassword';
 import { CheckEmail } from './src/pages/checkEmail/checkEmail';
 import RecoverPassword from "./src/pages/recoverPassword/recoverPassword";
+import {LogBox} from 'react-native';
+
+// Ignore log notification by message
+LogBox.ignoreLogs([
+  // Exact message
+  'Warning: componentWillReceiveProps has been renamed',
+
+  // Substring or regex match
+  /GraphQL error: .*/,
+]);
+
+// Ignore all log notifications
+LogBox.ignoreAllLogs();
+import CommentModal from "./src/components/commentModal/commentModal";
 
 const Stack = createNativeStackNavigator();
 
@@ -90,6 +104,10 @@ export default function App() {
         <Stack.Screen
           name="Profile"
           component={Profile} />
+
+        <Stack.Screen
+          name="CommentModal"
+          component={CommentModal} />
 
 
       </Stack.Navigator>

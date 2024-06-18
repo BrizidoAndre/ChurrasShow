@@ -35,7 +35,7 @@ export const BudgetSummary = ({ visible, onClose, cardData, statusLista }) => {
 	const [isCommentModalVisible, setCommentModalVisible] = useState(false);
 
 	function loadData() {
-		console.log(cardData);
+		console.log(cardData._idEvento);
 		setEventDate(dateBeautify(cardData.dataHoraEvento));
 	}
 
@@ -155,9 +155,7 @@ export const BudgetSummary = ({ visible, onClose, cardData, statusLista }) => {
 								<TextButtonModal>Aprovar</TextButtonModal>
 							</ButtonBudgetModal>
 						) : (
-							<ButtonBudgetModal
-								onPress={() => setCommentModalVisible(true)}
-							>
+							<ButtonBudgetModal>
 								<TextButtonModal>Comentar</TextButtonModal>
 							</ButtonBudgetModal>
 						)}

@@ -15,9 +15,9 @@ import { useWindowDimensions } from 'react-native';
 import { useState } from 'react';
 import api from '../../service/service';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { userDecodeToken } from '../../utils/auth';
+import { useRoute } from '@react-navigation/native';
 
-const Login = ({ navigation }) => {
+const Login = ({ navigation, navigation: { setParams } }) => {
 	const { width, height } = useWindowDimensions();
 
 	const [loading, setLoading] = useState(false);
