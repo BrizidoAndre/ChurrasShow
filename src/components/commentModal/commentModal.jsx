@@ -53,7 +53,7 @@ const CommentStars = ({ star, onChange}) => {
 
 export const CommentModal = ({ visible, stars, onClose, cardData }) => {
 	const [userStars, setUserStars] = useState(stars);
-	const [comment, setComment] = useState();
+	const [comment, setComment] = useState('');
 
 
 	function loadData() {
@@ -90,6 +90,7 @@ export const CommentModal = ({ visible, stars, onClose, cardData }) => {
 			const data = await res.data;
 
 			console.log(res.data);
+			Alert.alert('Comentário cadastrado com sucesso!!')
 
 		} catch (error) {
 			
@@ -104,15 +105,15 @@ export const CommentModal = ({ visible, stars, onClose, cardData }) => {
 			<CreateModalX>
 				<ContentCreateModal>
 					<TitleModal>COMENTÁRIO</TitleModal>
-					<ContainerComment>
-					<LatoComment
+					<ContainerComment
+					
     					multiline
     					numberOfLines={4}
     					placeholder="Digite seu comentário..."
     					value={comment}
-    					onChangeText={(text) => {setComment(text)}}
+    					onChangeText={setComment}
+					
 					/>
-					</ContainerComment>
 
 					<CommentStars star={userStars} onChange={handleStarsChange} />
 
