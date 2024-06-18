@@ -51,7 +51,7 @@ export const BudgetSummary = ({ visible, onClose, cardData, statusLista }) => {
 			idStatusEvento: '3786ca9b-8a94-4f1a-8a3e-0154dcf9a798'
 		})
 		const data = await res.data;
-		Alert.alert('Confirmação concluída','Seu evento foi aprovado corretamente')
+		Alert.alert('Confirmação concluída', 'Seu evento foi aprovado corretamente')
 		onClose()
 	}
 
@@ -60,7 +60,7 @@ export const BudgetSummary = ({ visible, onClose, cardData, statusLista }) => {
 			idStatusEvento: '787fd592-c85c-4049-ba5d-7a28f15795e1',
 		})
 		const data = await res.data;
-		Alert.alert('Cancelado','Seu evento foi devidamente cancelado')
+		Alert.alert('Cancelado', 'Seu evento foi devidamente cancelado')
 		onClose()
 	}
 
@@ -140,7 +140,7 @@ export const BudgetSummary = ({ visible, onClose, cardData, statusLista }) => {
 
 						{/* //? importacao do texto do botao */}
 						{statusLista === 'Pendente' ? (
-							<ButtonBudgetModal onPress={()=> aprovarOrcamento(cardData._idEvento)}>
+							<ButtonBudgetModal onPress={() => aprovarOrcamento(cardData._idEvento)}>
 								<TextButtonModal>Aprovar</TextButtonModal>
 							</ButtonBudgetModal>
 						) : (
@@ -150,9 +150,12 @@ export const BudgetSummary = ({ visible, onClose, cardData, statusLista }) => {
 						)}
 
 						{/*  */}
-						<ButtonBudgetModal onPress={() => cancelarOrcamento(cardData._idEvento)}>
-							<TextButtonModal>Cancelar</TextButtonModal>
-						</ButtonBudgetModal>
+						{statusLista === 'Pendente' ?
+							<ButtonBudgetModal onPress={() => cancelarOrcamento(cardData._idEvento)}>
+								<TextButtonModal>Cancelar</TextButtonModal>
+							</ButtonBudgetModal> : <></>
+						}
+
 						{/*  */}
 					</ContentButton>
 

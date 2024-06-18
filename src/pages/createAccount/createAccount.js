@@ -42,6 +42,15 @@ const CreateAccount = ({ navigation }) => {
 					'Erro de cadastro',
 					'As senhas digitadas são distintas',
 				);
+				return;
+			}
+
+			if(newAccount.rg.length !== 9 && newAccount.cpf.length !== 11 ){
+				Alert.alert(
+					'Erro de cadastro',
+					'Número de digitos do cpf ou rg incorretos',
+				);
+				return;
 			}
 
 			form = new FormData();

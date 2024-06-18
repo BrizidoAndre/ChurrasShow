@@ -75,6 +75,7 @@ const CreateModal = ({user, visible, setVisible, navigation}) => {
     // pelo token de identificação
     async function createEvent() {
         try {
+            console.log(selectedDate);
             const idPacote = getIdPacote(selectedButton);
 
             const res = await api.post('/Evento', {
@@ -93,6 +94,9 @@ const CreateModal = ({user, visible, setVisible, navigation}) => {
                 numero: '40'
             })
 
+            const data = await res.data;
+            console.log(data);
+
             setVisible(false)
 
             Alert.alert('Sucesso', 'Seu orçamento foi cadastrado com sucesso!')
@@ -103,10 +107,6 @@ const CreateModal = ({user, visible, setVisible, navigation}) => {
     }
 
 
-    // criando um useEffect para já obter os dados corretos da com base no pacote selecionado
-    useEffect(() => {
-        console.log('bam')
-    }, []);
 
     return (
         <Modal visible={visible} transparent={true} animationType="fade">
