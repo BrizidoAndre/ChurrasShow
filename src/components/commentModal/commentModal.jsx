@@ -57,9 +57,8 @@ export const CommentModal = ({ visible, stars, onClose, cardData }) => {
 
 
 	function loadData() {
-		console.log(cardData._idEvento)
-		console.log(cardData._idUsuario)
-		
+		console.log(cardData)
+			
 	}
 
 	useEffect(() => {
