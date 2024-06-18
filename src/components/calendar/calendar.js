@@ -17,30 +17,6 @@ const endingDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 
 
 export const Calendar = ({ setCalendarDate }) => {
 
-    const [markedDatesArray, setMarkedDatesArray] = useState([]);
-
-    const markedDatesFunc = date => {
-        // Line
-        if (date.isoWeekday() === 5) { // Saturdays
-            return {
-                date: date.format('YYYY-MM-DD'),
-                lines: [{
-                    color: '#F2E6D0',
-                    selectedColor: '#F2E6D0'
-                }]
-            };
-        }
-        return null;
-    }
-
-    useEffect(() => {
-        const datesArray = [];
-        for (let d = moment(startingDate); d.isBefore(endingDate); d.add(1, 'day')) {
-            const markedDate = markedDatesFunc(d);
-            if (markedDate) datesArray.push(markedDate);
-        }
-        setMarkedDatesArray(datesArray);
-    }, []);
 
     return (
         <CalendarStyle
@@ -57,7 +33,6 @@ export const Calendar = ({ setCalendarDate }) => {
             minDate={moment()}
             maxDate={endingDate}
 
-            markedDates={markedDatesArray}
 
             calendarHeaderStyle={styleCalendar.calendarHeaderStyle}
             dateNumberStyle={styleCalendar.numberDateStyle}
