@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Modal, TouchableOpacity } from 'react-native';
+import { Alert, Modal, TouchableOpacity } from 'react-native';
 import {
 	ContainerComment,
 	ContainerRowStarModal,
@@ -72,13 +72,6 @@ export const CommentModal = ({ visible, stars, onClose, cardData }) => {
 
 	async function handleConfirm () {
 
-		console.log('Dados a serem enviados:', {
-			descricaoComentario: comment,
-			pontuacao: userStars,
-			idEvento: cardData._idEvento,
-			idUsuario: cardData._idUsuario
-		});
-
 		try {
 			const res = await api.post('/Comentario/ComentarioIA', {
 				descricaoComentario: comment,
@@ -88,9 +81,9 @@ export const CommentModal = ({ visible, stars, onClose, cardData }) => {
 			});
 
 			const data = await res.data;
-
-			console.log(res.data);
 			Alert.alert('Comentário cadastrado com sucesso!!')
+			console.log(res.data);
+			
 
 		} catch (error) {
 			
